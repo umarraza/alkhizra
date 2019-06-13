@@ -1,30 +1,68 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
+@extends('layouts.app')
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Dashboard</div>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+                <div class="panel-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-        <!-- Styles -->
-        <style>
-        </style>
-
-    </head>
-    <body>
-        <div class="jumbotron">
-            <h1 class="display-4">Send Emails!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="/emails/send-email" role="button">Add Email</a>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Send Emails</a>
-
+                    You are logged in!
+                </div>
+            </div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4"></div>
+
+        <div class="col-lg-4 col-md-4">
+            <div id="messageDiv"></div> <br>
+            <input type="hidden" id="userId" value="{{Auth::User()->id}}">
+            <input id="nameInput" class="form-control form-control-sm" type="text" placeholder="Name">
+            <input id="messageInput" class="form-control form-control-sm" type="text" placeholder="Message">
+        </div>
+
+        <div class="col-lg-4 col-md-4"></div>
+    </div>
+
+    {{--  <input id="nameInput" placeholder="Name"/>
+    <input id="messageInput" placeholder="Message..."/>  --}}
+
+    <script>
+
+        var messageRef = new Firebase('https://alkhizra-76467.firebaseio.com/');
+        
+        $('#messageInput').keypress(function(e){
+
+            if(e.keyCode == 13) {
+
+                var name = $('#nameInput').val();
+                var text = $('#messageInput').val();
+                var userId = $('#userId').val();
+
+                messageRef.push({name:name, text:text, userId:userId});
+
+                $('#messageInput').val();
+            }
+
+        }); 
+
+        messageRef.on('child_added',function(snapshot){
+            
+            var message = snapshot.val();
+            document.getElementById('messageDiv').innerHTML += message.name+': '+message.text+'<br/>';
+
+        });
+
+    </script>
+
+@endsection

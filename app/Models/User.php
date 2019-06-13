@@ -32,18 +32,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username',
-        'password',
+        'name',
         'email',
-        'roleId',
-        'resetPasswordToken',
-        'createdResetPToken',
-        'avatarFilePath',
-        'deviceToken',
-        'deviceType',
-        'verified',
-        'onlineStatus',
-        'language',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -52,7 +44,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'resetPasswordToken','deviceToken',
+        'password',
     ];
 
     /**

@@ -10,25 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('firebase','FirebaseController@index');
+
+Route::get('/firebase', function () {
+    return view('firebase.chat');
+});
 
 Route::get('/', function () {
-    return view('createEmails');
+    return view('welcome');
 });
 
-Route::get('create-email-form', function () {
-    return view('createEmails');
-});
-
-Route::get('type-message', function () {
-    return view('sendEmail');
-});
-
-// ============= Controller Routes ============= //
-
-Route::post('create-email','Api\EmailsController@create');
-Route::post('send-mail','Api\EmailsController@sendMails');
-Route::get('show-emails','Api\EmailsController@show');
-Route::get('delete-email/{id}','Api\EmailsController@delete');
 
 
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
