@@ -18,14 +18,19 @@
         </div>
     </div>
 </div>
+<br>
+<br>
+
 
 
 <div class="row">
     <div class="col-lg-4 col-md-4"></div>
     <div class="col-lg-4 col-md-4">
         <div id="messageDiv"></div> <br>
+        
         <input type="hidden" id="userId" value="{{Auth::User()->id}}">
         <input type="hidden" id="nameInput" class="form-control form-control-sm" type="text" placeholder="Name" value="{{Auth::User()->name}}">
+
         <p>{{Auth::User()->name}}</p>
         <input id="messageInput" class="form-control form-control-sm" type="text" placeholder="Message">
     </div>
