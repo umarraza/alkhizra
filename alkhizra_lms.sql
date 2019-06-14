@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2019 at 08:43 AM
+-- Generation Time: Jun 14, 2019 at 09:53 AM
 -- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- PHP Version: 7.1.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -293,6 +293,40 @@ CREATE TABLE `instructors` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_06_14_061726_create_roles_table', 2),
+(4, '2019_06_14_061814_create_role_user_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pricing`
 --
 
@@ -307,6 +341,52 @@ CREATE TABLE `pricing` (
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `description`, `createdAt`, `updatedAt`) VALUES
+(1, 'Admin', 'A user with Admin Privilege', '2019-06-13 07:00:00', '2019-06-13 07:00:00'),
+(2, 'Teacher', 'A user with Teacher Privilege', '2019-06-13 07:00:00', '2019-06-13 07:00:00'),
+(3, 'Student', 'A user with Student Privilege', '2019-06-13 07:00:00', '2019-06-13 07:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_user`
+--
+
+CREATE TABLE `role_user` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_user`
+--
+
+INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `createdAt`, `updatedAt`) VALUES
+(1, 1, 1, '2019-06-13 07:00:00', '2019-06-13 07:00:00'),
+(2, 2, 2, '2019-06-13 07:00:00', '2019-06-13 07:00:00'),
+(3, 3, 3, '2019-06-13 07:00:00', '2019-06-13 07:00:00');
 
 -- --------------------------------------------------------
 
@@ -394,24 +474,24 @@ CREATE TABLE `test_orders` (
 --
 
 CREATE TABLE `users` (
-  `id` int(10) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
-  `roleId` int(10) NOT NULL,
-  `resetPasswordToken` varchar(255) DEFAULT NULL,
-  `createdResetPToken` timestamp NULL DEFAULT NULL,
-  `avatarFilePath` varchar(200) DEFAULT NULL,
-  `deviceToken` varchar(200) DEFAULT NULL,
-  `onlineStatus` tinyint(3) NOT NULL DEFAULT '0',
-  `verified` tinyint(3) NOT NULL,
-  `googleLogin` varchar(250) DEFAULT NULL,
-  `facebookLogin` varchar(250) DEFAULT NULL,
-  `language` varchar(20) NOT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updatedAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `remember_token`, `createdAt`, `updatedAt`) VALUES
+(1, 'Admin', 'admin@admin.com', '$2y$10$1ikpiJnoUqoS/cy8Syxp9e8iKdI3GSE4McbdhZ8I1E5SDdPgLEeGK', 'Admin', 'c9DYCcrOMEPL0haKIov44LfZaRYPNAR1LeVpjc1AvpVkQ9kQqpfcLNvaUOOM', '2019-06-14 11:29:17', '2019-06-14 11:29:17'),
+(2, 'Umar Raza', 'umar@gmail.com', '$2y$10$VCVxkEIEs7oEhACi/KqNb.md1pqkTzn//Kg0IXEWuHlYtiugaI1/C', 'Teacher', 'N241pgREuq5mxgT969Vfv1WevSmrmEsiNaZoGfL9QxeRRLDtowYAwQ8boTm5', '2019-06-14 11:30:18', '2019-06-14 11:30:18'),
+(3, 'Ali Raza', 'ali@gmail.com', '$2y$10$cqa8FBIDrg0750tKMOLEseQy85x/9vHXSQHCK0mjHqF21Vust2Xry', 'Student', 'X0YXw32YIqP0KsdiIBtPFuOvGFKX8iX6pR37KRTxLPqk3OGvFfSSIMXzF2Aw', '2019-06-14 11:30:29', '2019-06-14 11:30:29');
 
 --
 -- Indexes for dumped tables
@@ -508,9 +588,33 @@ ALTER TABLE `instructors`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
 -- Indexes for table `pricing`
 --
 ALTER TABLE `pricing`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role_user`
+--
+ALTER TABLE `role_user`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -541,7 +645,8 @@ ALTER TABLE `test_orders`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -638,10 +743,28 @@ ALTER TABLE `instructors`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `pricing`
 --
 ALTER TABLE `pricing`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `role_user`
+--
+ALTER TABLE `role_user`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -671,7 +794,7 @@ ALTER TABLE `test_orders`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
