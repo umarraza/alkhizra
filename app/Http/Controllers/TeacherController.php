@@ -23,21 +23,28 @@ class TeacherController extends Controller
 
     public function createTeacher(Request $request) {
 
+        $first_name = $request->first_name;
+        $last_name = $request->last_name;
+
+        $teacherName = $first_name . ' ' . $last_name;
+
         $user = User::create([
 
-            'name'  => $request->teacherName,
-            'email' => $request->email,
-            'password' => $request->password,
-            'roleId' => 2
+            'name'    =>  $teacherName,
+            'email'   =>  $request->email,
+            'roleId'  =>  2
 
         ]);
 
         $user->save();
 
         $teacher = Teacher::create([
-            'teacherName'  => $request->teacherName,
-            'description'  => $request->description,
-            'email'        => $request->email,
+
+            'first_name'   =>  $request->first_name,
+            'last_name'    =>  $request->last_name,
+            'address'      =>  $request->address,
+            'description'  =>  $request->description,
+            'email'        =>  $request->email,
         ]);
 
         $teacher->save();
@@ -58,9 +65,11 @@ class TeacherController extends Controller
 
         $teacher = Teacher::find($request->id);
 
-        $teacher->teacherName  = $request->teacherName;
-        $teacher->description  = $request->description;
-        $teacher->email        = $request->email;
+        $teacher->first_name   =  $request->first_name;
+        $teacher->last_name    =  $request->last_name;
+        $teacher->address      =  $request->address;
+        $teacher->description  =  $request->description;
+
 
         $teacher->save();
 

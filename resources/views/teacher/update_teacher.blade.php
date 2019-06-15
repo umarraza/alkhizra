@@ -6,7 +6,7 @@
         <div class="col-lg-4">
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h1 class="box-title">Edit Customer</h1>
+                    <h1 class="box-title">Edit Teacher</h1>
                     <div class="pull-right">
                         <a href="{{ url('list-teachers') }}" type="button" class="btn btn-danger">Back</a>
                     </div>
@@ -17,26 +17,35 @@
                     <div class="box-body">
 
                         <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Name:</label>
+                            <label for="name" class="col-sm-2 control-label">First Name:</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="teacherName" name="teacherName" placeholder="" required="true" value="{{$teacher->teacherName}}">
+                                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="" required="true" value="{{$teacher->first_name}}">
                             </div>
                         </div>
                         
+
                         <div class="form-group">
-                            <label for="customerAddress" class="col-sm-2 control-label">Description:</label>
+                            <label for="name" class="col-sm-2 control-label">Last Name:</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="description" name="description" placeholder="" required="true" value="{{$teacher->description}}">
+                                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="" required="true" value="{{$teacher->last_name}}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="col-sm-2 control-label">Email:</label>
+                            <label for="name" class="col-sm-2 control-label">Address:</label>
 
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="email" name="email" placeholder="" required="true" value="{{$teacher->email}}">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="" required="true" value="{{$teacher->address}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">About:</label>
+
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="description" name="description" placeholder="" required="true" value="{{$teacher->description}}">
                             </div>
                         </div>
 
