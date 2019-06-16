@@ -23,8 +23,8 @@ Route::get('/home', 'HomeController@index');
 
 /* ========= Teacher Routes ========= */
 
-Route::get('/create-teacher-form', 'TeacherController@createTeacherForm');
-Route::post('/create-teacher', 'TeacherController@createTeacher');
+Route::get('/create-teacher-form', 'TeacherController@createTeacherForm')->middleware('role');
+Route::post('/create-teacher', 'TeacherController@createTeacher')->middleware('role');
 
 Route::get('/list-teachers', 'TeacherController@listTeachers');
 Route::get('/teacher-update-form/{id}', 'TeacherController@updateTeacherForm');
@@ -56,7 +56,14 @@ Route::post('/course-update', 'CourseController@updateCourse');
 Route::get('/course-delete/{id}', 'CourseController@deleteCourse');
 
 
-/* ========= Course Routes ========= */
+/* ========= Classes Routes ========= */
+
+Route::get('/create-class-form/{id}', 'ClassController@createClassForm');
+Route::post('/create-class', 'ClassController@createClass');
+Route::get('/class-update-form/{id}', 'ClassController@updateClassForm');
+Route::post('/class-update', 'ClassController@updateClass');
+Route::get('/list-classes/{id}', 'ClassController@listClasse');
+Route::get('/class-delete/{id}', 'ClassController@deleteClass');
 
 
 

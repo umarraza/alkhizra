@@ -47,8 +47,7 @@
                                     <td>{{ $teacher->email }}
                                     <td><a href="{{url('/list-students/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Students</a></td>
                                     <td><a href="{{url('/list-courses/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Courses</a></td>
-                                    <td><a href="{{url('/list-courses/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Classes</a></td>
-
+                                    <td><a href="{{url('/list-classes/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Classes</a></td>
                                     <td><a href="{{url('/teacher-update-form/'.$teacher->id)}}" type="button" class="btn btn-success btn-sm">Update</a></td>
                                     <td><a href="{{url('/teacher-delete/'.$teacher->id)}}" type="button" class="btn btn-danger btn-sm">Delete</a></td>                            
                                 </tr>

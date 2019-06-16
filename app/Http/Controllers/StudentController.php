@@ -90,7 +90,6 @@ class StudentController extends Controller
     public function deleteStudent($id) {
 
         $student = Student::find($id);
-        return $student;
         $student->delete();
 
         return redirect("list-students/$id");

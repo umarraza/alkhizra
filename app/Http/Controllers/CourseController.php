@@ -11,10 +11,13 @@ use App\Models\User;
 
 class CourseController extends Controller
 {
+   
     public function createCourseForm($id) {
 
         return view('courses.create_course', compact('id'));
+        
     } 
+
 
     public function listCourses(Request $request) {
        

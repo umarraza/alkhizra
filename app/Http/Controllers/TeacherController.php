@@ -49,6 +49,19 @@ class TeacherController extends Controller
 
         $teacher->save();
 
+        $teacherName = $first_name . ' ' . $last_name;
+        $message = "A random message";
+        $tousername = $request->email;
+
+        $accessCode = mt_rand();
+
+        \Mail::send('mail',["accessCode"=>$accessCode], function ($message) use ($tousername) {
+
+            $message->from('super.admin@admin.com');
+            $message->to($tousername)->subject('Test Mails');
+
+       });
+        
     	return redirect('list-teachers');
 
     }
