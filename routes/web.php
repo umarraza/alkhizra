@@ -25,9 +25,16 @@ Route::post('/create-teacher', 'TeacherController@createTeacher');
 Route::get('/list-teachers', 'TeacherController@listTeachers');
 Route::get('/teacher-update-form/{id}', 'TeacherController@updateTeacherForm');
 Route::post('/teacher-update', 'TeacherController@teacherUpdate');
-
 Route::get('/teacher-delete/{id}', 'TeacherController@delete');
 
+/* ========= Student Routes ========= */
+Route::get('/all-students', 'StudentController@createStudentForm');
+Route::get('/create-student-form/{id}', 'StudentController@createStudentForm');
+Route::get('/list-students/{id}', 'StudentController@listStudents');
+Route::post('/create-student', 'StudentController@createStudent');
+Route::get('/student-update-form/{id}', 'StudentController@updateStudentForm');
+Route::post('/student-update', 'StudentController@updateStudent');
+Route::get('/student-delete/{id}', 'StudentController@deleteStudent');
 
 
 
