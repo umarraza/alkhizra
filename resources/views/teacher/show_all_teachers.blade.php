@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
             <div class="container-fluid">
-                <div class="col-lg-6">
+                <div class="col-lg-10">
                     <div class="box box-info">
                         <div class="box-header">
                             <h3 class="box-title">Teachers</h3>
@@ -28,9 +28,11 @@
                                     <th>Address</th>
                                     <th>About Teacher</th>
                                     <th>Email</th>
+                                    <th>Show Students</th>
+                                    <th>Show Courses</th>
+                                    <th>Show Classes</th>
                                     <th>Update</th>
                                     <th>Delete</th>
-                                    <th>Show Students</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,9 +45,12 @@
                                     <td>{{ $teacher->address }}</td>
                                     <td>{{ $teacher->description }}</td>
                                     <td>{{ $teacher->email }}
-                                    <td><a href="{{url('/teacher-update-form/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Update</a></td>
-                                    <td><a href="{{url('/teacher-delete/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Delete</a></td>                            
                                     <td><a href="{{url('/list-students/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Students</a></td>
+                                    <td><a href="{{url('/list-courses/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Courses</a></td>
+                                    <td><a href="{{url('/list-courses/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Classes</a></td>
+
+                                    <td><a href="{{url('/teacher-update-form/'.$teacher->id)}}" type="button" class="btn btn-success btn-sm">Update</a></td>
+                                    <td><a href="{{url('/teacher-delete/'.$teacher->id)}}" type="button" class="btn btn-danger btn-sm">Delete</a></td>                            
                                 </tr>
                                 @php $count++; @endphp
                                 @endforeach
@@ -54,6 +59,6 @@
                     </div>
                 </div>
             </div>
-        <div class="col-lg-6"></div>        
+        <!-- <div class="col-lg-6"></div>         -->
     </div>
 @endsection

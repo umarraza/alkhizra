@@ -19,6 +19,10 @@ Route::get('/admin', function () {
 
 
 Route::get('/home', 'HomeController@index');
+
+
+/* ========= Teacher Routes ========= */
+
 Route::get('/create-teacher-form', 'TeacherController@createTeacherForm');
 Route::post('/create-teacher', 'TeacherController@createTeacher');
 
@@ -27,8 +31,11 @@ Route::get('/teacher-update-form/{id}', 'TeacherController@updateTeacherForm');
 Route::post('/teacher-update', 'TeacherController@teacherUpdate');
 Route::get('/teacher-delete/{id}', 'TeacherController@delete');
 
+
+
+
 /* ========= Student Routes ========= */
-Route::get('/all-students', 'StudentController@createStudentForm');
+
 Route::get('/create-student-form/{id}', 'StudentController@createStudentForm');
 Route::get('/list-students/{id}', 'StudentController@listStudents');
 Route::post('/create-student', 'StudentController@createStudent');
@@ -39,6 +46,17 @@ Route::get('/student-delete/{id}', 'StudentController@deleteStudent');
 
 
 
+/* ========= Course Routes ========= */
+
+Route::get('/create-course-form/{id}', 'CourseController@createCourseForm');
+Route::get('/list-courses/{id}', 'CourseController@listCourses');
+Route::post('/create-course', 'CourseController@createCourse');
+Route::get('/course-update-form/{id}', 'CourseController@updateCourseForm');
+Route::post('/course-update', 'CourseController@updateCourse');
+Route::get('/course-delete/{id}', 'CourseController@deleteCourse');
+
+
+/* ========= Course Routes ========= */
 
 
 
