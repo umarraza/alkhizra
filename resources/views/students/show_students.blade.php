@@ -7,9 +7,12 @@
                     <div class="box box-info">
                         <div class="box-header">
                             <h3 class="box-title">Students</h3>
-                            <a href="{{ url('/create-student-form/'.$id) }}" class="small-box-footer">Add Student<i class="fa fa-arrow-circle-right"></i></a> <br>
+                            {{--  <a href="{{ url('/create-student-form/'.$id) }}" class="small-box-footer">Add Student<i class="fa fa-arrow-circle-right"></i></a> <br>  --}}
+                            
                             <a href="{{ url('/admin') }}" class="small-box-footer">Home<i class="fa fa-arrow-circle-right"></i></a> <br>
-                            <a href="{{ url('/list-teachers') }}" class="small-box-footer">Show Teachers<i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="{{ url('/add-student-form') }}" class="small-box-footer">Add Student<i class="fa fa-arrow-circle-right"></i></a> <br>
+
+                            {{--  <a href="{{ url('/list-teachers') }}" class="small-box-footer">Show Teachers<i class="fa fa-arrow-circle-right"></i></a>  --}}
 
                             <br>
                             <br>

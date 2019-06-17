@@ -24,6 +24,7 @@ class Teacher extends Model
         'address',
         'description',
         'email',
+        'userId'
         
     ];
 }

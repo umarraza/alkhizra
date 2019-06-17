@@ -12,7 +12,33 @@ use App\Models\User;
 
 class ClassController extends Controller
 {
-    
+
+    public function addClassForm(Request $request) {
+
+        $courses = Course::all();
+
+        // return $courses;
+
+        return view('classes.create_class', compact('courses'));
+    } 
+
+
+    public function showClasse(Request $request) {
+       
+        $classes = Classes::all();
+        
+        return view('classes.show_classes', compact('classes'));
+
+    }
+
+
+
+
+
+
+
+
+
     public function createClassForm($id) {
 
         return view('classes.create_class', compact('id'));
@@ -28,11 +54,11 @@ class ClassController extends Controller
 
     }
 
-
       
     public function createClass(Request $request) {
 
-        $teacherId = $request->teacherId;
+
+        // $teacherId = $request->teacherId;
 
         $class = Classes::create([
  
@@ -42,13 +68,14 @@ class ClassController extends Controller
             'time_to'              =>  $request->time_to,
             'description'          =>  $request->description,
             'teacher_description'  =>  $request->teacher_description,
-            'teacherId'            =>  $teacherId,
+            'course_Id'            =>  $request->course_Id,
+            // 'teacherId'            =>  $teacherId,
 
         ]);
 
         $class->save();
 
-        return redirect("list-classes/$teacherId");
+        return redirect("show-classes");
 
     }
 
@@ -88,7 +115,7 @@ class ClassController extends Controller
 
         $class->delete();
 
-        return redirect("list-classes/$teacherId");
+        return redirect("show-classes");
     }
 
 }

@@ -23,6 +23,6 @@ class Classes extends Model
         'time_to',
         'description',
         'teacher_description',
-        'teacherId'
+        'course_Id'
     ];
 }

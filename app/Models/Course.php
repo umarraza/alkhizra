@@ -23,5 +23,6 @@ class Course extends Model
         'category',
         'type',
         'teacherId',
+
     ];
 }

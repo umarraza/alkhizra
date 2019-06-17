@@ -9,6 +9,16 @@
                 <div class="col-md-4">
                     <h4>Create Student</h4>
 
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select Course:</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="course_id">
+                            @foreach ($courses as $course)
+                                <option value="{{$course->id}}" name="course_name">{{$course->course_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
                     <label class="form-check-label" for="exampleCheck1">First Name</label>
                     <input class="form-control form-control-sm" name="first_name" type="text" placeholder="" required>
 
@@ -24,11 +34,11 @@
                     <label class="form-check-label" for="exampleCheck1">Email</label>
                     <input class="form-control form-control-sm" name="email" type="text" placeholder="">
 
-                    <input type="hidden" class="form-control" id="type" id="id" name="teacherId" value="{{ $id }}">
+                    {{--  <input type="hidden" class="form-control" id="type" id="id" name="teacherId" value="{{ $id }}">  --}}
 
                     <br>
                     <button type="submit" class="btn btn-primary btn-sm">Create Student</button>
-                    <a href="{{ url('/list-students') }}" class="small-box-footer">Show Students<i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{ url('/show-students') }}" class="small-box-footer">Show Students<i class="fa fa-arrow-circle-right"></i></a>
 
                 </div>
                 <div class="col-md-4"></div>

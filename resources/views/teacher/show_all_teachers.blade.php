@@ -8,8 +8,8 @@
                         <div class="box-header">
                             <h3 class="box-title">Teachers</h3>
                             {{--  <button type="submit" class="btn btn-primary btn-sm">Add Teacher</button>  --}}
+                            <a href="{{ url('/admin') }}" class="small-box-footer">Home<i class="fa fa-arrow-circle-right"></i></a> <br>
                             <a href="{{ url('/create-teacher-form') }}" class="small-box-footer">Add Teacher<i class="fa fa-arrow-circle-right"></i></a> <br>
-                            <a href="{{ url('/admin') }}" class="small-box-footer">Home<i class="fa fa-arrow-circle-right"></i></a>
 
 
                             {{--  <li><a href="{{ url('create-teacher-form') }}"><i class="btn btn-primary btn-sm"></i>Add Teacher</a></li>    --}}
@@ -28,9 +28,9 @@
                                     <th>Address</th>
                                     <th>About Teacher</th>
                                     <th>Email</th>
-                                    <th>Show Students</th>
+                                    {{--  <th>Show Students</th>
                                     <th>Show Courses</th>
-                                    <th>Show Classes</th>
+                                    <th>Show Classes</th>  --}}
                                     <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
@@ -45,10 +45,10 @@
                                     <td>{{ $teacher->address }}</td>
                                     <td>{{ $teacher->description }}</td>
                                     <td>{{ $teacher->email }}
-                                    <td><a href="{{url('/list-students/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Students</a></td>
-                                    <td><a href="{{url('/list-courses/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Courses</a></td>
-                                    <td><a href="{{url('/list-classes/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Classes</a></td>
-                                    <td><a href="{{url('/teacher-update-form/'.$teacher->id)}}" type="button" class="btn btn-success btn-sm">Update</a></td>
+                                    {{--  <td><a href="{{url('/list-students/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Students</a></td>  --}}
+                                    {{--  <td><a href="{{url('/list-courses/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Courses</a></td>  --}}
+                                    {{--  <td><a href="{{url('/list-classes/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Show Classes</a></td>  --}}
+                                    <td><a href="{{url('/teacher-update-form/'.$teacher->id)}}" type="button" class="btn btn-primary btn-sm">Update</a></td>
                                     <td><a href="{{url('/teacher-delete/'.$teacher->id)}}" type="button" class="btn btn-danger btn-sm">Delete</a></td>                            
                                 </tr>
                                 @php $count++; @endphp

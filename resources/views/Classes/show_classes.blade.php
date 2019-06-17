@@ -6,10 +6,12 @@
                 <div class="col-lg-10">
                     <div class="box box-info">
                         <div class="box-header">
-                            <h3 class="box-title">Teacher classs</h3>
-                            <a href="{{ url('/create-class-form/'.$id) }}" class="small-box-footer">Add Class<i class="fa fa-arrow-circle-right"></i></a> <br>
+                            <h3 class="box-title">Classes</h3>
+                            {{--  <a href="{{ url('/create-class-form/'.$id) }}" class="small-box-footer">Add Class<i class="fa fa-arrow-circle-right"></i></a> <br>  --}}
                             <a href="{{ url('/admin') }}" class="small-box-footer">Home<i class="fa fa-arrow-circle-right"></i></a> <br>
-                            <a href="{{ url('/list-teachers') }}" class="small-box-footer">Show Teachers<i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="{{ url('/add-class-form') }}" class="small-box-footer">Add Class<i class="fa fa-arrow-circle-right"></i></a> <br>
+
+                            {{--  <a href="{{ url('/list-teachers') }}" class="small-box-footer">Show Teachers<i class="fa fa-arrow-circle-right"></i></a>  --}}
 
                             <br>
                             <br>
@@ -29,6 +31,7 @@
                                     <th>Teacher Description</th>
                                     <th>Update</th>
                                     <th>Delete</th>
+                                    <th>Start</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,6 +47,8 @@
                                     <td>{{ $class->teacher_description }}</td>
                                     <td><a href="{{url('/class-update-form/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Update</a></td>
                                     <td><a href="{{url('/class-delete/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Delete</a></td>                            
+                                    <td><a href="{{url('/class-delete/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Start Class</a></td>                            
+
                                 </tr>
                                 @php $count++; @endphp
                                 @endforeach

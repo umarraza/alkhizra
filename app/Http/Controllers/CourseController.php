@@ -7,11 +7,41 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\User;
-
+use Auth;
 
 class CourseController extends Controller
 {
-   
+
+    
+    public function addCourseForm(Request $request) {
+
+        $teachers = Teacher::all();
+
+        return view('courses.create_course', compact('teachers'));
+        
+    }
+
+    public function showCourses(Request $request) {
+       
+        $courses = Course::all();
+        return view('courses.show_courses', compact('courses'));
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function createCourseForm($id) {
 
         return view('courses.create_course', compact('id'));
@@ -31,6 +61,10 @@ class CourseController extends Controller
     
     public function createCourse(Request $request) {
 
+        // $teacher = Teacher::find($request->teacherId);
+        
+        // $userId = $teacher->userId;
+        
         $teacherId = $request->teacherId;
 
         $course = Course::create([
@@ -41,12 +75,17 @@ class CourseController extends Controller
             'category'         =>  $request->category,
             'type'             =>  $request->type,
             'teacherId'        =>  $teacherId,
+            // 'userId'           =>  $userId,
 
         ]);
 
         $course->save();
 
-        return redirect("list-courses/$teacherId");
+        // return redirect("list-courses/$teacherId");
+        return redirect("show-courses");
+
+        // return view('courses.show-courses');
+
 
     }
 

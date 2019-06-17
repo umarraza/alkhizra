@@ -24,7 +24,7 @@ class Student extends Model
         'gender',
         'grade',
         'email',
-        'teacherId',
+        'course_id',
         
     ];
 }

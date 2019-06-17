@@ -6,10 +6,13 @@
                 <div class="col-lg-10">
                     <div class="box box-info">
                         <div class="box-header">
-                            <h3 class="box-title">Teacher Courses</h3>
-                            <a href="{{ url('/create-course-form/'.$id) }}" class="small-box-footer">Add Course<i class="fa fa-arrow-circle-right"></i></a> <br>
+                            <h3 class="box-title">Courses</h3>
+                            {{--  <a href="{{ url('/create-course-form/'.$id) }}" class="small-box-footer">Add Course<i class="fa fa-arrow-circle-right"></i></a> <br>  --}}
+                            
                             <a href="{{ url('/admin') }}" class="small-box-footer">Home<i class="fa fa-arrow-circle-right"></i></a> <br>
-                            <a href="{{ url('/list-teachers') }}" class="small-box-footer">Show Teachers<i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="{{ url('/add-course-form') }}" class="small-box-footer">Add Course<i class="fa fa-arrow-circle-right"></i></a> 
+
+                            {{--  <a href="{{ url('/list-teachers') }}" class="small-box-footer">Show Teachers<i class="fa fa-arrow-circle-right"></i></a>  --}}
 
                             <br>
                             <br>

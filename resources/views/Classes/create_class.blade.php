@@ -7,7 +7,17 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <h4>Create Course</h4>
+                    <h4>Create Class</h4>
+
+                     <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select Course:</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="course_Id">
+                            @foreach ($courses as $course)
+                                <option value="{{$course->id}}" name="course_name">{{$course->course_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
 
                     <label class="form-check-label" for="exampleCheck1">Title</label>
                     <input class="form-control form-control-sm" name="title" type="text" placeholder="" required>
@@ -27,11 +37,13 @@
                     <label class="form-check-label" for="exampleCheck1">Teacher Description</label>
                     <input class="form-control form-control-sm" name="teacher_description" type="text" placeholder="">
 
-                    <input type="hidden" class="form-control" id="type" id="id" name="teacherId" value="{{ $id }}">
+                    {{--  <input type="hidden" class="form-control" id="type" id="id" name="teacherId" value="{{ $id }}">  --}}
 
                     <br>
                     <button type="submit" class="btn btn-primary btn-sm">Create Class</button>
-                    <a href="{{url('/list-classes/'.$id)}}" class="small-box-footer">Show Classes<i class="fa fa-arrow-circle-right"></i></a>
+                    {{--  <a href="{{url('/list-classes/'.$id)}}" class="small-box-footer">Show Classes<i class="fa fa-arrow-circle-right"></i></a>  --}}
+                    <a href="{{url('/list-classes')}}" class="small-box-footer">Show Classes<i class="fa fa-arrow-circle-right"></i></a>
+
 
                 </div>
                 <div class="col-md-4"></div>

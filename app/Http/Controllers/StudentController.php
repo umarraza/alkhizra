@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\Course;
+
 use App\Models\User;
 
 
@@ -12,10 +14,37 @@ use App\Models\User;
 
 class StudentController extends Controller
 {
-    public function createStudentForm($id) {
 
-        return view('students.create_student', compact('id'));
+
+    public function addStudentForm(Request $request) {
+
+        $courses = Course::all();
+
+        return view('students.create_student', compact('courses'));
     } 
+
+    public function showStudents(Request $request) {
+       
+        $students = Student::all();
+        return view('students.show_students', compact('students'));
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function listStudents(Request $request) {
        
@@ -25,7 +54,25 @@ class StudentController extends Controller
 
     }
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function createStudentForm($id) {
+
+        return view('students.create_student', compact('id'));
+    } 
+
     public function createStudent(Request $request) {
 
 
@@ -44,7 +91,7 @@ class StudentController extends Controller
 
         $user->save();
 
-        $teacherId = $request->teacherId;
+        // $teacherId = $request->teacherId;
 
         $student = Student::create([
 
@@ -53,13 +100,17 @@ class StudentController extends Controller
             'gender'      =>  $request->gender,
             'grade'       =>  $request->grade,
             'email'       =>  $request->email,
-            'teacherId'   =>  $teacherId,
+            'course_id'   =>  $request->course_id,
+
+            // 'teacherId'   =>  $teacherId,
 
         ]);
 
         $student->save();
 
-        return redirect("list-students/$teacherId");
+        return redirect("show-students");
+
+        // return redirect("list-students/$teacherId");
 
     }
 
