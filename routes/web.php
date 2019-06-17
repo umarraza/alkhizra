@@ -23,8 +23,8 @@ Route::get('/home', 'HomeController@index');
 
 /* ========= Teacher Routes ========= */
 
-Route::get('/create-teacher-form', 'TeacherController@createTeacherForm')->middleware('role');
-Route::post('/create-teacher', 'TeacherController@createTeacher')->middleware('role');
+Route::get('/create-teacher-form', 'TeacherController@createTeacherForm')->middleware('lmsRole');
+Route::post('/create-teacher', 'TeacherController@createTeacher');
 
 Route::get('/list-teachers', 'TeacherController@listTeachers');
 Route::get('/teacher-update-form/{id}', 'TeacherController@updateTeacherForm');

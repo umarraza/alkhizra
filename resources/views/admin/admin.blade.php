@@ -18,9 +18,14 @@
                         <li><a href="{{ url('create-teacher-form') }}"><i class="fa fa-user"></i> <span>Add Teacher</span></a></li>  
                         <li><a href="{{ url('list-teachers') }}"><i class="fa fa-user"></i> <span>All Teachers</span></a></li>
                         <!-- <li><a href="{{ url('all-students') }}"><i class="fa fa-user"></i> <span>All Teachers</span></a></li> -->
+                    @endif
 
+                    @if (Auth::User()->roleId == 2)
+
+                    <li><a href="{{ url('create-teacher-form') }}"><i class="fa fa-user"></i> <span>My Courses</span></a></li>  
 
                     @endif
+
                 </div>
             </div>
         </div>

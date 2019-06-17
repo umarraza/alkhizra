@@ -8,6 +8,15 @@ use App\Models\user;
 
 class TeacherController extends Controller
 {
+
+
+    public function __construct() {
+
+        $this->middleware('lmsRole');
+
+    }
+
+
     public function createTeacherForm() {
 
         return view('teacher.create_teacher');
