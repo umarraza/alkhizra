@@ -61,6 +61,9 @@ Route::post('/create-student', 'StudentController@createStudent')->middleware('l
 Route::get('/student-update-form/{id}', 'StudentController@updateStudentForm')->middleware('lmsRole');
 Route::post('/student-update', 'StudentController@updateStudent')->middleware('lmsRole');
 Route::get('/student-delete/{id}', 'StudentController@deleteStudent')->middleware('lmsRole');
+Route::get('/student-classes', 'StudentController@studentClasses');
+Route::post('/start-class', 'StudentController@startClass');
+
 
 
 

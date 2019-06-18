@@ -25,6 +25,7 @@ class Student extends Model
         'grade',
         'email',
         'course_id',
+        'userId',
         
     ];
 }

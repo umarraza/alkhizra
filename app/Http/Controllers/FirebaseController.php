@@ -33,7 +33,5 @@ class FirebaseController extends Controller
         'title' => 'Laravel FireBase Tutorial' ,
         'category' => 'Laravel'
         ]);
-        // echo '<pre>';
-        // print_r($newPost->getvalue());
     }
 }

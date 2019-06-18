@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2019 at 01:09 PM
+-- Generation Time: Jun 17, 2019 at 03:12 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -115,6 +115,7 @@ CREATE TABLE `students` (
   `grade` varchar(10) NOT NULL,
   `email` varchar(50) NOT NULL,
   `course_id` int(10) NOT NULL,
+  `userId` int(10) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -123,10 +124,10 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `first_name`, `last_name`, `gender`, `grade`, `email`, `course_id`, `createdAt`, `updatedAt`) VALUES
-(1, 'Ali', 'Raza', 'Male', 'A+', 'ali@gmail.com', 1, '2019-06-17 05:09:30', '2019-06-17 05:09:30'),
-(2, 'Numan', 'Hashmi', 'Male', 'B', 'numan@gmail.com', 2, '2019-06-17 05:09:47', '2019-06-17 05:09:47'),
-(3, 'Nimra', 'Musthaq', 'Female', 'A+', 'nimra@gmail.com', 3, '2019-06-17 05:36:49', '2019-06-17 05:36:49');
+INSERT INTO `students` (`id`, `first_name`, `last_name`, `gender`, `grade`, `email`, `course_id`, `userId`, `createdAt`, `updatedAt`) VALUES
+(1, 'Ali', 'Raza', 'Male', 'A+', 'ali@gmail.com', 1, 4, '2019-06-17 05:09:30', '2019-06-17 05:09:30'),
+(2, 'Numan', 'Hashmi', 'Male', 'B', 'numan@gmail.com', 2, 5, '2019-06-17 05:09:47', '2019-06-17 05:09:47'),
+(3, 'Nimra', 'Musthaq', 'Female', 'A+', 'nimra@gmail.com', 3, 6, '2019-06-17 05:36:49', '2019-06-17 05:36:49');
 
 -- --------------------------------------------------------
 
@@ -178,12 +179,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `accessCode`, `roleId`, `remember_token`, `createdAt`, `updatedAt`) VALUES
-(1, 'Admin', 'admin@admin.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', NULL, 1, 'wGgRA12zBCMr70XYws8XADQ6bOYpRalnzsC0ImmWMW7FoeoRehdcMfUXxjG1', '2019-06-16 19:00:00', '2019-06-16 19:00:00'),
-(2, 'Umar Raza', 'umarraza2200@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 662591614, 2, NULL, '2019-06-17 05:04:49', '2019-06-17 05:04:49'),
+(1, 'Admin', 'admin@admin.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', NULL, 1, 'lXVworeKDt3va2Bp3fI53LIkXTP6zn9y0zWsaMpVtSJe4VgSiRlQ7KavywWR', '2019-06-16 19:00:00', '2019-06-16 19:00:00'),
+(2, 'Umar Raza', 'umarraza2200@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 662591614, 2, 'ZKvrZtAIVclyREH1Lc5uhR4vPUV2f5LgPAJ3LlhLo3OKoFHtM2rVyeXB5pED', '2019-06-17 05:04:49', '2019-06-17 05:04:49'),
 (3, 'Malik Aftab', 'malikaftab@gmail.com', NULL, 2041650994, 2, NULL, '2019-06-17 05:06:10', '2019-06-17 05:06:10'),
-(4, 'Ali Raza', 'ali@gmail.com', NULL, NULL, 3, NULL, '2019-06-17 05:09:30', '2019-06-17 05:09:30'),
+(4, 'Ali Raza', 'ali@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', NULL, 3, NULL, '2019-06-17 05:09:30', '2019-06-17 05:09:30'),
 (5, 'Numan Hashmi', 'numan@gmail.com', NULL, NULL, 3, NULL, '2019-06-17 05:09:47', '2019-06-17 05:09:47'),
-(6, 'Nimra Musthaq', 'nimra@gmail.com', NULL, NULL, 3, NULL, '2019-06-17 05:36:49', '2019-06-17 05:36:49'),
+(6, 'Nimra Musthaq', 'nimra@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', NULL, 3, NULL, '2019-06-17 05:36:49', '2019-06-17 05:36:49'),
 (7, 'Sohaib Khaliq', 'sohaib@gmail.com', NULL, 31660929, 2, NULL, '2019-06-17 05:50:53', '2019-06-17 05:50:53');
 
 --

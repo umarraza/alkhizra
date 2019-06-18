@@ -8,10 +8,13 @@
         <div id="messageDiv"></div> <br>
         
         <input type="hidden" id="userId" value="{{Auth::User()->id}}">
-        <input type="hidden" id="nameInput" class="form-control form-control-sm" type="text" placeholder="Name" value="{{Auth::User()->name}}">
+        <input type="hidden" id="nameInput" class="form-control form-control-sm" type="text" value="{{Auth::User()->name}}">
+        <input type="hidden" id="classId" class="form-control form-control-sm" type="text" value="{{$class_id}}">
 
-        <p>{{Auth::User()->name}}</p>
         <input id="messageInput" class="form-control form-control-sm" type="text" placeholder="Message">
+        <br>
+        <p><b>{{Auth::User()->name}}</b></p>
+
     </div>
     <div class="col-lg-4 col-md-4"></div>
 </div>
@@ -27,6 +30,9 @@
             var name = $('#nameInput').val();
             var text = $('#messageInput').val();
             var userId = $('#userId').val();
+            var classId = $('#classId').val();
+
+            console.log(classId);
 
             messageRef.push({name:name, text:text, userId:userId});
 

@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Course;
+use App\Models\Classes;
+
 
 use App\Models\User;
-
-
+use Auth;
+use DB;
 
 
 class StudentController extends Controller
@@ -101,6 +103,7 @@ class StudentController extends Controller
             'grade'       =>  $request->grade,
             'email'       =>  $request->email,
             'course_id'   =>  $request->course_id,
+            'userId'      =>  $user->id,
 
             // 'teacherId'   =>  $teacherId,
 
@@ -149,6 +152,35 @@ class StudentController extends Controller
     public function allStudents(Request $request) {
 
         $students = Student::all();
+
+    }
+
+
+    public function studentClasses(Request $request) {
+
+        $userId = Auth::User()->id;
+
+        $student = Student::where('userId', '=', $userId)->first();
+
+        $course_id = $student->course_id;
+
+        $course = Course::find($course_id);
+
+        $course_name = $course->course_name;
+
+        $class = Classes::where('course_id', '=', $course_id)->first();
+
+        $class['course_name'] = $course_name;
+
+        return view('students.student_classes', compact('class'));
+
+    }
+
+    public function startClass(Request $request) {
+
+        $class_id = $request->class_id;
+
+        return view('teacher.chatPage', compact('class_id'));
 
     }
 
