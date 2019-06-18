@@ -22,11 +22,10 @@
                     <input class="form-control form-control-sm" name="description" type="text" placeholder="" required>
 
                     <label class="form-check-label" for="exampleCheck1">Email</label>
-                    <input class="form-control form-control-sm" name="email" type="text" placeholder="">
+                    <input class="form-control form-control-sm" name="email" type="text" placeholder="" required>
 
                     <br>
                     <button type="submit" class="btn btn-primary btn-sm">Create Teacher</button>
-                    {{--  <button type="submit" class="btn btn-primary btn-sm">Show Teachers</button>  --}}
                     <a href="{{ url('/list-teachers') }}" class="small-box-footer">Show Teachers<i class="fa fa-arrow-circle-right"></i></a>
 
                 </div>
@@ -34,4 +33,22 @@
             </div>
         </div>
     </form>
+
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>Email already exists!</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
 @endsection

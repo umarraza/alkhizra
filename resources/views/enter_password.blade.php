@@ -43,16 +43,21 @@
         <div class="row">
             <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <form class="form-signin" action="{{url('check-access-code')}}" method="post">
+                    <form class="form-signin" action="{{url('new-password')}}" method="post">
 
                     {{ csrf_field() }}
 
                         <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
 
-                            <h1 class="h3 mb-3 font-weight-normal">Please enter your access code!</h1>
-                        
-                            <input type="text" id="accessCode" name="accessCode" class="form-control" placeholder="Enter Your Access Code" required> <br>
-                        
+                            {{--  <h1 class="h3 mb-3 font-weight-normal">Please Enter Your Password</h1>  --}}
+                            <label class="form-check-label" for="exampleCheck1">Please Enter Your Password</label>
+                            
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Enter Your Password" required> <br>
+                                <label class="form-check-label" for="exampleCheck1">Confirm Password</label>
+
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password" required> <br>
+                            <input type="hidden" id="userId" name="userId" value="{{$userId}}" class="form-control" placeholder="Confirm Password" required> <br>
+
                             <button class="btn btn-sm btn-primary btn-block" type="submit">Submit</button>
                     
                         <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>

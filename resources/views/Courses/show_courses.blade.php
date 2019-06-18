@@ -44,7 +44,7 @@
                                     <td>{{ $course->category }}</td>
                                     <td>{{ $course->type }}
                                     <td><a href="{{url('/course-update-form/'.$course->id)}}" type="button" class="btn btn-primary btn-sm">Update</a></td>
-                                    <td><a href="{{url('/course-delete/'.$course->id)}}" type="button" class="btn btn-primary btn-sm">Delete</a></td>                            
+                                    <td><a href="{{url('/course-delete/'.$course->id)}}" type="button" class="btn btn-danger btn-sm">Delete</a></td>                            
                                 </tr>
                                 @php $count++; @endphp
                                 @endforeach

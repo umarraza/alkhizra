@@ -36,17 +36,7 @@
                                     <td>{{ $class->description }}</td>
                                     <td>{{ $class->teacher_description }}</td>
                                     <td>{{ $class->course_name }}</td>
-                                    <td>
-                                    
-                                        <form action="{{url('/start-class')}}" method="post">
-                                        {{ csrf_field() }}
-
-                                            <input type="hidden" name="class_id" id="class_id" value="{{$class->id}}">
-                                            <button type="submit" class="btn btn-primary btn-sm">Start Class</button>
-
-                                        {{--  <a href="{{url('/start-class')}}" type="submit" class="btn btn-primary btn-sm" name="{{$class->id}}">Start Class</a>  --}}
-                                        </form>
-                                    </td>
+                                    <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Start Class</a></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -162,7 +162,4 @@ class User extends Authenticatable
         return $this->Hostel->hostelName;
         
     }
-
-   
-
 }

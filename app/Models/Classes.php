@@ -25,4 +25,11 @@ class Classes extends Model
         'teacher_description',
         'course_Id'
     ];
+
+    public static function alertMail() {
+
+        
+
+    }
+
 }

@@ -44,7 +44,7 @@
                                     <td>{{ $student->grade }}</td>
                                     <td>{{ $student->email }}
                                     <td><a href="{{url('/student-update-form/'.$student->id)}}" type="button" class="btn btn-primary btn-sm">Update</a></td>
-                                    <td><a href="{{url('/student-delete/'.$student->id)}}" type="button" class="btn btn-primary btn-sm">Delete</a></td>                            
+                                    <td><a href="{{url('/student-delete/'.$student->id)}}" type="button" class="btn btn-danger btn-sm">Delete</a></td>                            
                                 </tr>
                                 @php $count++; @endphp
                                 @endforeach

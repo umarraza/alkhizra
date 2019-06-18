@@ -32,11 +32,11 @@
             var userId = $('#userId').val();
             var classId = $('#classId').val();
 
-            console.log(classId);
-
-            messageRef.push({name:name, text:text, userId:userId});
+            messageRef.push({name:name, text:text, userId:userId, classId:classId});
+            document.querySelector('#messageInput').value = '';
 
             $('#messageInput').val();
+
         }
 
     }); 
@@ -44,8 +44,12 @@
     messageRef.on('child_added',function(snapshot){
         
         var message = snapshot.val();
-        document.getElementById('messageDiv').innerHTML += message.name+': '+message.text+'<br/>';
+        var class_id = $('#classId').val();
 
+        if (message.classId == class_id) {
+        
+            document.getElementById('messageDiv').innerHTML += message.name+': '+message.text+'<br/>';
+        }
     });
 
 </script>

@@ -16,6 +16,17 @@
                 {{ csrf_field() }}
                     <div class="box-body">
 
+                        <br>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Update Course:</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="course_id">
+                                @foreach ($courses as $course)
+                                    <option value="{{$course->id}}" name="course_name">{{$course->course_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">First Name:</label>
 
@@ -23,7 +34,7 @@
                                 <input type="text" class="form-control" id="first_name" name="first_name" placeholder="" required="true" value="{{$student->first_name}}">
                             </div>
                         </div>
-                        
+
 
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Last Name:</label>

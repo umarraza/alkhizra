@@ -32,9 +32,7 @@
                     <input class="form-control form-control-sm" name="grade" type="text" placeholder="" required>
 
                     <label class="form-check-label" for="exampleCheck1">Email</label>
-                    <input class="form-control form-control-sm" name="email" type="text" placeholder="">
-
-                    {{--  <input type="hidden" class="form-control" id="type" id="id" name="teacherId" value="{{ $id }}">  --}}
+                    <input class="form-control form-control-sm" name="email" type="text" placeholder="" required>
 
                     <br>
                     <button type="submit" class="btn btn-primary btn-sm">Create Student</button>
@@ -45,4 +43,22 @@
             </div>
         </div>
     </form>
+
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>Email already exists!</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
 @endsection

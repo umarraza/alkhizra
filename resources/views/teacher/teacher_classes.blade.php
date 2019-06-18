@@ -29,9 +29,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                  <tr> 
                                 @php $count=1; @endphp
-                                @foreach($classes as $class)
+                                @foreach($classes as $class) {{-- Getting data from teacherController function teacherClasses --}}
                                     <td><span>{{ $count }}</span></td>
                                     <td>{{ $class->title }}</td>
                                     <td>{{ $class->date }}</td>
@@ -40,7 +40,7 @@
                                     <td>{{ $class->description }}</td>
                                     <td>{{ $class->teacher_description }}</td>
                                     <td>{{ $class->course_name }}</td>
-                                    <td><a href="{{url('/chat-page')}}" type="button" class="btn btn-primary btn-sm">Start Class</a></td>
+                                    <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Start Class</a></td>
                                     {{--  <td><a href="{{url('/course-update-form/'.$course->id)}}" type="button" class="btn btn-primary btn-sm">Update</a></td>  --}}
                                 
                                 </tr>

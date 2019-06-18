@@ -8,7 +8,7 @@
                 <div class="box-header with-border">
                     <h1 class="box-title">Edit Course</h1>
                     <div class="pull-right">
-                        <a href="{{ url('list-courses') }}" type="button" class="btn btn-danger">Back</a>
+                        <a href="{{ url('show-courses') }}" type="button" class="btn btn-danger">Back</a>
                     </div>
                 </div>
 
@@ -16,7 +16,20 @@
                 {{ csrf_field() }}
 
                     <div class="box-body">
+
+                        <br>
+
+                        <div class="form-group">
                         
+                            <label for="exampleFormControlSelect1">Update Teacher:</label>
+                            
+                            <select class="form-control" id="exampleFormControlSelect1" name="teacherId">
+                                @foreach ($teachers as $teacher)
+                                    <option value="{{$teacher->id}}" name="course_name">{{$teacher->first_name. ' '. $teacher->last_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Course Name:</label>
                             <div class="col-sm-8">
@@ -24,14 +37,12 @@
                             </div>
                         </div>
                         
-
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Description:</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="description" name="description" placeholder="" required="true" value="{{$course->description}}">
                             </div>
                         </div>
-
 
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">About Instructor:</label>
@@ -40,7 +51,6 @@
                             </div>
                         </div>
 
-
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Category:</label>
                             <div class="col-sm-8">
@@ -48,14 +58,12 @@
                             </div>
                         </div>
 
-
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Type:</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="type" name="type" placeholder="" required="true" value="{{$course->type}}">
                             </div>
                         </div>
-
 
                         <input type="hidden" class="form-control" id="id" name="id" placeholder="" required="true" value="{{$course->id}}">
 

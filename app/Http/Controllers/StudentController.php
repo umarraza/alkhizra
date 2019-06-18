@@ -8,7 +8,6 @@ use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Classes;
 
-
 use App\Models\User;
 use Auth;
 use DB;
@@ -17,11 +16,9 @@ use DB;
 class StudentController extends Controller
 {
 
-
     public function addStudentForm(Request $request) {
 
         $courses = Course::all();
-
         return view('students.create_student', compact('courses'));
     } 
 
@@ -32,68 +29,31 @@ class StudentController extends Controller
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function listStudents(Request $request) {
-       
-        $id = $request->id;
-        $students = Student::where('teacherId', '=', $request->id)->get();
-        return view('students.show_students', compact('students', 'id'));
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function createStudentForm($id) {
-
-        return view('students.create_student', compact('id'));
-    } 
-
     public function createStudent(Request $request) {
 
+        $validatedData = $request->validate([
 
+            'email' => 'required|unique:users',
+        ]);
+
+        
         $first_name = $request->first_name;
         $last_name = $request->last_name;
 
         $studentName = $first_name . ' ' . $last_name;
+        
+        $accessCode = mt_rand();
 
         $user = User::create([
 
             'name'    =>  $studentName,
             'email'   =>  $request->email,
+            'accessCode'  =>  $accessCode,
             'roleId'  =>  3
 
         ]);
 
         $user->save();
-
-        // $teacherId = $request->teacherId;
 
         $student = Student::create([
 
@@ -104,24 +64,32 @@ class StudentController extends Controller
             'email'       =>  $request->email,
             'course_id'   =>  $request->course_id,
             'userId'      =>  $user->id,
-
-            // 'teacherId'   =>  $teacherId,
-
         ]);
 
         $student->save();
 
+        $studentName = $first_name . ' ' . $last_name;
+        $message = "A random message";
+        $tousername = $request->email;
+
+        $userId = $user->id;
+
+        \Mail::send('mail',["accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
+
+            $message->from('super.admin@admin.com');
+            $message->to($tousername)->subject('Test Mails');
+
+       });
+
         return redirect("show-students");
-
-        // return redirect("list-students/$teacherId");
-
     }
 
     public function updateStudentForm($id) {
 
+        $courses = Course::all();
+        
         $student = Student::find($id);
-
-        return view('students.update_student', compact('student'));
+        return view('students.update_student', compact('student','courses'));
     } 
 
     public function updateStudent(Request $request)
@@ -135,18 +103,36 @@ class StudentController extends Controller
         $student->last_name   =  $request->last_name;
         $student->gender      =  $request->gender;
         $student->grade       =  $request->grade;
+        $student->course_id   =  $request->course_id;
 
         $student->save();
 
-        return redirect("list-students/$id"); // remember sending id in that case only work in double quotations marks
+        return redirect("show-students"); // remember sending id in that case only work in double quotations marks
     }
 
     public function deleteStudent($id) {
 
         $student = Student::find($id);
-        $student->delete();
+        $userId = $student->userId;
+        $userData = User::find($userId);
 
-        return redirect("list-students/$id");
+        DB::beginTransaction();
+
+        try {
+
+            $student->delete();
+            $userData->delete();
+
+            DB::commit();
+
+        } catch (Eception $e) {
+
+            DB::rollBack();
+            throw $e;
+
+        }
+
+        return redirect("show-students");
     }
 
     public function allStudents(Request $request) {
@@ -155,20 +141,15 @@ class StudentController extends Controller
 
     }
 
-
     public function studentClasses(Request $request) {
 
-        $userId = Auth::User()->id;
+        $userId     =  Auth::User()->id;
+        $student    =  Student::where('userId', '=', $userId)->first();
+        $course_id  =  $student->course_id;
 
-        $student = Student::where('userId', '=', $userId)->first();
-
-        $course_id = $student->course_id;
-
-        $course = Course::find($course_id);
-
-        $course_name = $course->course_name;
-
-        $class = Classes::where('course_id', '=', $course_id)->first();
+        $course       =  Course::find($course_id);
+        $course_name  =  $course->course_name;
+        $class        =  Classes::where('course_id', '=', $course_id)->first();
 
         $class['course_name'] = $course_name;
 
@@ -176,9 +157,9 @@ class StudentController extends Controller
 
     }
 
-    public function startClass(Request $request) {
+    public function startClass($id) {
 
-        $class_id = $request->class_id;
+        $class_id = $id;
 
         return view('teacher.chatPage', compact('class_id'));
 

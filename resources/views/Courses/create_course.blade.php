@@ -32,14 +32,14 @@
                     <input class="form-control form-control-sm" name="category" type="text" placeholder="" required>
 
                     <label class="form-check-label" for="exampleCheck1">Type</label>
-                    <input class="form-control form-control-sm" name="type" type="text" placeholder="">
+                    <input class="form-control form-control-sm" name="type" type="text" placeholder="" required>
 
                     {{--  <input type="hidden" class="form-control" id="type" id="id" name="teacherId" value="{{ $id }}">  --}}
 
                     <br>
                     <button type="submit" class="btn btn-primary btn-sm">Create Course</button>
                     {{--  <a href="{{url('/list-courses/'.$id)}}" class="small-box-footer">Show Courses<i class="fa fa-arrow-circle-right"></i></a>  --}}
-                    <a href="{{url('/list-courses')}}" class="small-box-footer">Show Courses<i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{url('/show-courses')}}" class="small-box-footer">Show Courses<i class="fa fa-arrow-circle-right"></i></a>
 
 
                 </div>
@@ -47,4 +47,22 @@
             </div>
         </div>
     </form>
+
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>Course Name already exists!</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
 @endsection

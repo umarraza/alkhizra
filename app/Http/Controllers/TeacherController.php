@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Teacher;
 use App\Models\Student;
 use App\Models\Course;
@@ -13,26 +14,12 @@ use DB;
 class TeacherController extends Controller
 {
 
-    public function createTeacherForm() {
-
-        return view('teacher.create_teacher');
-
-    } 
-
-    public function chatPage() {
-
-        return view('teacher.chatPage');
-
-    } 
-
-    public function updateTeacherForm($id) {
-
-        $teacher = Teacher::find($id);
-
-        return view('teacher.update_teacher', compact('teacher'));
-    } 
-
     public function createTeacher(Request $request) {
+
+        $validatedData = $request->validate([
+        
+            'email' => 'required|unique:users',
+        ]);
 
         $first_name = $request->first_name;
         $last_name = $request->last_name;
@@ -69,7 +56,9 @@ class TeacherController extends Controller
         $message = "A random message";
         $tousername = $request->email;
 
-        \Mail::send('mail',["accessCode"=>$accessCode], function ($message) use ($tousername) {
+        $userId = $user->id;
+
+        \Mail::send('mail',["accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
 
             $message->from('super.admin@admin.com');
             $message->to($tousername)->subject('Test Mails');
@@ -103,9 +92,19 @@ class TeacherController extends Controller
         return redirect('list-teachers');
     }
 
-    public function delete($id) {
+    public function deleteTeacher($id) {
 
         $teacher = Teacher::find($id);
+        $courses = Course::where('teacherId', '=', $teacher->id)->get();
+
+        foreach($courses as $course) {
+
+           if(!empty($course)) {
+
+            $course->delete();
+           
+            }
+        }
 
         $userId = $teacher->userId;
         $userData = User::find($userId);
@@ -119,13 +118,9 @@ class TeacherController extends Controller
 
     public function teacherCourses(Request $request) {
 
-
         $userId = Auth::User()->id;
-
         $teacher = Teacher::where('userId', '=', $userId)->first();
-
         $teacherId = $teacher->id;
-
         $courses = Course::where('teacherId', '=', $teacherId)->get();
 
         return view('courses.teacher_courses', compact('courses'));
@@ -136,11 +131,8 @@ class TeacherController extends Controller
     public function teacherStudents(Request $request) {
 
         $userId = Auth::User()->id;
-
         $teacher = Teacher::where('userId', '=', $userId)->first();
-
         $teacherId = $teacher->id;
-
         $courses = Course::where('teacherId', '=', $teacherId)->get();
 
         foreach ($courses as $course) {
@@ -157,7 +149,7 @@ class TeacherController extends Controller
                 'student.gender', 
                 'student.grade', 
                 'student.email', 
-                'course.course_name', 
+                'course.course_name'
 
                 )
 
@@ -166,20 +158,14 @@ class TeacherController extends Controller
         ->get();
 
         }
-
         return view('students.teacher_students', compact('students'));
-
     }
-
 
     public function teacherClasses(Request $request) {
 
         $userId = Auth::User()->id;
-
         $teacher = Teacher::where('userId', '=', $userId)->first();
-
         $teacherId = $teacher->id;
-
         $courses = Course::where('teacherId', '=', $teacherId)->get();
 
         foreach ($courses as $course) {
@@ -191,6 +177,7 @@ class TeacherController extends Controller
 
             ->select(
                 
+                'class.id',
                 'class.title', 
                 'class.date', 
                 'class.time_from', 
@@ -204,12 +191,22 @@ class TeacherController extends Controller
             ->where('course.teacherId','=', $teacherId)
             
         ->get();
-
         }
-
         return view('teacher.teacher_classes', compact('classes'));
-
     }
 
+    // ================== Forms and Views like Routes ================== // 
 
+    public function createTeacherForm() {
+        return view('teacher.create_teacher');
+    } 
+
+    public function chatPage() {
+        return view('teacher.chatPage');
+    } 
+
+    public function updateTeacherForm($id) {
+        $teacher = Teacher::find($id);
+        return view('teacher.update_teacher', compact('teacher'));
+    } 
 }

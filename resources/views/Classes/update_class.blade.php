@@ -8,7 +8,7 @@
                 <div class="box-header with-border">
                     <h1 class="box-title">Edit Class</h1>
                     <div class="pull-right">
-                        <a href="{{ url('list-classs') }}" type="button" class="btn btn-danger">Back</a>
+                        <a href="{{ url('show-classes') }}" type="button" class="btn btn-success">Back</a>
                     </div>
                 </div>
 
@@ -17,6 +17,16 @@
 
                     <div class="box-body">
                         
+                        <br>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Update Course:</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="course_Id">
+                                @foreach ($courses as $course)
+                                    <option value="{{$course->id}}" name="course_name">{{$course->course_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Title:</label>
                             <div class="col-sm-8">
@@ -68,11 +78,11 @@
 
                     </div>
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-info pull-right">Update</button>
+                        <button type="submit" class="btn btn-primary pull-right">Update</button>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="col-lg-4"></div>
     </div>
+<div class="col-lg-4"></div>
 @endsection
