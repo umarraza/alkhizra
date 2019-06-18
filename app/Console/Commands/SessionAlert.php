@@ -38,6 +38,6 @@ class SessionAlert extends Command
      */
     public function handle()
     {
-        alertMail();
+        Classes::alertMail();
     }
 }

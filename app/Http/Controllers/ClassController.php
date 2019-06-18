@@ -117,27 +117,35 @@ class ClassController extends Controller
 
         foreach($classes as $class) {
 
+            $course_Id = $class->course_Id;
+            $course = Course::find($course_Id);
+            $teacherId = $course->teacherId;
+            $teacher = Teacher::find($teacherId);
+            $firstName = $teacher->first_name;
+            $lastName = $teacher->last_name;
+
+            $email = $teacher->email;
+
             $time = $class->time_from;
 
-
             $currentTime = Carbon::now();
-            // return $currentTime;
-            if($currentTime->diffInMinutes($time) < 59) {
 
-                return "Ok";
+            if($currentTime->diffInMinutes($time) < 30) {
 
+                // $teacherName = $firstName . ' ' . $lastName;
+                $message = "Your class will be starts after 1 hour";
+
+                $tousername = $email;
+        
+                \Mail::send('teacherMail',["message"=>$message], function ($message) use ($tousername) {
+        
+                    $message->from('super.admin@admin.com');
+                    $message->to($tousername)->subject('Test Mails');
+        
+               });
+        
             }
-
-            die();
-
-            $timeDifference = $currentTime->diffInMinutes($date);
-
-
-
-            return $classDate =  $class->date;
-
         }
-
 
         return view('classes.show_classes', compact('classes'));
 

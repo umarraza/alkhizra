@@ -28,8 +28,20 @@ class Classes extends Model
 
     public static function alertMail() {
 
-        $classes = Classes::where('status', '=', 1)->get();
+        $classes = Classes::where('status', '=', 0)->get();
 
+        foreach($classes as $class) {
+
+            $time = $class->time_from;
+
+            $currentTime = Carbon::now();
+
+            if($currentTime->diffInMinutes($time) < 55) {
+
+                return "Ok";
+
+            }
+        }
 
         $studentName = $first_name . ' ' . $last_name;
         $message = "A random message";

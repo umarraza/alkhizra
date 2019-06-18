@@ -184,7 +184,7 @@ class TeacherController extends Controller
                 'class.time_to', 
                 'class.description', 
                 'class.teacher_description', 
-                'course.course_name', 
+                'course.course_name'
 
                 )
 
