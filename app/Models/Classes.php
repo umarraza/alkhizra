@@ -28,7 +28,21 @@ class Classes extends Model
 
     public static function alertMail() {
 
-        
+        $classes = Classes::where('status', '=', 1)->get();
+
+
+        $studentName = $first_name . ' ' . $last_name;
+        $message = "A random message";
+        $tousername = $request->email;
+
+        $userId = $user->id;
+
+        \Mail::send('mail',["accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
+
+            $message->from('super.admin@admin.com');
+            $message->to($tousername)->subject('Test Mails');
+
+       });
 
     }
 

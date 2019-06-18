@@ -19,7 +19,7 @@ class SessionAlert extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Send an alert mail to all teachers one hour before start of a class';
 
     /**
      * Create a new command instance.
@@ -38,6 +38,6 @@ class SessionAlert extends Command
      */
     public function handle()
     {
-        
+        alertMail();
     }
 }

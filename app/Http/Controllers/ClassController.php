@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Classes;
 use App\Models\User;
 use DB;
+use Carbon\Carbon;
 
 class ClassController extends Controller
 {
@@ -113,6 +114,31 @@ class ClassController extends Controller
     public function showClasse(Request $request) {
        
         $classes = Classes::all();
+
+        foreach($classes as $class) {
+
+            $time = $class->time_from;
+
+
+            $currentTime = Carbon::now();
+            // return $currentTime;
+            if($currentTime->diffInMinutes($time) < 59) {
+
+                return "Ok";
+
+            }
+
+            die();
+
+            $timeDifference = $currentTime->diffInMinutes($date);
+
+
+
+            return $classDate =  $class->date;
+
+        }
+
+
         return view('classes.show_classes', compact('classes'));
 
     }

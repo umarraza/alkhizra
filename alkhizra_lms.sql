@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2019 at 03:12 PM
+-- Generation Time: Jun 18, 2019 at 02:08 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `alkhizra`
+-- Database: `alkhizra_lms`
 --
 
 -- --------------------------------------------------------
@@ -46,7 +46,7 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`id`, `title`, `date`, `time_from`, `time_to`, `description`, `teacher_description`, `course_Id`, `createdAt`, `updatedAt`) VALUES
-(1, 'History of C++', '2019-06-17', '06:00:00 pm', '08:00:00 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Umar Raza will be the instructor of this class.', 1, '2019-06-17 05:10:33', '2019-06-17 05:10:33'),
+(1, 'History of C++', '2019-06-17', '13:05:14', '08:00:00 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Dr. Yahya Numan will be the instructor of this class.', 1, '2019-06-18 12:05:40', '2019-06-18 04:36:11'),
 (2, 'History of Arab', '2019-06-17', '06:00:00 pm', '08:00:00 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Malik Aftab will be the instructor of this class.', 2, '2019-06-17 05:11:08', '2019-06-17 05:11:08'),
 (3, 'History of Java', '2019-06-17', '06:00:00 pm', '08:00:00 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Umar Raza will be the instructor of this class.', 3, '2019-06-17 05:50:18', '2019-06-17 05:50:18');
 
@@ -73,10 +73,8 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `course_name`, `description`, `about_instructor`, `category`, `type`, `teacherId`, `createdAt`, `updatedAt`) VALUES
-(1, 'Introduction to C++', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Umar Raza is the instructor of this course.', 'Programming', 'Free', 1, '2019-06-17 05:08:13', '2019-06-17 05:08:13'),
-(2, 'History of Islam', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Malik Aftab is the instructor of this course.', 'Programming', 'Paid', 2, '2019-06-17 05:08:56', '2019-06-17 05:08:56'),
-(3, 'Introduction to Java', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Umar Raza is the instructor of this course.', 'Programming', 'Paid', 1, '2019-06-17 05:35:48', '2019-06-17 05:35:48'),
-(4, 'Introduction to Python', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Sohaib Khaliq is the instructor of this course.', 'Programming', 'Paid', 3, '2019-06-17 05:52:10', '2019-06-17 05:52:10');
+(1, 'Introduction to C++', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Umar Raza is the instructor of this course.', 'Programming', 'Free', 1, '2019-06-17 05:08:13', '2019-06-18 02:58:55'),
+(3, 'Introduction to Java', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Umar Raza is the instructor of this course.', 'Programming', 'Paid', 1, '2019-06-17 05:35:48', '2019-06-17 05:35:48');
 
 -- --------------------------------------------------------
 
@@ -125,8 +123,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `first_name`, `last_name`, `gender`, `grade`, `email`, `course_id`, `userId`, `createdAt`, `updatedAt`) VALUES
-(1, 'Ali', 'Raza', 'Male', 'A+', 'ali@gmail.com', 1, 4, '2019-06-17 05:09:30', '2019-06-17 05:09:30'),
-(2, 'Numan', 'Hashmi', 'Male', 'B', 'numan@gmail.com', 2, 5, '2019-06-17 05:09:47', '2019-06-17 05:09:47'),
+(1, 'Ali', 'Raza', 'Male', 'A+', 'ali@gmail.com', 1, 4, '2019-06-17 05:09:30', '2019-06-18 04:07:37'),
 (3, 'Nimra', 'Musthaq', 'Female', 'A+', 'nimra@gmail.com', 3, 6, '2019-06-17 05:36:49', '2019-06-17 05:36:49');
 
 -- --------------------------------------------------------
@@ -152,9 +149,7 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `first_name`, `last_name`, `address`, `description`, `email`, `userId`, `createdAt`, `updatedAt`) VALUES
-(1, 'Umar', 'Raza', 'Lahore, Pakistan', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'umarraza2200@gmail.com', 2, '2019-06-17 05:04:49', '2019-06-17 05:04:49'),
-(2, 'Malik', 'Aftab', 'Lahore, Pakistan', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'malikaftab@gmail.com', 3, '2019-06-17 05:06:10', '2019-06-17 05:06:10'),
-(3, 'Sohaib', 'Khaliq', 'Lahore, Pakistan', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'sohaib@gmail.com', 7, '2019-06-17 05:50:53', '2019-06-17 05:50:53');
+(1, 'Umar', 'Raza', 'Lahore, Pakistan', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'umarraza2200@gmail.com', 2, '2019-06-17 05:04:49', '2019-06-17 05:04:49');
 
 -- --------------------------------------------------------
 
@@ -179,13 +174,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `accessCode`, `roleId`, `remember_token`, `createdAt`, `updatedAt`) VALUES
-(1, 'Admin', 'admin@admin.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', NULL, 1, 'lXVworeKDt3va2Bp3fI53LIkXTP6zn9y0zWsaMpVtSJe4VgSiRlQ7KavywWR', '2019-06-16 19:00:00', '2019-06-16 19:00:00'),
-(2, 'Umar Raza', 'umarraza2200@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 662591614, 2, 'ZKvrZtAIVclyREH1Lc5uhR4vPUV2f5LgPAJ3LlhLo3OKoFHtM2rVyeXB5pED', '2019-06-17 05:04:49', '2019-06-17 05:04:49'),
-(3, 'Malik Aftab', 'malikaftab@gmail.com', NULL, 2041650994, 2, NULL, '2019-06-17 05:06:10', '2019-06-17 05:06:10'),
-(4, 'Ali Raza', 'ali@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', NULL, 3, NULL, '2019-06-17 05:09:30', '2019-06-17 05:09:30'),
-(5, 'Numan Hashmi', 'numan@gmail.com', NULL, NULL, 3, NULL, '2019-06-17 05:09:47', '2019-06-17 05:09:47'),
-(6, 'Nimra Musthaq', 'nimra@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', NULL, 3, NULL, '2019-06-17 05:36:49', '2019-06-17 05:36:49'),
-(7, 'Sohaib Khaliq', 'sohaib@gmail.com', NULL, 31660929, 2, NULL, '2019-06-17 05:50:53', '2019-06-17 05:50:53');
+(1, 'Admin', 'admin@admin.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', NULL, 1, '082eAJCBNWudRVDpaODHxj2JtcIJG5T1yiAEAe1v4Y21fRCE0KU46liEuHik', '2019-06-16 19:00:00', '2019-06-16 19:00:00'),
+(2, 'Umar Raza', 'umarraza2200@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 662591614, 2, '9FZf2g9sq6ca5t00tOFGaLpbNYiCUN4wCtkKUlqX5Yk3quljHZT8vu7stO4M', '2019-06-17 05:04:49', '2019-06-17 05:04:49'),
+(4, 'Ali Raza', 'ali@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 31660929, 3, 'XPHPrZ51Mk3cjyosTUacbR5D0DvsnsBj2FAGBjG8ko4UTKOIgoYExKxJHYg1', '2019-06-17 05:09:30', '2019-06-17 05:09:30'),
+(6, 'Nimra Musthaq', 'nimra@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 1630435939, 3, NULL, '2019-06-17 05:36:49', '2019-06-17 05:36:49'),
+(11, 'Malik Hashmi', 'hashmi@gmail.com', '$2y$10$At6hHNpr4KhMh9GH5ibh9uf2ZFJBEksPl5myMrkwtWxe59BHFL6km', 473455411, 3, NULL, '2019-06-18 01:45:12', '2019-06-18 01:45:40');
 
 --
 -- Indexes for dumped tables
@@ -236,13 +229,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -254,19 +247,19 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
