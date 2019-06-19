@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Teacher;
 use App\Models\Student;
 use App\Models\Course;
+use App\Models\Classes;
 use App\Models\User;
 use Auth;
 use DB;
@@ -51,16 +52,17 @@ class TeacherController extends Controller
     
             ]);
     
-            $teacherName = $first_name . ' ' . $last_name;
+            $personName  = $first_name . ' ' . $last_name;
+
             $message = "A random message";
             $tousername = $request->email;
     
             $userId = $user->id;
     
-            \Mail::send('mail',["accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
+            \Mail::send('mail',["personName "=>$personName ,"accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
     
-                $message->from('super.admin@admin.com');
-                $message->to($tousername)->subject('Test Mails');
+                $message->from('info@fantasycricleague.online');
+                $message->to($tousername)->subject('Verify Yourself');
     
            });
 
@@ -74,8 +76,6 @@ class TeacherController extends Controller
 
         }
 
-     
-        
     	return redirect('list-teachers');
 
     }
@@ -108,20 +108,53 @@ class TeacherController extends Controller
         $teacher = Teacher::find($id);
         $courses = Course::where('teacherId', '=', $teacher->id)->get();
 
-        foreach($courses as $course) {
+        DB::beginTransaction();
+        try{
 
-           if(!empty($course)) {
+            foreach($courses as $course) {
 
-            $course->delete();
-           
+                if(!empty($course)) {
+     
+                $class = Classes::where('course_id', '=', $course->id)->first();
+     
+                $students = Student::where('course_id', $course->id)->get();
+
+                foreach ($students as $student) {
+
+                    $studentUserId = $student->userId;
+
+                    $studentUserData = User::find($studentUserId);
+
+                    $studentUserData->delete();
+
+                    $student->delete();
+
+                }
+
+                if (!empty($class)) {
+                    
+                    $class->delete();
+                }
+     
+                $course->delete();
+                
+                }
             }
+     
+             $userId = $teacher->userId;
+             $userData = User::find($userId);
+     
+             $teacher->delete();
+             $userData->delete();
+
+            DB::commit();
+
+        } catch(Exception $e) {
+
+            DB::rolleBack();
+
+            throw $e;
         }
-
-        $userId = $teacher->userId;
-        $userData = User::find($userId);
-
-        $teacher->delete();
-        $userData->delete();
 
         return redirect('list-teachers');
 
@@ -134,7 +167,7 @@ class TeacherController extends Controller
         $teacherId = $teacher->id;
         $courses = Course::where('teacherId', '=', $teacherId)->get();
 
-        return view('courses.teacher_courses', compact('courses'));
+        return view('Courses.teacher_courses', compact('courses'));
 
     }
 
@@ -176,33 +209,13 @@ class TeacherController extends Controller
 
         $userId = Auth::User()->id;
         $teacher = Teacher::where('userId', '=', $userId)->first();
+
         $teacherId = $teacher->id;
-        $courses = Course::where('teacherId', '=', $teacherId)->get();
+        
+        $courses = Course::where('teacherId', '=', $teacherId)->pluck('id');
 
-        foreach ($courses as $course) {
+        $classes = Classes::whereIn('course_id', $courses)->get();
 
-            $teacherId = $course->teacherId;
-
-            $classes = DB::table('classes AS class')
-            ->join('courses AS course', 'class.course_id', '=', 'course.id')
-
-            ->select(
-                
-                'class.id',
-                'class.title', 
-                'class.date', 
-                'class.time_from', 
-                'class.time_to', 
-                'class.description', 
-                'class.teacher_description', 
-                'course.course_name'
-
-                )
-
-            ->where('course.teacherId','=', $teacherId)
-            
-        ->get();
-        }
         return view('teacher.teacher_classes', compact('classes'));
     }
 

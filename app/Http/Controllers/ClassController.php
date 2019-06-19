@@ -10,7 +10,6 @@ use App\Models\Classes;
 use App\Models\User;
 use DB;
 use Carbon\Carbon;
-
 class ClassController extends Controller
 {
 
@@ -24,8 +23,7 @@ class ClassController extends Controller
             'time_to' => 'required',
             'description' => 'required',
             'teacher_description' => 'required',
-            'course_Id' => 'required',
-
+        
         ]);
 
         DB::beginTransaction();
@@ -60,7 +58,7 @@ class ClassController extends Controller
         $courses = Course::all();
 
         $class = Classes::find($id);
-        return view('classes.update_class', compact('class','courses'));
+        return view('Classes.update_class', compact('class','courses'));
     } 
 
 
@@ -108,9 +106,8 @@ class ClassController extends Controller
     public function addClassForm(Request $request) {
 
         $courses = Course::all();
-        return view('classes.create_class', compact('courses'));
+        return view('Classes.create_class', compact('courses'));
     } 
-
 
     public function showClasse(Request $request) {
        
@@ -124,37 +121,34 @@ class ClassController extends Controller
             $teacher = Teacher::find($teacherId);
             $firstName = $teacher->first_name;
             $lastName = $teacher->last_name;
+            
+            $teacherName = $firstName . ' ' . $lastName;
 
             $email = $teacher->email;
-
             $time = $class->time_from;
-
             $currentTime = Carbon::now();
 
             if($currentTime->diffInMinutes($time) < 30) {
 
-                // $teacherName = $firstName . ' ' . $lastName;
                 $message = "Your class will be starts after 1 hour";
-
                 $tousername = $email;
         
-                \Mail::send('teacherMail',["message"=>$message], function ($message) use ($tousername) {
+                \Mail::send('teacherMail',["teacherName"=>$teacherName,"message"=>$message], function ($message) use ($tousername) {
         
-                    $message->from('super.admin@admin.com');
+                    $message->from('info@fantasycricleague.online');
                     $message->to($tousername)->subject('Test Mails');
         
                });
-        
             }
         }
 
-        return view('classes.show_classes', compact('classes'));
+        return view('Classes.show_classes', compact('classes'));
 
     }
 
     public function createClassForm($id) {
 
-        return view('classes.create_class', compact('id'));
+        return view('Classes.create_class', compact('id'));
     } 
 
 

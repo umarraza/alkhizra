@@ -39,5 +39,7 @@ class SessionAlert extends Command
     public function handle()
     {
         Classes::alertMail();
+        \Storage::disk('local')->put('fiaaaasasle.txt', 'Conteasasasqqqqqnasasts');
+        echo "chal gai";
     }
 }

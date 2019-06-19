@@ -16,13 +16,14 @@ class CourseController extends Controller
     public function addCourseForm(Request $request) {
 
         $teachers = Teacher::all();
-        return view('courses.create_course', compact('teachers'));
+        return view('Courses.create_course', compact('teachers'));
     }
 
     public function showCourses(Request $request) {
        
         $courses = Course::all();
-        return view('courses.show_courses', compact('courses'));
+        
+        return view('Courses.show_courses', compact('courses'));
     }
 
     public function createCourse(Request $request) {
@@ -60,7 +61,7 @@ class CourseController extends Controller
         $teachers = Teacher::all();
 
         $course = Course::find($id);
-        return view('courses.update_course', compact('course','teachers'));
+        return view('Courses.update_course', compact('course','teachers'));
     } 
 
     public function updateCourse(Request $request)
@@ -84,9 +85,27 @@ class CourseController extends Controller
 
         $course = course::find($id);
 
-        $classes = Classes::where('course_id', '=', $course->id)->first();
+        $class = Classes::where('course_id', '=', $course->id)->first();
+
+        $students = Student::where('course_id', '=', $course->id)->get();
+
+        foreach($students as $student) {
+
+            $userData = User::find($student->userId);
+
+            $userData->delete();
+
+            $student->delete();
+
+        }
 
         $course->delete();
+
+        if (!empty($class)) {
+
+            $class->delete();
+
+        }
 
         return redirect("show-courses");
     }

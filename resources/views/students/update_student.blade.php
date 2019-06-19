@@ -8,7 +8,7 @@
                 <div class="box-header with-border">
                     <h1 class="box-title">Edit Student</h1>
                     <div class="pull-right">
-                        <a href="{{ url('list-students') }}" type="button" class="btn btn-danger">Back</a>
+                        <a href="{{ url('show-students') }}" type="button" class="btn btn-danger">Back</a>
                     </div>
                 </div>
 

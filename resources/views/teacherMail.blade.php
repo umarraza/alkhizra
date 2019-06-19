@@ -1,2 +1,2 @@
-<h1>Hi!</h1>
-<p>Your class will starts tomorrow</p>
+<h1>Hello! {{$teacherName}}</h1>
+<p>{{$message}}</p>

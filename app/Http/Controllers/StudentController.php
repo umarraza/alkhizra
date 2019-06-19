@@ -68,16 +68,16 @@ class StudentController extends Controller
 
         $student->save();
 
-        $studentName = $first_name . ' ' . $last_name;
+        $personName = $first_name . ' ' . $last_name;
         $message = "A random message";
         $tousername = $request->email;
 
         $userId = $user->id;
 
-        \Mail::send('mail',["accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
-
-            $message->from('super.admin@admin.com');
-            $message->to($tousername)->subject('Test Mails');
+        \Mail::send('mail',["personName "=>$personName ,"accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
+    
+            $message->from('info@fantasycricleague.online');
+            $message->to($tousername)->subject('Verify Yourself');
 
        });
 
@@ -156,6 +156,19 @@ class StudentController extends Controller
         return view('students.student_classes', compact('class'));
 
     }
+
+    public function studentCourses(Request $request) {
+
+        $userId     =  Auth::User()->id;
+        $student    =  Student::where('userId', '=', $userId)->first();
+        $course_id  =  $student->course_id;
+
+        $course       =  Course::find($course_id);
+
+        return view('students.student_courses', compact('course'));
+
+    }
+
 
     public function startClass($id) {
 

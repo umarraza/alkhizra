@@ -44,7 +44,7 @@
                     @if (Auth::User()->roleId == 3)
                     
                         <li><a href="{{ url('student-classes') }}"><i class="fa fa-user"></i> <span>My Classes</span></a></li>  
-                        <li><a href="{{ url('teacher-students') }}"><i class="fa fa-user"></i> <span>My Courses</span></a></li>  
+                        <li><a href="{{ url('student-courses') }}"><i class="fa fa-user"></i> <span>My Courses</span></a></li>  
 
                     @endif
 

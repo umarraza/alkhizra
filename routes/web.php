@@ -23,10 +23,6 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/send-mail', 'TeacherController@sendMail');
 
-
-
-
-
 // =========== Access Code Routes =========== //
 
 Route::post('/check-access-code', 'AccessCodeController@checkAccessCode');
@@ -55,6 +51,7 @@ Route::get('/student-update-form/{id}', 'StudentController@updateStudentForm')->
 Route::post('/student-update', 'StudentController@updateStudent')->middleware('lmsRole');
 Route::get('/student-delete/{id}', 'StudentController@deleteStudent')->middleware('lmsRole');
 Route::get('/student-classes', 'StudentController@studentClasses');
+Route::get('/student-courses', 'StudentController@studentCourses');
 Route::get('/start-class/{id}', 'StudentController@startClass');
 
 /* ========= Course Routes ========= */

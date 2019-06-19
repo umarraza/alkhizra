@@ -16,9 +16,9 @@
     </head>
     <body>
     <div class="jumbotron">
-        <h1 class="display-4">Hi! Your Access Code is given below</h1>
-        <p class="lead">{{$accessCode}}</p>
-            <a href="http://localhost/alkhizra/access-code" type="button" name="userId" value="{{$userId}}" class="btn btn-primary btn-sm"><i class="fa fa-user"></i><span>Verif Me!</span></a>  
+        <h1 class="display-4">Your Access Code is given below.</h1>
+        <p class="lead">{{json_encode($accessCode)}}</p>
+            <a href="http://localhost/alkhizra/access-code" type="button" name="userId" value="{{json_encode($userId)}}" class="btn btn-primary btn-sm"><i class="fa fa-user"></i><span>Verif Me!</span></a>  
         <hr class="my-4">
         </div>
     </body>
