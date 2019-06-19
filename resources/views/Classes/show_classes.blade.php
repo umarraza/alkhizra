@@ -25,7 +25,6 @@
                                     <th>Time To</th>
                                     <th>Description</th>
                                     <th>Teacher Description</th>
-                                    <th>Start</th>
                                     <th>Update</th>
                                     <th>Delete</th>
                                 </tr>
@@ -41,7 +40,6 @@
                                     <td>{{ $class->time_to }}</td>
                                     <td>{{ $class->description }}</td>
                                     <td>{{ $class->teacher_description }}</td>
-                                    <td><a href="{{url('/class-delete/'.$class->id)}}" type="button" class="btn btn-success btn-sm">Start Class</a></td>                            
                                     <td><a href="{{url('/class-update-form/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Update</a></td>
                                     <td><a href="{{url('/class-delete/'.$class->id)}}" type="button" class="btn btn-danger btn-sm">Delete</a></td>                            
                                 </tr>

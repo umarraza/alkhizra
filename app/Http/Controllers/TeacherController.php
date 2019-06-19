@@ -28,42 +28,53 @@ class TeacherController extends Controller
 
         $accessCode = mt_rand();
 
-        $user = User::create([
+        DB::beginTransaction();
+        try {
 
-            'name'        =>  $teacherName,
-            'email'       =>  $request->email,
-            'accessCode'  =>  $accessCode,
-            'roleId'  =>  2
+            $user = User::create([
 
-        ]);
+                'name'        =>  $teacherName,
+                'email'       =>  $request->email,
+                'accessCode'  =>  $accessCode,
+                'roleId'  =>  2
+    
+            ]);
+    
+            $teacher = Teacher::create([
+    
+                'first_name'   =>  $request->first_name,
+                'last_name'    =>  $request->last_name,
+                'address'      =>  $request->address,
+                'description'  =>  $request->description,
+                'email'        =>  $request->email,
+                'userId'       =>  $user->id,
+    
+            ]);
+    
+            $teacherName = $first_name . ' ' . $last_name;
+            $message = "A random message";
+            $tousername = $request->email;
+    
+            $userId = $user->id;
+    
+            \Mail::send('mail',["accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
+    
+                $message->from('super.admin@admin.com');
+                $message->to($tousername)->subject('Test Mails');
+    
+           });
 
-        $user->save();
+            DB::commit();
 
-        $teacher = Teacher::create([
+        } catch (Exception $e) {
 
-            'first_name'   =>  $request->first_name,
-            'last_name'    =>  $request->last_name,
-            'address'      =>  $request->address,
-            'description'  =>  $request->description,
-            'email'        =>  $request->email,
-            'userId'       =>  $user->id,
 
-        ]);
+            DB::rolleBack();
+            throw $e;
 
-        $teacher->save();
+        }
 
-        $teacherName = $first_name . ' ' . $last_name;
-        $message = "A random message";
-        $tousername = $request->email;
-
-        $userId = $user->id;
-
-        \Mail::send('mail',["accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
-
-            $message->from('super.admin@admin.com');
-            $message->to($tousername)->subject('Test Mails');
-
-       });
+     
         
     	return redirect('list-teachers');
 

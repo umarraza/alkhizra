@@ -32,8 +32,7 @@ class CourseController extends Controller
             'course_name' => 'required|unique:courses',
             'description' => 'required',
             'about_instructor' => 'required',
-            'catego
-            ry' => 'required',
+            'category' => 'required',
             'type' => 'required',
         
         ]);

@@ -24,7 +24,8 @@ class ClassController extends Controller
             'time_to' => 'required',
             'description' => 'required',
             'teacher_description' => 'required',
-        
+            'course_Id' => 'required',
+
         ]);
 
         DB::beginTransaction();

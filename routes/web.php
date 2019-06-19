@@ -19,6 +19,14 @@ Route::get('/admin', function () {
 
 Route::get('/home', 'HomeController@index');
 
+// =========== mail Routes =========== //
+
+Route::get('/send-mail', 'TeacherController@sendMail');
+
+
+
+
+
 // =========== Access Code Routes =========== //
 
 Route::post('/check-access-code', 'AccessCodeController@checkAccessCode');
