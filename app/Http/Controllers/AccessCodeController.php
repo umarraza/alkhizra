@@ -10,7 +10,6 @@ use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Classes;
 
-
 use App\Models\User;
 use Auth;
 use DB;
@@ -28,10 +27,13 @@ class AccessCodeController extends Controller
     public function checkAccessCode(Request $request) {
 
         $user = User::where('accessCode', '=', $request->accessCode)->first();
-        if (!empty($user)) {
+        if (isset($user)) {
 
             $userId = $user->id;
             return view("enter_password", compact('userId'));
+        } else {
+            
+            return "<h4>Wrong Access Code</h4>";
         }
     }
 
@@ -40,16 +42,28 @@ class AccessCodeController extends Controller
         $password = Hash::make($request->password);
         $userId = $request->userId;
 
-        if (!empty($password)) {
+        DB::beginTransaction();
+        try {
 
-            $user = User::where('id', '=', $userId)->update([
+            if (isset($password)) {
 
-                'password' => $password,
+                $user = User::where('id', '=', $userId)->update([
+    
+                    'password' => $password,
+    
+                ]);
 
-            ]);
-            return view('welcome');
+                DB::commit();
+
+                return view('welcome');
+            }            
+
+        } catch (Exception $e) {
+            
+            throw $e;
+
+            DB::rollback();
+
         }
     }
-
-
 }

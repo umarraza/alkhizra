@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Classes;
 use App\Models\User;
 use Auth;
+use DB;
 
 class CourseController extends Controller
 {
@@ -41,17 +42,28 @@ class CourseController extends Controller
 
         $teacherId = $request->teacherId;
 
-        $course = Course::create([
+        DB::beginTransaction();
+        try {
 
-            'course_name'      =>  $request->course_name,
-            'description'      =>  $request->description,
-            'about_instructor' =>  $request->about_instructor,
-            'category'         =>  $request->category,
-            'type'             =>  $request->type,
-            'teacherId'        =>  $teacherId,
-        ]);
+            $course = Course::create([
 
-        $course->save();
+                'course_name'      =>  $request->course_name,
+                'description'      =>  $request->description,
+                'about_instructor' =>  $request->about_instructor,
+                'category'         =>  $request->category,
+                'type'             =>  $request->type,
+                'teacherId'        =>  $teacherId,
+            ]);
+    
+            DB::commit();
+
+        } catch (Exception $e) {
+            
+            throw $e;
+            DB::rollback();
+        }
+
+
 
         return redirect("show-courses");
     }
@@ -99,11 +111,11 @@ class CourseController extends Controller
 
         }
 
-        $course->delete();
 
+        $course->delete();
         if (!empty($class)) {
 
-            $class->delete();
+        $class->delete();
 
         }
 

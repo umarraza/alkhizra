@@ -116,17 +116,13 @@ class TeacherController extends Controller
                 if(!empty($course)) {
      
                 $class = Classes::where('course_id', '=', $course->id)->first();
-     
                 $students = Student::where('course_id', $course->id)->get();
 
                 foreach ($students as $student) {
 
                     $studentUserId = $student->userId;
-
                     $studentUserData = User::find($studentUserId);
-
                     $studentUserData->delete();
-
                     $student->delete();
 
                 }
@@ -212,8 +208,12 @@ class TeacherController extends Controller
 
         $teacherId = $teacher->id;
         
+        // get all the ids of the courses that belongs to a particular teacher of teacherId
         $courses = Course::where('teacherId', '=', $teacherId)->pluck('id');
 
+
+        // The whereIn method filters the collection by a given key / value contained within the given array:
+        
         $classes = Classes::whereIn('course_id', $courses)->get();
 
         return view('teacher.teacher_classes', compact('classes'));

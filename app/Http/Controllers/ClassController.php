@@ -26,6 +26,12 @@ class ClassController extends Controller
         
         ]);
 
+        $courseId = $request->course_Id;
+        $course = Course::find($courseId);
+        $teacherId = $course->teacherId;
+        $teacher = Teacher::find($teacherId);
+        $email = $teacher->email;
+
         DB::beginTransaction();
         try {
 
@@ -37,6 +43,7 @@ class ClassController extends Controller
                 'time_to'              =>  $request->time_to,
                 'description'          =>  $request->description,
                 'teacher_description'  =>  $request->teacher_description,
+                'teacher_email'        =>  $email,
                 'course_Id'            =>  $request->course_Id,
     
             ]);
@@ -77,28 +84,53 @@ class ClassController extends Controller
             'course_Id' => 'required'
         ]);
 
-            $class = Classes::find($request->id);
+            DB::beginTransaction();
+            try {
 
-            $id = $class->teacherId;
-    
-            $class->title                =  $request->title;
-            $class->date                 =  $request->date;
-            $class->time_from            =  $request->time_from;
-            $class->time_to              =  $request->time_to;
-            $class->description          =  $request->description;
-            $class->teacher_description  =  $request->teacher_description;
-            $class->course_Id            =  $request->course_Id;
-    
-            $class->save();
+                $class = Classes::find($request->id);
+
+                $id = $class->teacherId;
+        
+                $class->title                =  $request->title;
+                $class->date                 =  $request->date;
+                $class->time_from            =  $request->time_from;
+                $class->time_to              =  $request->time_to;
+                $class->description          =  $request->description;
+                $class->teacher_description  =  $request->teacher_description;
+                $class->course_Id            =  $request->course_Id;
+        
+                DB::commit();
+                
+            } catch (Exception $e) {
+
+                throw $e;
+                DB::rollBack();
+            }
+
 
         return redirect("show-classes"); 
     }
 
     public function deleteClass($id) {
 
-        $class = Classes::find($id);
-        $teacherId = $class->teacherId;
-        $class->delete();
+
+        DB::beginTransaction();
+        try {
+
+            $class = Classes::find($id);
+            $teacherId = $class->teacherId;
+            $class->delete();
+
+            DB::commit();
+
+        } catch (Exception $e) {
+            
+            throw $e;
+            DB::rolleBack();
+
+        }
+
+
 
         return redirect("show-classes");
     }
@@ -111,34 +143,61 @@ class ClassController extends Controller
 
     public function showClasse(Request $request) {
        
+
+        // letter get all the classes that are not started yet. set the status of class i.e either active, closed and not started
         $classes = Classes::all();
 
         foreach($classes as $class) {
 
-            $course_Id = $class->course_Id;
-            $course = Course::find($course_Id);
-            $teacherId = $course->teacherId;
-            $teacher = Teacher::find($teacherId);
-            $firstName = $teacher->first_name;
-            $lastName = $teacher->last_name;
-            
-            $teacherName = $firstName . ' ' . $lastName;
+        $email = $class->teacher_email;
 
-            $email = $teacher->email;
-            $time = $class->time_from;
-            $currentTime = Carbon::now();
+        $teacher = Teacher::where('email', $email)->first();
 
-            if($currentTime->diffInMinutes($time) < 30) {
+        $firstName = $teacher->first_name;
+        $lastName = $teacher->last_name;
 
-                $message = "Your class will be starts after 1 hour";
+        $teacherName = $firstName . ' ' . $lastName;
+
+        $time = $class->time_from;
+        $currentTime = Carbon::now();
+
+        $timeDiff = $currentTime->diffInMinutes($time);
+
+        // return $timeDiff;
+
+        // if($currentTime->diffInMinutes($time) == 61 || $currentTime->diffInMinutes($time) == 60 || $currentTime->diffInMinutes($time) == 59 || $currentTime->diffInMinutes($time) == 16 || $currentTime->diffInMinutes($time) == 15) {
+        if($currentTime->diffInMinutes($time) < 61) {
+
+                $message = "Your class will starts in 60 minutes";
+                
+                // return $message;
+
+                $time = 60;
+
                 $tousername = $email;
-        
-                \Mail::send('teacherMail',["teacherName"=>$teacherName,"message"=>$message], function ($message) use ($tousername) {
+
+                \Mail::send('teacherMail',["teacherName"=>$teacherName,"time"=>$time], function ($message) use ($tousername) {
         
                     $message->from('info@fantasycricleague.online');
-                    $message->to($tousername)->subject('Test Mails');
+                    $message->to($tousername)->subject('Class Time Alert');
         
-               });
+                });
+
+            } elseif ($currentTime->diffInMinutes($time) < 15) {
+
+                $message = "Your class will starts in 15 Minutes.";
+
+
+                $time = 15;
+
+                $tousername = $email;
+
+                \Mail::send('teacherMail',["teacherName"=>$teacherName,"time"=>$time], function ($message) use ($tousername) {
+        
+                    $message->from('info@fantasycricleague.online');
+                    $message->to($tousername)->subject('Class Time Alert');
+        
+                });
             }
         }
 
