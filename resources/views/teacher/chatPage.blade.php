@@ -17,11 +17,7 @@
         <input id="messageInput" class="form-control form-control-sm" type="text" placeholder="Message">
         <br>
         <p><b>{{Auth::User()->name}}</b></p>
-    
-     <a id="popoverOption" class="btn" href="#" data-content="Popup with option trigger" rel="popover" data-placement="bottom" data-original-title="Title">Popup with option trigger</a>
-    
     </div>
-    <div class="col-lg-4 col-md-4"></div>
 </div>
 <script>
 
@@ -59,7 +55,7 @@
                 userId:userId, 
                 classId:classId, 
                 roleId:roleId, 
-                dateTime:dateTime });
+                time:time });
 
             document.querySelector('#messageInput').value = '';
 
@@ -80,22 +76,19 @@
 
                 var element = document.createElement('div');
                 var para = document.createElement('p');                
-                // <div class="teacher-message">Hello: 2019-6-20 15:42:42</div>
 
                 element.className = `teacher-message`;
-                element.className = `para`;
+                para.className = `pull-right`;
+
 
                 element.style.cssText = "width:400px;height:auto; background:#E5E8E8;margin:5px 0 5px 0;border-radius: 25px 20px 15px 3px;padding:13px 0 10px 10px;color:#000"
-                para.style.cssText = "display:none";
-                element.addEventListener("onmouseover", show());
+                para.style.cssText = "display:inline-block;color:#566573; padding:0 13px 0 0;text-size:50px;font-size: 11px;font-family: Arial, Helvetica, sans-serif;";
 
 
-
-                console.log(para);
 
                 element.appendChild(document.createTextNode(message.text));
                 element.appendChild(para);
-                para.appendChild(document.createTextNode(message.dateTime));
+                para.appendChild(document.createTextNode(message.time));
 
                 const target = document.querySelector('.show-message');  
 
@@ -106,11 +99,19 @@
             } else if(message.roleId == 3) {
 
                 var element2 = document.createElement('div');
+                var para2 = document.createElement('p');                
+
                 element2.className = `student-message `;
+                para2.className = `pull-right`;
+
 
                 element2.style.cssText = "width:400px;height:auto; background:#0768C3;margin:5px 0 5px 200px;border-radius: 20px 25px 3px 15px;padding:13px 0 10px 10px;color:#fff;"
+                para2.style.cssText = "display:inline-block;color:#EBEDEF; padding:0 13px 0 0;text-size:50px;font-size: 11px;font-family: Arial, Helvetica, sans-serif;";
 
                 element2.appendChild(document.createTextNode(message.text));
+                element2.appendChild(para2);
+                para2.appendChild(document.createTextNode(message.time));
+
 
                 const target = document.querySelector('.show-message');  
 
