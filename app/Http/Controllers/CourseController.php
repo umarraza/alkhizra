@@ -13,20 +13,6 @@ use DB;
 
 class CourseController extends Controller
 {
-
-    public function addCourseForm(Request $request) {
-
-        $teachers = Teacher::all();
-        return view('Courses.create_course', compact('teachers'));
-    }
-
-    public function showCourses(Request $request) {
-       
-        $courses = Course::all();
-        
-        return view('Courses.show_courses', compact('courses'));
-    }
-
     public function createCourse(Request $request) {
 
         $validatedData = $request->validate([
@@ -60,10 +46,7 @@ class CourseController extends Controller
             throw $e;
             DB::rollback();
         }
-
-
-
-        return redirect("show-courses");
+        return redirect()->action('CourseController@showCourses');
     }
 
     public function updateCourseForm($id) {
@@ -79,44 +62,66 @@ class CourseController extends Controller
 
         $course = Course::find($request->id);
 
-        $course->course_name       =  $request->course_name;
-        $course->description       =  $request->description;
-        $course->about_instructor  =  $request->about_instructor;
-        $course->category          =  $request->category;
-        $course->type              =  $request->type;
-        $course->teacherId         =  $request->teacherId;
+        DB::beginTransaction();
+        try {
 
-        $course->save();
+            $course->course_name       =  $request->course_name;
+            $course->description       =  $request->description;
+            $course->about_instructor  =  $request->about_instructor;
+            $course->category          =  $request->category;
+            $course->type              =  $request->type;
+            $course->teacherId         =  $request->teacherId;
 
-        return redirect("show-courses");
+            DB::commit();
+
+        } catch (Exception $E) {
+            
+            throw $e;
+            DB::rollBack();
+        }
+
+        return redirect()->action('CourseController@showCourses');
     }
 
     public function deleteCourse($id) {
 
-        $course = course::find($id);
+       DB::beginTransaction();
+       try {
 
-        $class = Classes::where('course_id', '=', $course->id)->first();
+            $course = course::find($id);
+            $class = Classes::where('course_id', '=', $course->id)->first();
+            $students = Student::where('course_id', '=', $course->id)->get();
 
-        $students = Student::where('course_id', '=', $course->id)->get();
+            foreach($students as $student) {
 
-        foreach($students as $student) {
+                $userData = User::find($student->userId);
+                $userData->delete();
+                $student->delete();
+            }
+            $course->delete();
+            if (!empty($class)) {
+                $class->delete();
+            }
 
-            $userData = User::find($student->userId);
+            DB::commit();
 
-            $userData->delete();
+        } catch (Exception $e) {
+           throw $e;
+           DB::rollBack();
+       }
+        return redirect()->action('CourseController@showCourses');
+    }
 
-            $student->delete();
+    public function addCourseForm(Request $request) {
 
-        }
+        $teachers = Teacher::all();
+        return view('Courses.create_course', compact('teachers'));
+    }
 
-
-        $course->delete();
-        if (!empty($class)) {
-
-        $class->delete();
-
-        }
-
-        return redirect("show-courses");
+    public function showCourses(Request $request) {
+       
+        $courses = Course::all();
+        
+        return view('Courses.show_courses', compact('courses'));
     }
 }

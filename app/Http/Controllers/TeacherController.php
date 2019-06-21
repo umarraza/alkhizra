@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Teacher;
 use App\Models\Student;
@@ -19,7 +20,12 @@ class TeacherController extends Controller
 
         $validatedData = $request->validate([
         
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'description' => 'required',
+            'address' => 'required',
             'email' => 'required|unique:users',
+
         ]);
 
         $first_name = $request->first_name;
@@ -76,7 +82,7 @@ class TeacherController extends Controller
 
         }
 
-    	return redirect('list-teachers');
+        return redirect()->action('TeacherController@listTeachers');
 
     }
 
@@ -91,68 +97,55 @@ class TeacherController extends Controller
     {
 
         $teacher = Teacher::find($request->id);
+        DB::beginTransation();
+        try {
 
-        $teacher->first_name   =  $request->first_name;
-        $teacher->last_name    =  $request->last_name;
-        $teacher->address      =  $request->address;
-        $teacher->description  =  $request->description;
+            $teacher->first_name   =  $request->first_name;
+            $teacher->last_name    =  $request->last_name;
+            $teacher->address      =  $request->address;
+            $teacher->description  =  $request->description;
 
+            DB::commit();
 
-        $teacher->save();
+        } catch (Exception $e) {
 
-        return redirect('list-teachers');
+            throw $e;
+            DB::rollBack();
+
+        }
+        return redirect()->action('TeacherController@listTeachers');
     }
 
     public function deleteTeacher($id) {
 
-        $teacher = Teacher::find($id);
-        $courses = Course::where('teacherId', '=', $teacher->id)->get();
-
         DB::beginTransaction();
         try{
 
-            foreach($courses as $course) {
+            $teacher = Teacher::find($id);
+            $courses = Course::where('teacherId', '=', $teacher->id)->pluck('id');
+            $students = Student::whereIn('course_id', $courses)->get();
+           
+            $user = User::where('id', $teacher->userId)->first();
 
-                if(!empty($course)) {
-     
-                $class = Classes::where('course_id', '=', $course->id)->first();
-                $students = Student::where('course_id', $course->id)->get();
+            $userIds = $students->map(function($user) {
+                return $user['userId'];
+              });
 
-                foreach ($students as $student) {
-
-                    $studentUserId = $student->userId;
-                    $studentUserData = User::find($studentUserId);
-                    $studentUserData->delete();
-                    $student->delete();
-
-                }
-
-                if (!empty($class)) {
-                    
-                    $class->delete();
-                }
-     
-                $course->delete();
-                
-                }
-            }
-     
-             $userId = $teacher->userId;
-             $userData = User::find($userId);
-     
-             $teacher->delete();
-             $userData->delete();
-
+            Course::whereIn('id', $courses)->delete();
+            Classes::whereIn('course_id', $courses)->delete();
+            Student::whereIn('course_id', $courses)->delete();
+            User::whereIn('id', $userIds)->delete();
+            $user->delete();
+            
             DB::commit();
 
         } catch(Exception $e) {
 
-            DB::rolleBack();
-
             throw $e;
+            DB::rolleBack();
         }
 
-        return redirect('list-teachers');
+        return redirect()->action('TeacherController@listTeachers');
 
     }
 
@@ -204,20 +197,19 @@ class TeacherController extends Controller
     public function teacherClasses(Request $request) {
 
         $userId = Auth::User()->id;
+    
         $teacher = Teacher::where('userId', '=', $userId)->first();
 
         $teacherId = $teacher->id;
-        
-        // get all the ids of the courses that belongs to a particular teacher of teacherId
+
         $courses = Course::where('teacherId', '=', $teacherId)->pluck('id');
 
-
-        // The whereIn method filters the collection by a given key / value contained within the given array:
-        
         $classes = Classes::whereIn('course_id', $courses)->get();
-
         return view('teacher.teacher_classes', compact('classes'));
+
     }
+
+  
 
     // ================== Forms and Views like Routes ================== // 
 

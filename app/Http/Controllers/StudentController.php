@@ -7,7 +7,6 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Classes;
-
 use App\Models\User;
 use Auth;
 use DB;
@@ -72,33 +71,38 @@ class StudentController extends Controller
 
        });
 
-        return redirect("show-students");
+        return redirect()->action('StudentController@showStudents');
     }
 
     public function updateStudentForm($id) {
 
         $courses = Course::all();
-        
         $student = Student::find($id);
+
         return view('students.update_student', compact('student','courses'));
     } 
 
     public function updateStudent(Request $request)
     {
-
         $student = Student::find($request->id);
-
         $id = $student->teacherId;
 
-        $student->first_name  =  $request->first_name;
-        $student->last_name   =  $request->last_name;
-        $student->gender      =  $request->gender;
-        $student->grade       =  $request->grade;
-        $student->course_id   =  $request->course_id;
+        DB::beginTransaction();
+        try {
 
-        $student->save();
+            $student->first_name  =  $request->first_name;
+            $student->last_name   =  $request->last_name;
+            $student->gender      =  $request->gender;
+            $student->grade       =  $request->grade;
+            $student->course_id   =  $request->course_id;
 
-        return redirect("show-students"); // remember sending id in that case only work in double quotations marks
+            DB::commit();
+
+        } catch (Exception $e) {
+            throw $e;
+            DB::rollBack();
+        }
+        return redirect()->action('StudentController@showStudents');
     }
 
     public function deleteStudent($id) {
@@ -117,13 +121,11 @@ class StudentController extends Controller
             DB::commit();
 
         } catch (Eception $e) {
-
             DB::rollBack();
             throw $e;
-
         }
 
-        return redirect("show-students");
+        return redirect()->action('StudentController@showStudents');
     }
 
     public function allStudents(Request $request) {
@@ -153,8 +155,7 @@ class StudentController extends Controller
         $userId     =  Auth::User()->id;
         $student    =  Student::where('userId', '=', $userId)->first();
         $course_id  =  $student->course_id;
-
-        $course       =  Course::find($course_id);
+        $course     =  Course::find($course_id);
 
         return view('students.student_courses', compact('course'));
 
@@ -179,7 +180,5 @@ class StudentController extends Controller
        
         $students = Student::all();
         return view('students.show_students', compact('students'));
-
     }
-
 }

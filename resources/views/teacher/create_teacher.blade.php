@@ -42,7 +42,7 @@
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
-                            <li>Email already exists!</li>
+                            <li>{{$error}}</li>
                         @endforeach
                     </ul>
                 </div>

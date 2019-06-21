@@ -23,7 +23,7 @@ class ClassController extends Controller
             'time_to' => 'required',
             'description' => 'required',
             'teacher_description' => 'required',
-            'course_Id' => 'required'
+            'course_Id' => 'required|unique:classes'
         
         ]);
 
@@ -56,9 +56,7 @@ class ClassController extends Controller
             DB::rollBack();
             throw $e;
         }
-
-        return redirect("show-classes");
-
+        return redirect()->action('ClassController@showClasse');
     }
 
     public function updateClassForm($id) {
@@ -85,31 +83,30 @@ class ClassController extends Controller
             'course_Id' => 'required'
         ]);
 
-            DB::beginTransaction();
-            try {
+        DB::beginTransaction();
+        try {
 
-                $class = Classes::find($request->id);
+            $class = Classes::find($request->id);
 
-                $id = $class->teacherId;
-        
-                $class->title                =  $request->title;
-                $class->date                 =  $request->date;
-                $class->time_from            =  $request->time_from;
-                $class->time_to              =  $request->time_to;
-                $class->description          =  $request->description;
-                $class->teacher_description  =  $request->teacher_description;
-                $class->course_Id            =  $request->course_Id;
-        
-                DB::commit();
-                
-            } catch (Exception $e) {
+            $id = $class->teacherId;
+    
+            $class->title                =  $request->title;
+            $class->date                 =  $request->date;
+            $class->time_from            =  $request->time_from;
+            $class->time_to              =  $request->time_to;
+            $class->description          =  $request->description;
+            $class->teacher_description  =  $request->teacher_description;
+            $class->course_Id            =  $request->course_Id;
+    
+            DB::commit();
+            
+        } catch (Exception $e) {
 
-                throw $e;
-                DB::rollBack();
-            }
+            throw $e;
+            DB::rollBack();
+        }
 
-
-        return redirect("show-classes"); 
+        return redirect()->action('ClassController@showClasse');
     }
 
     public function deleteClass($id) {
@@ -130,10 +127,7 @@ class ClassController extends Controller
             DB::rolleBack();
 
         }
-
-
-
-        return redirect("show-classes");
+        return redirect()->action('ClassController@showClasse');
     }
 
     public function addClassForm(Request $request) {

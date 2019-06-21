@@ -57,7 +57,7 @@
 
             var today     =  new Date();
             var date      =  today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-            var timeData      =  today.getHours() + ":" + today.getMinutes();
+            var timeData  =  today.getHours() + ":" + today.getMinutes();
             var dateTime  =  date+' '+time;
 
             var time = formatAMPM(new Date());
@@ -69,7 +69,8 @@
                 userId:userId, 
                 classId:classId, 
                 roleId:roleId, 
-                time:time });
+                time:time,
+                date:date });
 
             document.querySelector('#messageInput').value = '';
 
@@ -82,18 +83,19 @@
         var message = snapshot.val();
         var class_id = $('#classId').val();
 
-
-
         if (message.classId == class_id) {
 
             if (message.roleId == 2) {
 
+                var showDate = document.createElement('div');
                 var element = document.createElement('div');
                 var para = document.createElement('p');                
 
+                showDate.className = "display-date";
                 element.className = `teacher-message`;
                 para.className = `pull-right`;
 
+                showDate.style.cssText = "text-align:center";
                 element.style.cssText = "width:400px;height:auto; background:#E5E8E8;margin:5px 0 5px 0;border-radius: 25px 20px 15px 3px;padding:13px 0 10px 10px;color:#000"
                 para.style.cssText = "display:inline-block;color:#566573; padding:0 13px 0 0;text-size:50px;font-size: 11px;font-family: Arial, Helvetica, sans-serif;";
 
