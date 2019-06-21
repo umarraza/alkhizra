@@ -31,16 +31,14 @@ class CourseController extends Controller
 
         $validatedData = $request->validate([
         
+            'teacherId' => 'required',
             'course_name' => 'required|unique:courses',
             'description' => 'required',
             'about_instructor' => 'required',
             'category' => 'required',
-            'type' => 'required',
+            'type' => 'required'
         
         ]);
-
-
-        $teacherId = $request->teacherId;
 
         DB::beginTransaction();
         try {
@@ -52,7 +50,7 @@ class CourseController extends Controller
                 'about_instructor' =>  $request->about_instructor,
                 'category'         =>  $request->category,
                 'type'             =>  $request->type,
-                'teacherId'        =>  $teacherId,
+                'teacherId'        =>  $request->teacherId
             ]);
     
             DB::commit();

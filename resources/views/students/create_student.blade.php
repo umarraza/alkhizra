@@ -18,7 +18,6 @@
                         </select>
                     </div>
 
-
                     <label class="form-check-label" for="exampleCheck1">First Name</label>
                     <input class="form-control form-control-sm" name="first_name" type="text" placeholder="" required>
 
@@ -52,7 +51,7 @@
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
-                            <li>Email already exists!</li>
+                           <li>{{$error}}</li>
                         @endforeach
                     </ul>
                 </div>

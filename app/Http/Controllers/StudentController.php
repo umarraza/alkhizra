@@ -15,25 +15,16 @@ use DB;
 
 class StudentController extends Controller
 {
-
-    public function addStudentForm(Request $request) {
-
-        $courses = Course::all();
-        return view('students.create_student', compact('courses'));
-    } 
-
-    public function showStudents(Request $request) {
-       
-        $students = Student::all();
-        return view('students.show_students', compact('students'));
-
-    }
-
     public function createStudent(Request $request) {
 
         $validatedData = $request->validate([
 
             'email' => 'required|unique:users',
+            'course_id' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'gender' => 'required',
+            'grade' => 'required',
         ]);
 
         
@@ -175,6 +166,19 @@ class StudentController extends Controller
         $class_id = $id;
 
         return view('teacher.chatPage', compact('class_id'));
+
+    }
+
+    public function addStudentForm(Request $request) {
+
+        $courses = Course::all();
+        return view('students.create_student', compact('courses'));
+    } 
+
+    public function showStudents(Request $request) {
+       
+        $students = Student::all();
+        return view('students.show_students', compact('students'));
 
     }
 

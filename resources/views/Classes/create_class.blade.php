@@ -53,7 +53,7 @@
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
-                            <li>Class Name already exists!</li>
+                           <li>{{$error}}</li>
                         @endforeach
                     </ul>
                 </div>
