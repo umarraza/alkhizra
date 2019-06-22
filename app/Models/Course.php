@@ -25,4 +25,10 @@ class Course extends Model
         'teacherId',
 
     ];
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class, 'teacherId');
+    }
+
 }
