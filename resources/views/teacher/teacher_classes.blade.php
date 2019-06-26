@@ -24,7 +24,7 @@
                                     <th>End Time</th>
                                     <th>Description</th>
                                     <th>Teacher Description</th>
-                                    <th>Course Name</th>
+                                    {{-- <th>Course Name</th> --}}
                                     <th>Start Class</th>
                                 </tr>
                             </thead>
@@ -32,6 +32,7 @@
                                   <tr> 
                                 @php $count=1; @endphp
                                 @foreach($classes as $class) {{-- Getting data from teacherController function teacherClasses --}}
+                                    
                                     <td><span>{{ $count }}</span></td>
                                     <td>{{ $class->title }}</td>
                                     <td>{{ $class->date }}</td>
@@ -39,8 +40,9 @@
                                     <td>{{ $class->time_to }}</td>
                                     <td>{{ $class->description }}</td>
                                     <td>{{ $class->teacher_description }}</td>
-                                    <td>{{ $class->course_name }}</td>
-                                    <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Start Class</a></td>
+                                    {{-- <td>{{ $class->course_name }}</td> --}}
+                                    <td><a class='btn btn-primary' target='new' href='{{ $class->url }}'>Enter class</a></td>
+                                    {{-- <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Start Class</a></td> --}}
                                     {{--  <td><a href="{{url('/course-update-form/'.$course->id)}}" type="button" class="btn btn-primary btn-sm">Update</a></td>  --}}
                                 
                                 </tr>

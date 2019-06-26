@@ -27,10 +27,13 @@ class ClassController extends Controller
         
         ]);
 
+        $alphaNumString = uniqid();   
+
         $courseId = $request->course_Id;
         $course = Course::find($courseId);
-        $teacherId = $course->teacherId;
-        $teacher = Teacher::find($teacherId);
+        $id = $course->teacherId;
+        $teacher = Teacher::find($id);
+        $teacherId = $teacher->userId;
         $email = $teacher->email;
 
         DB::beginTransaction();
@@ -45,8 +48,9 @@ class ClassController extends Controller
                 'description'          =>  $request->description,
                 'teacher_description'  =>  $request->teacher_description,
                 'teacher_email'        =>  $email,
+                'room_token'           =>  $alphaNumString,
                 'course_Id'            =>  $request->course_Id,
-    
+                'teacherId'            =>  $teacherId,
             ]);
     
             DB::commit();
@@ -138,7 +142,6 @@ class ClassController extends Controller
 
     public function showClasse(Request $request) {
        
-
         // letter get all the classes that are not started yet. set the status of class i.e either active, closed and not started
         $classes = Classes::all();
 

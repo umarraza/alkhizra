@@ -25,7 +25,6 @@ class Teacher extends Model
         'description',
         'email',
         'userId'
-        
     ];
 
     public function course()

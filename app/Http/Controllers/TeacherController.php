@@ -205,8 +205,19 @@ class TeacherController extends Controller
         $courses = Course::where('teacherId', '=', $teacherId)->pluck('id');
 
         $classes = Classes::whereIn('course_id', $courses)->get();
-        return view('teacher.teacher_classes', compact('classes'));
 
+        foreach ($classes as $class) {
+
+            $roomToken = $class->room_token;
+            $userId = $class->teacherId;
+
+            $url = "https://app.learncube.com/api/virtual-classroom/class/start/?pub_key=3677f2c4a034ee6c56b1015d&room_token=".$roomToken."&userid=".$userId;
+
+            $class['url'] = $url;
+
+        }
+
+        return view('teacher.teacher_classes', compact('classes'));
     }
 
   

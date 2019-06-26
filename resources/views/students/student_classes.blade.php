@@ -25,6 +25,7 @@
                                     <th>Description</th>
                                     <th>Course Name</th>
                                     <th>Attend Class</th>
+                                    <th>Start Chat</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,6 +37,8 @@
                                     <td>{{ $class->description }}</td>
                                     <td>{{ $class->teacher_description }}</td>
                                     <td>{{ $class->course_name }}</td>
+                                    <td><a class='btn btn-primary btn-sm' target='new' href='{{ $class->url }}'>Enter class</a></td>
+                                    
                                     <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Start Class</a></td>
                                 </tr>
                             </tbody>

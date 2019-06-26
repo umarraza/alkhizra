@@ -23,7 +23,9 @@ class Classes extends Model
         'description',
         'teacher_description',
         'teacher_email',
-        'course_Id'
+        'room_token',
+        'course_Id',
+        'teacherId'
     ];
 
     public static function alertMail(Request $request) {

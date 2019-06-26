@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/send-mail', 'TeacherController@sendMail');
 
+Route::post('/check-response', 'WhiteboardApiController@whiteboardApi');
+
 // =========== Access Code Routes =========== //
 
 Route::post('/check-access-code', 'AccessCodeController@checkAccessCode');
