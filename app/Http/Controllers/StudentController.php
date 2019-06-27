@@ -143,15 +143,7 @@ class StudentController extends Controller
         $course_name  =  $course->course_name;
         $class        =  Classes::where('course_id', '=', $course_id)->first();
 
-        $roomToken = $class->room_token;
-
-        $url = "https://app.learncube.com/api/virtual-classroom/class/start/?pub_key=3677f2c4a034ee6c56b1015d&room_token=".$roomToken."&userid=".$userId;
-
-        $class['url'] = $url;
-        $class['course_name'] = $course_name;
-
         return view('students.student_classes', compact('class'));
-
     }
 
     public function studentCourses(Request $request) {

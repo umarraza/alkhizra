@@ -41,10 +41,7 @@
                                     <td>{{ $class->description }}</td>
                                     <td>{{ $class->teacher_description }}</td>
                                     {{-- <td>{{ $class->course_name }}</td> --}}
-                                    <td><a class='btn btn-primary' target='new' href='{{ $class->url }}'>Enter class</a></td>
-                                    {{-- <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Start Class</a></td> --}}
-                                    {{--  <td><a href="{{url('/course-update-form/'.$course->id)}}" type="button" class="btn btn-primary btn-sm">Update</a></td>  --}}
-                                
+                                    <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Start Class</a></td>
                                 </tr>
                                 @php $count++; @endphp
                                 @endforeach
