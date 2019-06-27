@@ -23,8 +23,7 @@
                                     <th>Gender</th>
                                     <th>Grade</th>
                                     <th>Email</th>
-                                    <th>Course</th>
-
+                                    {{-- <th>Course</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,7 +36,7 @@
                                     <td>{{ $student->gender }}</td>
                                     <td>{{ $student->grade }}</td>
                                     <td>{{ $student->email }}</td>
-                                    <td>{{ $student->course_name }}
+                                    {{-- <td>{{ $student->course_name }} --}}
                                 </tr>
                                 @php $count++; @endphp
                                 @endforeach

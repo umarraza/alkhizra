@@ -166,44 +166,24 @@ class TeacherController extends Controller
         $userId = Auth::User()->id;
         $teacher = Teacher::where('userId', '=', $userId)->first();
         $teacherId = $teacher->id;
-        $courses = Course::where('teacherId', '=', $teacherId)->get();
+        $courses = Course::where('teacherId', '=', $teacherId)->pluck('id');
 
-        foreach ($courses as $course) {
+        $studentCourses = Course::where('teacherId', '=', $teacherId)->pluck('course_name');
 
-            $teacherId = $course->teacherId;
+        $students = Student::whereIn('course_id', $courses)->get();
 
-            $students = DB::table('students AS student')
-            ->join('courses AS course', 'student.course_id', '=', 'course.id')
+        // $students['courses'] = $studentCourses;
 
-            ->select(
-                
-                'student.first_name', 
-                'student.last_name', 
-                'student.gender', 
-                'student.grade', 
-                'student.email', 
-                'course.course_name'
-
-                )
-
-            ->where('course.teacherId','=', $teacherId)
-            
-        ->get();
-
-        }
         return view('students.teacher_students', compact('students'));
+
     }
 
     public function teacherClasses(Request $request) {
 
         $userId = Auth::User()->id;
-    
         $teacher = Teacher::where('userId', '=', $userId)->first();
-
         $teacherId = $teacher->id;
-
         $courses = Course::where('teacherId', '=', $teacherId)->pluck('id');
-
         $classes = Classes::whereIn('course_id', $courses)->get();
 
         return view('teacher.teacher_classes', compact('classes'));
