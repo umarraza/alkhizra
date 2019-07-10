@@ -64,7 +64,7 @@ class ClassController extends Controller
     } 
 
 
-    public function updateClass(Classes $class)
+    public function updateClass(Request $request, Classes $class)
     {
         $data = request()->validate([
         
