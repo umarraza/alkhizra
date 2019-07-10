@@ -75,11 +75,8 @@ class TeacherController extends Controller
             DB::commit();
 
         } catch (Exception $e) {
-
-
             DB::rolleBack();
             throw $e;
-
         }
 
         return redirect()->action('TeacherController@listTeachers');
@@ -93,103 +90,86 @@ class TeacherController extends Controller
 
     }
 
-    public function teacherUpdate(Request $request)
+    public function teacherUpdate(Teacher $teacher)
     {
 
-        $teacher = Teacher::find($request->id);
-        DB::beginTransation();
+        $data = request()->validate([
+
+            'first_name'   =>  'required',
+            'last_name'    =>  'required',
+            'address'      =>  'required',
+            'description'  =>  'required'
+        
+        ]);
+    
+        DB::beginTransaction();
         try {
-
-            $teacher->first_name   =  $request->first_name;
-            $teacher->last_name    =  $request->last_name;
-            $teacher->address      =  $request->address;
-            $teacher->description  =  $request->description;
-
+            $teacher->update($data);
+            User::whereId($teacher->user->id)->update([
+                "name" => $teacher->first_name . ' ' . $teacher->last_name,
+            ]);
             DB::commit();
-
-        } catch (Exception $e) {
-
-            throw $e;
+        } catch (Exception $th) {
+            throw $te;
             DB::rollBack();
-
         }
+
         return redirect()->action('TeacherController@listTeachers');
     }
 
-    public function deleteTeacher($id) {
-
+    public function deleteTeacher(Teacher $teacher) {
+        
+        $courses  = $teacher->courses;        
+        $students = $teacher->students;
+        $classes  = $teacher->classes;
+        $user     = $teacher->user;
+        
+        $userIds = $students->map(function($user) {
+            return $user['userId'];
+          });
+        $taachers = $teacher->classes;
+        
         DB::beginTransaction();
-        try{
+        try {
 
-            $teacher = Teacher::find($id);
-            $courses = Course::where('teacherId', '=', $teacher->id)->pluck('id');
-            $students = Student::whereIn('course_id', $courses)->get();
-           
-            $user = User::where('id', $teacher->userId)->first();
-
-            $userIds = $students->map(function($user) {
-                return $user['userId'];
-              });
-
-            Course::whereIn('id', $courses)->delete();
-            Classes::whereIn('course_id', $courses)->delete();
-            Student::whereIn('course_id', $courses)->delete();
+            $courses->each->delete();
+            $classes->each->delete();
+            $students->each->delete();
+            $teacher->delete();
             User::whereIn('id', $userIds)->delete();
             $user->delete();
             
             DB::commit();
-
-        } catch(Exception $e) {
-
+        } catch (Exception $e) {
             throw $e;
-            DB::rolleBack();
+            DB::rollBack();
         }
-
+        
         return redirect()->action('TeacherController@listTeachers');
-
     }
 
     public function teacherCourses(Request $request) {
 
-        $userId = Auth::User()->id;
-        $teacher = Teacher::where('userId', '=', $userId)->first();
-        $teacherId = $teacher->id;
-        $courses = Course::where('teacherId', '=', $teacherId)->get();
-
+        $teacher = Teacher::whereUserid(Auth::User()->id)->first();
+        $courses = $teacher->courses;
         return view('Courses.teacher_courses', compact('courses'));
 
     }
 
-
     public function teacherStudents(Request $request) {
 
-        $userId = Auth::User()->id;
-        $teacher = Teacher::where('userId', '=', $userId)->first();
-        $teacherId = $teacher->id;
-        $courses = Course::where('teacherId', '=', $teacherId)->pluck('id');
-
-        $studentCourses = Course::where('teacherId', '=', $teacherId)->pluck('course_name');
-
-        $students = Student::whereIn('course_id', $courses)->get();
-
-        // $students['courses'] = $studentCourses;
-
+        $teacher = Teacher::whereUserid(Auth::User()->id)->first();
+        $students = $teacher->students;
         return view('students.teacher_students', compact('students'));
 
     }
 
     public function teacherClasses(Request $request) {
 
-        $userId = Auth::User()->id;
-        $teacher = Teacher::where('userId', '=', $userId)->first();
-        $teacherId = $teacher->id;
-        $courses = Course::where('teacherId', '=', $teacherId)->pluck('id');
-        $classes = Classes::whereIn('course_id', $courses)->get();
-
+        $teacher = Teacher::whereUserid(Auth::User()->id)->first();
+        $classes = $teacher->classes;
         return view('teacher.teacher_classes', compact('classes'));
     }
-
-  
 
     // ================== Forms and Views like Routes ================== // 
 
@@ -201,8 +181,8 @@ class TeacherController extends Controller
         return view('teacher.chatPage');
     } 
 
-    public function updateTeacherForm($id) {
-        $teacher = Teacher::find($id);
+    public function updateTeacherForm(Teacher $teacher) {
+
         return view('teacher.update_teacher', compact('teacher'));
     } 
 }

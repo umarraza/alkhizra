@@ -27,14 +27,8 @@ class ClassController extends Controller
         
         ]);
 
-        $alphaNumString = uniqid();   
-
-        $courseId = $request->course_Id;
-        $course = Course::find($courseId);
-        $id = $course->teacherId;
-        $teacher = Teacher::find($id);
-        $teacherId = $teacher->userId;
-        $email = $teacher->email;
+        $course = Course::find($request->course_Id);
+        $teacher = $course->teacher;
 
         DB::beginTransaction();
         try {
@@ -47,10 +41,10 @@ class ClassController extends Controller
                 'time_to'              =>  $request->time_to,
                 'description'          =>  $request->description,
                 'teacher_description'  =>  $request->teacher_description,
-                'teacher_email'        =>  $email,
-                'room_token'           =>  $alphaNumString,
+                'teacher_email'        =>  $teacher->email,
+                'room_token'           =>  uniqid(),
                 'course_Id'            =>  $request->course_Id,
-                'teacherId'            =>  $teacherId,
+                'teacherId'            =>  $teacher->id
             ]);
     
             DB::commit();
@@ -63,20 +57,16 @@ class ClassController extends Controller
         return redirect()->action('ClassController@showClasse');
     }
 
-    public function updateClassForm($id) {
+    public function updateClassForm(Classes $class) {
 
         $courses = Course::all();
-
-        $class = Classes::find($id);
         return view('Classes.update_class', compact('class','courses'));
     } 
 
 
-    public function updateClass(Request $request)
+    public function updateClass(Classes $class)
     {
-
-
-        $validatedData = $request->validate([
+        $data = request()->validate([
         
             'title' => 'required',
             'date' => 'required',
@@ -87,42 +77,20 @@ class ClassController extends Controller
             'course_Id' => 'required'
         ]);
 
-        DB::beginTransaction();
-        try {
-
-            $class = Classes::find($request->id);
-
-            $id = $class->teacherId;
-    
-            $class->title                =  $request->title;
-            $class->date                 =  $request->date;
-            $class->time_from            =  $request->time_from;
-            $class->time_to              =  $request->time_to;
-            $class->description          =  $request->description;
-            $class->teacher_description  =  $request->teacher_description;
-            $class->course_Id            =  $request->course_Id;
-    
-            DB::commit();
-            
-        } catch (Exception $e) {
-
-            throw $e;
-            DB::rollBack();
-        }
+        $class->update($data);
+        Classes::whereId($class->id)->update([
+            "teacherId" => Course::find($class->course_Id)->teacherId,
+        ]);
 
         return redirect()->action('ClassController@showClasse');
     }
 
-    public function deleteClass($id) {
-
+    public function deleteClass(Classes $class) {
 
         DB::beginTransaction();
         try {
 
-            $class = Classes::find($id);
-            $teacherId = $class->teacherId;
             $class->delete();
-
             DB::commit();
 
         } catch (Exception $e) {
@@ -144,7 +112,6 @@ class ClassController extends Controller
        
         // letter get all the classes that are not started yet. set the status of class i.e either active, closed and not started
         $classes = Classes::all();
-
         return view('Classes.show_classes', compact('classes'));
 
     }

@@ -24,7 +24,20 @@ class Student extends Model
         'grade',
         'email',
         'course_id',
+        'teacher_id',
         'userId',
         
     ];
+
+    public function teacher() {
+        return $this->belongsTo(Teacher::class, 'id', 'teacher_id');
+    }
+
+    public function course() {
+        return $this->belongsTo(Course::class, 'id');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class,'userId', 'id');
+    }
 }

@@ -25,7 +25,10 @@ class StudentController extends Controller
             'grade' => 'required',
         ]);
 
+        $course = Course::find($request->course_id);
         
+        $teacher = Teacher::find($course->teacherId);
+
         $first_name = $request->first_name;
         $last_name = $request->last_name;
 
@@ -52,6 +55,7 @@ class StudentController extends Controller
             'grade'       =>  $request->grade,
             'email'       =>  $request->email,
             'course_id'   =>  $request->course_id,
+            'teacher_id'  =>  $teacher->id,
             'userId'      =>  $user->id,
         ]);
 
@@ -73,52 +77,35 @@ class StudentController extends Controller
         return redirect()->action('StudentController@showStudents');
     }
 
-    public function updateStudentForm($id) {
-
+    public function updateStudentForm(Student $student) {
+        
         $courses = Course::all();
-        $student = Student::find($id);
-
         return view('students.update_student', compact('student','courses'));
     } 
 
-    public function updateStudent(Request $request)
+    public function updateStudent(Student $student)
     {
-        $student = Student::find($request->id);
-        $id = $student->teacherId;
+        $data = request()->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'gender' => 'required',
+            'grade' => 'required',
+            'course_id' => 'required',
+        ]);
 
-        DB::beginTransaction();
-        try {
+        $student->update($data);
 
-            $student->first_name  =  $request->first_name;
-            $student->last_name   =  $request->last_name;
-            $student->gender      =  $request->gender;
-            $student->grade       =  $request->grade;
-            $student->course_id   =  $request->course_id;
-
-            DB::commit();
-
-        } catch (Exception $e) {
-            throw $e;
-            DB::rollBack();
-        }
         return redirect()->action('StudentController@showStudents');
     }
 
-    public function deleteStudent($id) {
-
-        $student = Student::find($id);
-        $userId = $student->userId;
-        $userData = User::find($userId);
-
+    public function deleteStudent(Student $student) {
+        
         DB::beginTransaction();
 
         try {
-
             $student->delete();
-            $userData->delete();
-
+            $student->user->delete();
             DB::commit();
-
         } catch (Eception $e) {
             DB::rollBack();
             throw $e;
@@ -135,33 +122,25 @@ class StudentController extends Controller
 
     public function studentClasses(Request $request) {
 
-        $userId     =  Auth::User()->id;
-        $student    =  Student::where('userId', '=', $userId)->first();
-        $course_id  =  $student->course_id;
-
-        $course       =  Course::find($course_id);
+        $student = Student::whereUserid(Auth::User()->id)->first();
+        $course = $student->course;
         $course_name  =  $course->course_name;
-        $class        =  Classes::where('course_id', '=', $course_id)->first();
-
+        $class =  Classes::where('course_id', '=', $course->id)->first();
         return view('students.student_classes', compact('class'));
     }
 
     public function studentCourses(Request $request) {
 
-        $userId     =  Auth::User()->id;
-        $student    =  Student::where('userId', '=', $userId)->first();
-        $course_id  =  $student->course_id;
-        $course     =  Course::find($course_id);
-
+        $student = Student::whereUserid(Auth::User()->id)->first();
+        $course = $student->course;
         return view('students.student_courses', compact('course'));
 
     }
 
 
-    public function startClass($id) {
+    public function startClass(Classes $class) {
 
-        $class_id = $id;
-
+        $class_id = $class->id;
         return view('teacher.chatPage', compact('class_id'));
 
     }

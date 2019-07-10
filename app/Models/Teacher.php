@@ -27,8 +27,20 @@ class Teacher extends Model
         'userId'
     ];
 
-    public function course()
+    public function courses()
     {
-        return $this->hasMany(Course::class, 'id');
+        return $this->hasMany(Course::class,'id');
+    }
+
+    public function students() {
+        return $this->hasMany(Student::class, 'teacher_id', 'id');
+    }
+
+    public function classes() {
+        return $this->hasMany(Classes::class, 'teacherId');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'userId');
     }
 }

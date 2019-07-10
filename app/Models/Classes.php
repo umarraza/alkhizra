@@ -90,4 +90,12 @@ class Classes extends Model
             }
         }
     }
+
+    public function teacher() {
+        return $this->belongsTo(Teacher::class, 'id');
+    }
+
+    public function course() {
+        return $this->belongsTo(Course::class, 'id', 'course_id');
+    }
 }

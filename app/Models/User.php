@@ -15,7 +15,7 @@ class User extends Authenticatable
     const UPDATED_AT       =   'updatedAt';
     const SUPER_ADMIN      =   'super_admin';
     const STUDENT          =   'student';    
-    const HOSTEL_ADMIN     =   'hostel_admin';    
+    const TEACHER          =   'teacher';    
     
     use Notifiable;
 
@@ -59,9 +59,20 @@ class User extends Authenticatable
     /**
      * @return mixed
      */
-    public function role()
+    
+     public function role()
     {
         return $this->hasOne(Roles::class,'id','roleId');
+    }
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class,'id');
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class,'userId', 'id');
     }
 
     /**
@@ -79,14 +90,11 @@ class User extends Authenticatable
         return false;
     }
 
-    public function Hostel()
-    {
-        return $this->hasOne(Hostel::class,'userId','id');
-    }
 
-    public function isHostelAdmin(){
+
+    public function isTeacher(){
         
-        if ($this->role->label == self::HOSTEL_ADMIN)
+        if ($this->role->label == self::TEACHER)
             return true;
                 return false;
     }
@@ -112,7 +120,7 @@ class User extends Authenticatable
         if ($this->isSuperAdmin() )
             return true;
         
-        elseif ($this->isHostelAdmin() )
+        elseif ($this->isTeacher() )
             return true;
   
         elseif ($this->isStudent() )
@@ -157,9 +165,9 @@ class User extends Authenticatable
 
     public function getFullNameAttribute() {
 
-        if ($this->isHostelAdmin() && !empty($this->Hostel))
+        if ($this->isTeacher() && !empty($this->Teacher))
 
-        return $this->Hostel->hostelName;
+        return $this->Teacher->first_name;
         
     }
 }

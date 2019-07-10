@@ -12,7 +12,7 @@
                     </div>
                 </div>
 
-                <form class="form-horizontal" method="post" action="{{url('/teacher-update')}}">
+                <form class="form-horizontal" method="post" action="/alkhizra/teacher-update/{{ $teacher->id }}">
                 {{ csrf_field() }}
                     <div class="box-body">
 

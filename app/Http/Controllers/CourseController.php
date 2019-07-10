@@ -49,66 +49,55 @@ class CourseController extends Controller
         return redirect()->action('CourseController@showCourses');
     }
 
-    public function updateCourseForm($id) {
+    public function updateCourseForm(Course $course) {
 
         $teachers = Teacher::all();
-
-        $course = Course::find($id);
         return view('Courses.update_course', compact('course','teachers'));
     } 
 
-    public function updateCourse(Request $request)
+    public function updateCourse(Course $course)
     {
+        $data = request()->validate([
 
-        $course = Course::find($request->id);
+            'course_name' => 'required',
+            'description' => 'required',
+            'about_instructor' => 'required',
+            'category' => 'required',
+            'type' => 'required',
+            'teacherId' => 'required',
 
-        DB::beginTransaction();
-        try {
+        ]);
 
-            $course->course_name       =  $request->course_name;
-            $course->description       =  $request->description;
-            $course->about_instructor  =  $request->about_instructor;
-            $course->category          =  $request->category;
-            $course->type              =  $request->type;
-            $course->teacherId         =  $request->teacherId;
-
-            DB::commit();
-
-        } catch (Exception $E) {
-            
-            throw $e;
-            DB::rollBack();
-        }
-
+        $course->update($data);
         return redirect()->action('CourseController@showCourses');
+
     }
 
-    public function deleteCourse($id) {
+    public function deleteCourse(Course $course) {
 
-       DB::beginTransaction();
-       try {
+            $students = $course->students;
+            $class = $course->class;
 
-            $course = course::find($id);
-            $class = Classes::where('course_id', '=', $course->id)->first();
-            $students = Student::where('course_id', '=', $course->id)->get();
+            $userIds = $students->map(function($user) {
+                return $user['userId'];
+              });
+            
+            $users = User::whereIn('id', $userIds)->get();
+            DB::beginTransaction();
+            try {
 
-            foreach($students as $student) {
-
-                $userData = User::find($student->userId);
-                $userData->delete();
-                $student->delete();
+                $students->each->delete();
+                $users->each->delete();
+                $course->delete();
+                if(isset($class)){
+                    $class->delete();
+                }
+                DB::commit();
+            } catch (Exception $e) {
+                throw $e;
+                DB::rollBack();
             }
-            $course->delete();
-            if (!empty($class)) {
-                $class->delete();
-            }
 
-            DB::commit();
-
-        } catch (Exception $e) {
-           throw $e;
-           DB::rollBack();
-       }
         return redirect()->action('CourseController@showCourses');
     }
 
@@ -121,7 +110,6 @@ class CourseController extends Controller
     public function showCourses(Request $request) {
        
         $courses = Course::all();
-        
         return view('Courses.show_courses', compact('courses'));
     }
 }
