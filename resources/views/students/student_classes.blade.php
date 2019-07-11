@@ -24,7 +24,8 @@
                                     <th>End Time</th>
                                     <th>Description</th>
                                     {{-- <th>Course Name</th> --}}
-                                    <th>Start Chat</th>
+                                    <th>Chat Room</th>
+                                    <th>Take Session</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,7 +37,8 @@
                                     <td>{{ $class->description }}</td>
                                     <td>{{ $class->teacher_description }}</td>
                                     {{-- <td>{{ $class->course_name }}</td> --}}
-                                    <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Start Class</a></td>
+                                    <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Chat Room</a></td>
+                                    <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-default btn-sm" target="_blank">Take Session</a></td>
                                 </tr>
                             </tbody>
                         </table>

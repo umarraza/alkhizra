@@ -17,6 +17,10 @@ Route::get('/admin', function () {
     return view('admin.admin');
 });
 
+Route::get('/screenshare', function() {
+    return view('whiteboard.screenshare');
+});
+
 Route::get('/whiteboard', function() {
     return view('whiteboard.whiteboard');
 });

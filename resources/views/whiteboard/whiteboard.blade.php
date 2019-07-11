@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>White Board</title>
-  
+
+    <link href="{{ asset('/public/css/screen.css') }}" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" {!! Html::style('css/style.css') !!}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script href="{{asset('js/wb.js')}}"></script>
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="{{ asset('/public/js/screen.js') }}"></script>
+
 </head>
 <body>
     
@@ -78,6 +79,9 @@
 			</div>
 		
 		<button z-click="Download" z-show-popup="my-menu">Download</button>
+    <button><a href="{{ url('/screenshare') }}" target="_blank" class="small-box-footer">Share Session</i></a></button> 
+		
+
         <div z-has="AnyNode">
           <h3>Shape options</h3>
           <button z-click="deleteNodes()">Delete</button>                    

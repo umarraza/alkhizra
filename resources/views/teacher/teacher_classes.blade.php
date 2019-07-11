@@ -25,7 +25,9 @@
                                     <th>Description</th>
                                     <th>Teacher Description</th>
                                     {{-- <th>Course Name</th> --}}
-                                    <th>Start Class</th>
+                                    <th>Chat Room</th>
+                                    <th>Start Session</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,8 +42,8 @@
                                     <td>{{ $class->time_to }}</td>
                                     <td>{{ $class->description }}</td>
                                     <td>{{ $class->teacher_description }}</td>
-                                    {{-- <td>{{ $class->course_name }}</td> --}}
-                                    <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Start Class</a></td>
+                                    <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Chat Room</a></td>
+                                    <td><a href="{{url('/screenshare')}}" target="_blank" type="button" class="btn btn-default btn-sm">Start Session</a></td>
                                 </tr>
                                 @php $count++; @endphp
                                 @endforeach
