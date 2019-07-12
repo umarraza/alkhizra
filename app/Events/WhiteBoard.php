@@ -10,7 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class OrderShipped implements ShouldBroadcast
+class WhiteBoard extends Event implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,9 +19,14 @@ class OrderShipped implements ShouldBroadcast
      *
      * @return void
      */
+
+    public $data;
+
     public function __construct()
     {
-        //
+        $this->data = array(
+            'power'=> '10'
+        );
     }
 
     /**
