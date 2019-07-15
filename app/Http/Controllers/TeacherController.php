@@ -126,7 +126,7 @@ class TeacherController extends Controller
         
         $userIds = $students->map(function($user) {
             return $user['userId'];
-          });
+        });
         $taachers = $teacher->classes;
         
         DB::beginTransaction();
@@ -147,6 +147,8 @@ class TeacherController extends Controller
         
         return redirect()->action('TeacherController@listTeachers');
     }
+
+    // Forms and Views Routes
 
     public function teacherCourses(Request $request) {
 
@@ -171,8 +173,6 @@ class TeacherController extends Controller
         return view('teacher.teacher_classes', compact('classes'));
     }
 
-    // ================== Forms and Views like Routes ================== // 
-
     public function createTeacherForm() {
         return view('teacher.create_teacher');
     } 
@@ -184,5 +184,5 @@ class TeacherController extends Controller
     public function updateTeacherForm(Teacher $teacher) {
 
         return view('teacher.update_teacher', compact('teacher'));
-    } 
+    }
 }

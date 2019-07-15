@@ -12,7 +12,6 @@
 
 </head>
 <body>
-    
 	<zwibbler showToolbar="false" pageView="true" defaultPaperSize="letter landscape">
       <div class="tools">
 			<div>
@@ -79,8 +78,10 @@
 			</div>
 		
 		<button z-click="Download" z-show-popup="my-menu">Download</button>
-    <button><a href="{{ url('/screenshare') }}" target="_blank" class="small-box-footer">Share Session</i></a></button> 
-		
+        <button onclick="copy()" >Get Image Data</button>
+        <canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">Your browser does not support the HTML5 canvas tag.</canvas>
+        <button onclick="copy()">Copy</button>
+
 
         <div z-has="AnyNode">
           <h3>Shape options</h3>
@@ -155,8 +156,8 @@
           <input z-property="opacity" type="range" min="0.1" max="1.0" step="0.05">
         </div>              
       </div>
-      <div style="display:flex;flex-flow:column;flex: 1 1 auto;min-width:0">
-        <div z-canvas></div>
+      <div id="abc" style="display:flex;flex-flow:column;flex: 1 1 auto;min-width:0">
+        <div  z-canvas></div>
         <div class="pages">
           <button title="Insert page" z-click="insertPage()"><i class="fa fa-plus"></i></button>
           <button title="Delete page" z-click="deletePage()"><i class="fa fa-minus"></i></button>
@@ -165,7 +166,8 @@
                  z-height="70"
                  class="page"
                  z-class="{selected: mypage==getCurrentPage()}"
-                 z-click="setCurrentPage(mypage)"></div>
+                 z-click="setCurrentPage(mypage)">
+            </div>
           </div>
         </div>
       </div>
@@ -176,9 +178,27 @@
         <button z-click="download('pdf', 'drawing.pdf')">PDF</button>
       </div>
     </zwibbler>
+    </div>
     <script>
       Zwibbler.enableConsoleLogging();
  
+    </script>
+    <script>
+
+    function copy() {
+        
+        var c = document.getElementsByClassName("zwibbler-main-canvas");
+        
+        c[0].setAttribute("id", "myCanvas1");
+        
+        var myCanvas1 = document.getElementById("myCanvas1");
+        var ctx = myCanvas1.getContext("2d");
+        var canvas1 = ctx.getImageData(10, 10, 50, 50);
+        var string = btoa(JSON.stringify(canvas1));
+    }
+        $( document ).ready(function() {
+    });
+
     </script>
 </body>
 </html>

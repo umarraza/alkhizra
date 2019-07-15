@@ -27,8 +27,6 @@
 
         var para = document.querySelector('.para');
         console.log(para);
-
-
     }
 
     $('#messageInput').keypress(function(e){
