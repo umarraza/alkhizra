@@ -67,6 +67,10 @@ Route::get('/whiteboard', function() {
     return view('whiteboard.whiteboard');
 });
 
+Route::get('/screen', function() {
+    return view('whiteboard.e');
+});
+
 Route::get('/home', 'HomeController@index');
 
 // =========== mail Routes =========== //

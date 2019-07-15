@@ -79,9 +79,6 @@
 		
 		<button z-click="Download" z-show-popup="my-menu">Download</button>
         <button onclick="copy()" >Get Image Data</button>
-        <canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">Your browser does not support the HTML5 canvas tag.</canvas>
-        <button onclick="copy()">Copy</button>
-
 
         <div z-has="AnyNode">
           <h3>Shape options</h3>
@@ -184,21 +181,25 @@
  
     </script>
     <script>
+    
+        var c = document.getElementById("myCanvas");
+        var d = document.getElementById("myCanvas2");
 
-    function copy() {
-        
-        var c = document.getElementsByClassName("zwibbler-main-canvas");
-        
-        c[0].setAttribute("id", "myCanvas1");
-        
-        var myCanvas1 = document.getElementById("myCanvas1");
-        var ctx = myCanvas1.getContext("2d");
-        var canvas1 = ctx.getImageData(10, 10, 50, 50);
-        var string = btoa(JSON.stringify(canvas1));
-    }
-        $( document ).ready(function() {
-    });
+        var ctx = c.getContext("2d");
+        var dtx = d.getContext("2d");
 
+        ctx.fillStyle = "blue";
+        ctx.fillRect(10, 10, 50, 50);
+
+        function copy() {
+
+            var imgData = ctx.getImageData(10, 10, 50, 50);
+            var imgData1 = dtx.getImageData(10, 10, 50, 50);
+           console.log(string);
+            ctx.putImageData(imgData, 10, 70);
+            dtx.putImageData(imgData, 10, 70);
+
+        }
     </script>
 </body>
 </html>
