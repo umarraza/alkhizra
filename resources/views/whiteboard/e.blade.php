@@ -9,23 +9,35 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="{{ asset('/public/js/screen.js') }}"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    {{-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script> --}}
 
 </head>
 <body>
-    <canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">Your browser does not support the HTML5 canvas tag.</canvas>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <img src="" alt="Smiley face" height="200" width="300" id="image64">
+                </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+
     <script>
-    
-        var c = document.getElementById("myCanvas");
-        var ctx = c.getContext("2d");
-        ctx.fillStyle = "red";
-        ctx.fillRect(10, 10, 50, 50);
+        var messageRef = new Firebase('https://whiteboard-fb2e1.firebaseio.com/');
 
-        function copy() {
-            var imgData = ctx.getImageData(10, 10, 50, 50);
-            ctx.putImageData(imgData, 10, 70);
-        }
-    </script>
-<button onclick="copy()">Copy</button>
+        messageRef.on('child_added',function(snapshot){
+        
+            var message = snapshot.val();
+            var src = message.image64;
+            var image = document.getElementById('image64');
+        
+            image['src'] = src;
 
+          }); 
+
+</script>
 </body>
 </html>

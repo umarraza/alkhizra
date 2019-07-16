@@ -25,6 +25,10 @@ Route::get('/whiteboard', function() {
     return view('whiteboard.whiteboard');
 });
 
+Route::get('/newwhiteboard', function() {
+    return view('whiteboard.newwhiteboard');
+});
+
 Route::get('/screen', function() {
     return view('whiteboard.e');
 });

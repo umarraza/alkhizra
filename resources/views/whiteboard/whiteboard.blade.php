@@ -10,75 +10,78 @@
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="{{ asset('/public/js/screen.js') }}"></script>
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-firestore.js"></script>
 
 </head>
 <body>
-	<zwibbler showToolbar="false" pageView="true" defaultPaperSize="letter landscape">
+    <zwibbler showToolbar="false" pageView="true" defaultPaperSize="letter landscape">
       <div class="tools">
-			<div>
-				
-				<button tool z-on:click="usePickTool()" title="Select" z-class="{selected:getCurrentTool()=='pick'}">
-            	<i class="fa fa-mouse-pointer"></i>
-				 </button> 
-				 
-          	<button tool z-on:click="useBrushTool()" title="Draw" z-class="{selected:getCurrentTool()=='brush'}">
-            	<i class="fa fa-pencil"></i>
-          	</button>
-				 
-				<button tool z-click="useLineTool()" title="Lines" z-class="{selected:getCurrentTool()=='line'}">
-					<i class="fa fa-window-minimize"></i>
-          	</button>
-			 
-			 	<button tool z-click="useRectangleTool()" title="Rectangle" z-class="{selected:getCurrentTool()=='rectangle'}">
-					<i class="fa fa-square"></i>
-			 	</button>
-			 
-          	<button tool z-click="useCircleTool()" title="Circle" z-class="{selected:getCurrentTool()=='circle'}">
-					<i class="fa fa-circle"></i>
-			 	</button>
-			 
-          	<button tool z-click="useTextTool()" title="Text" z-class="{selected:getCurrentTool()=='text'}">
-					<i class="fa fa-font"></i>
-			 	</button>
-			 
-				<button tool z-click="insertImage()" title="Insert image">
-					<i class="fa fa-image"></i>
-				</button>
-				
-				<button tool z-click="cut()" title="Cut">
-					<i class="fa fa-scissors"></i>
-				</button>
-				
-				<button tool z-click="copy()" title="Copy">
-					<i class="fa fa-files-o"></i>
-				</button>
-				
-				<button tool z-click="paste()" title="Paste">
-					<i class="fa fa-clipboard"></i>
-				</button>
-				
-				<button tool z-click="undo()" z-disabled="!canUndo()">
-					<i class="fa fa-undo"></i>
-				</button>
-				
-				<button tool z-click="redo()" z-disabled="!canRedo()">
-					<i class="fa fa-arrow-circle-left"></i>
-				</button>
-				
-				<button tool z-click="zoomIn()">
-					<i class="fa fa-search-plus"></i>
-				</button>
-				
-				<button tool z-click="setZoom('page')">
-					<i class="fa fa-arrows-alt"></i>
-				</button>
-				
-				<button tool z-click="zoomOut()">
-					<i class="fa fa-search-minus"></i>
-				</button>
-			</div>
-		
-		<button z-click="Download" z-show-popup="my-menu">Download</button>
+      <div>
+        
+        <button tool z-on:click="usePickTool()" title="Select" z-class="{selected:getCurrentTool()=='pick'}">
+              <i class="fa fa-mouse-pointer"></i>
+        </button> 
+        
+            <button tool z-on:click="useBrushTool()" title="Draw" z-class="{selected:getCurrentTool()=='brush'}">
+              <i class="fa fa-pencil"></i>
+            </button>
+        
+        <button tool z-click="useLineTool()" title="Lines" z-class="{selected:getCurrentTool()=='line'}">
+          <i class="fa fa-window-minimize"></i>
+            </button>
+      
+        <button tool z-click="useRectangleTool()" title="Rectangle" z-class="{selected:getCurrentTool()=='rectangle'}">
+          <i class="fa fa-square"></i>
+        </button>
+      
+            <button tool z-click="useCircleTool()" title="Circle" z-class="{selected:getCurrentTool()=='circle'}">
+          <i class="fa fa-circle"></i>
+        </button>
+      
+            <button tool z-click="useTextTool()" title="Text" z-class="{selected:getCurrentTool()=='text'}">
+          <i class="fa fa-font"></i>
+        </button>
+      
+        <button tool z-click="insertImage()" title="Insert image">
+          <i class="fa fa-image"></i>
+        </button>
+        
+        <button tool z-click="cut()" title="Cut">
+          <i class="fa fa-scissors"></i>
+        </button>
+        
+        <button tool z-click="copy()" title="Copy">
+          <i class="fa fa-files-o"></i>
+        </button>
+        
+        <button tool z-click="paste()" title="Paste">
+          <i class="fa fa-clipboard"></i>
+        </button>
+        
+        <button tool z-click="undo()" z-disabled="!canUndo()">
+          <i class="fa fa-undo"></i>
+        </button>
+        
+        <button tool z-click="redo()" z-disabled="!canRedo()">
+          <i class="fa fa-arrow-circle-left"></i>
+        </button>
+        
+        <button tool z-click="zoomIn()">
+          <i class="fa fa-search-plus"></i>
+        </button>
+        
+        <button tool z-click="setZoom('page')">
+          <i class="fa fa-arrows-alt"></i>
+        </button>
+        
+        <button tool z-click="zoomOut()">
+          <i class="fa fa-search-minus"></i>
+        </button>
+      </div>
+    
+    <button z-click="Download" z-show-popup="my-menu">Download</button>
         <button onclick="copy()" >Get Image Data</button>
 
         <div z-has="AnyNode">
@@ -161,10 +164,10 @@
           <button title="Delete page" z-click="deletePage()"><i class="fa fa-minus"></i></button>
           <div z-for="mypage in getPageCount()">
             <div z-page="mypage" 
-                 z-height="70"
-                 class="page"
-                 z-class="{selected: mypage==getCurrentPage()}"
-                 z-click="setCurrentPage(mypage)">
+                z-height="70"
+                class="page"
+                z-class="{selected: mypage==getCurrentPage()}"
+                z-click="setCurrentPage(mypage)">
             </div>
           </div>
         </div>
@@ -176,36 +179,26 @@
         <button z-click="download('pdf', 'drawing.pdf')">PDF</button>
       </div>
     </zwibbler>
-    </div>
     <script>
       Zwibbler.enableConsoleLogging();
  
     </script>
     <script>
-      // function copy() {
-
-      //   var canvas1 = document.getElementsByClassName('zwibbler-main-canvas');
-      //   canvas1[0].setAttribute("id", "myCanvas");
-      //   var c = document.getElementById("myCanvas");
-      //   var src = c.toDataURL();
-      //       console.log(src);
-      // }
-
-    </script>
-    <script>
 
       var messageRef = new Firebase('https://whiteboard-fb2e1.firebaseio.com/');
-        console.log(messageRef);
       function copy(){
-
         var canvas1 = document.getElementsByClassName('zwibbler-main-canvas');
         canvas1[0].setAttribute("id", "myCanvas");
         var c = document.getElementById("myCanvas");
         var image64 = c.toDataURL();
         console.log(image64);
-          messageRef.push({
-              image64:image64
-          });
+        messageRef.push({
+          image64:image64
+        });
+            messageRef.on('child_added',function(snapshot){
+            var message = snapshot.val();
+            console.log(message.image64);
+          }); 
         }
 
 </script>
