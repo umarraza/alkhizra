@@ -36,43 +36,53 @@ class StudentController extends Controller
         
         $accessCode = mt_rand();
 
-        $user = User::create([
+        DB::beginTransaction();
+        try {
+            
+            $user = User::create([
 
-            'name'    =>  $studentName,
-            'email'   =>  $request->email,
-            'accessCode'  =>  $accessCode,
-            'roleId'  =>  3
-
-        ]);
-
-        $user->save();
-
-        $student = Student::create([
-
-            'first_name'  =>  $request->first_name,
-            'last_name'   =>  $request->last_name,
-            'gender'      =>  $request->gender,
-            'grade'       =>  $request->grade,
-            'email'       =>  $request->email,
-            'course_id'   =>  $request->course_id,
-            'teacher_id'  =>  $teacher->id,
-            'userId'      =>  $user->id,
-        ]);
-
-        $student->save();
-
-        $personName = $first_name . ' ' . $last_name;
-        $message = "A random message";
-        $tousername = $request->email;
-
-        $userId = $user->id;
-
-        \Mail::send('mail',["personName "=>$personName ,"accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
+                'name'    =>  $studentName,
+                'email'   =>  $request->email,
+                'accessCode'  =>  $accessCode,
+                'roleId'  =>  3
     
-            $message->from('info@fantasycricleague.online');
-            $message->to($tousername)->subject('Verify Yourself');
+            ]);
+    
+            $user->save();
+    
+            $student = Student::create([
+    
+                'first_name'  =>  $request->first_name,
+                'last_name'   =>  $request->last_name,
+                'gender'      =>  $request->gender,
+                'grade'       =>  $request->grade,
+                'email'       =>  $request->email,
+                'course_id'   =>  $request->course_id,
+                'teacher_id'  =>  $teacher->id,
+                'userId'      =>  $user->id,
+            ]);
+    
+            $student->save();
+    
+            $personName = $first_name . ' ' . $last_name;
+            $message = "A random message";
+            $tousername = $request->email;
+    
+            $userId = $user->id;
+    
+            \Mail::send('mail',["personName "=>$personName ,"accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
+        
+                $message->from('info@fantasycricleague.online');
+                $message->to($tousername)->subject('Verify Yourself');
+    
+           });
+    
+           DB::commit();
 
-       });
+        } catch (Exception $e) {
+            throw $e;
+            DB::rollBack();
+        }
 
         return redirect()->action('StudentController@showStudents');
     }

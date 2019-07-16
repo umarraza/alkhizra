@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="{{ asset('/public/js/screen.js') }}"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
 </head>
 <body>
@@ -181,25 +182,41 @@
  
     </script>
     <script>
-    
-        var c = document.getElementById("myCanvas");
-        var d = document.getElementById("myCanvas2");
+      // function copy() {
 
-        var ctx = c.getContext("2d");
-        var dtx = d.getContext("2d");
+      //   var canvas1 = document.getElementsByClassName('zwibbler-main-canvas');
+      //   canvas1[0].setAttribute("id", "myCanvas");
+      //   var c = document.getElementById("myCanvas");
+      //   var src = c.toDataURL();
+      //       console.log(src);
+      // }
 
-        ctx.fillStyle = "blue";
-        ctx.fillRect(10, 10, 50, 50);
-
-        function copy() {
-
-            var imgData = ctx.getImageData(10, 10, 50, 50);
-            var imgData1 = dtx.getImageData(10, 10, 50, 50);
-           console.log(string);
-            ctx.putImageData(imgData, 10, 70);
-            dtx.putImageData(imgData, 10, 70);
-
-        }
     </script>
+    <script>
+
+      var messageRef = new Firebase('https://alkhizra-76467.firebaseio.com/');
+
+      function show(message) {
+
+          var para = document.querySelector('.para');
+          console.log(para);
+      }
+
+      $('mydiv').bind("DOMSubtreeModified",function(){
+        alert('changed');
+      });
+
+      function copy(){
+
+        var canvas1 = document.getElementsByClassName('zwibbler-main-canvas');
+        canvas1[0].setAttribute("id", "myCanvas");
+        var c = document.getElementById("myCanvas");
+        var image64 = c.toDataURL();
+          messageRef.push({
+              image64:image64
+          });
+        }
+
+</script>
 </body>
 </html>

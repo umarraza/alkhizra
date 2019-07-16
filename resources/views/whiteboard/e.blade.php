@@ -13,28 +13,6 @@
 </head>
 <body>
     <canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">Your browser does not support the HTML5 canvas tag.</canvas>
-    <canvas id="myCanvas2" width="300" height="150" style="border:1px solid #d3d3d3;">Your browser does not support the HTML5 canvas tag.</canvas>
-
-    <script>
-        var c = document.getElementById("myCanvas");
-        var d = document.getElementById("myCanvas2");
-
-        var ctx = c.getContext("2d");
-        var dtx = d.getContext("2d");
-
-        ctx.fillStyle = "blue";
-        ctx.fillRect(10, 10, 50, 50);
-
-        function copy() {
-
-            var imgData = ctx.getImageData(10, 10, 50, 50);
-            var imgData1 = dtx.getImageData(10, 10, 50, 50);
-           console.log(string);
-            ctx.putImageData(imgData, 10, 70);
-            dtx.putImageData(imgData, 10, 70);
-
-        }
-    </script>
     <script>
     
         var c = document.getElementById("myCanvas");

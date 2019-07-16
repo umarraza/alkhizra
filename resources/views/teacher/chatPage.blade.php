@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="row">
+
     <div class="col-lg-4 col-md-4"></div>
     <div class="col-lg-4 col-md-4 parent">
 
@@ -19,9 +20,26 @@
         <p><b>{{Auth::User()->name}}</b></p>
     </div>
 </div>
+
 <script>
 
     var messageRef = new Firebase('https://alkhizra-76467.firebaseio.com/');
+
+    var c = document.getElementById("myCanvas");
+    var src = c.toDataURL();
+
+        var ctx = c.getContext("2d");
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(10, 10, 50, 50);
+
+        function copy() {
+            var imgData = ctx.getImageData(10, 10, 50, 50);
+            ctx.putImageData(imgData, 10, 70);
+      
+            return imgData;
+        }
+
 
     function show(message) {
 
@@ -57,7 +75,7 @@
             var date      =  today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
             var timeData  =  today.getHours() + ":" + today.getMinutes();
             var dateTime  =  date+' '+time;
-
+            var image64 =  src;
             var time = formatAMPM(new Date());
 
             messageRef.push({
@@ -68,7 +86,10 @@
                 classId:classId, 
                 roleId:roleId, 
                 time:time,
-                date:date });
+                date:date,
+                image64:image64
+                
+            });
 
             document.querySelector('#messageInput').value = '';
 
