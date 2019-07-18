@@ -15,25 +15,20 @@
 
 </head>
 <body>
+
     <div class="container">
-        {{-- <div class="row"> --}}
-            {{-- <div class="col-lg-4"></div> --}}
-                <div class="col-lg-12" style="text-align: center; margin-top:20px;">
-                    <img src="https://www.zamzar.com/images/filetypes/jpg.png" alt="Smiley face" height="700" width="700" id="image64">
-                </div>
-            {{-- <div class="col-lg-4"></div> --}}
-        {{-- </div> --}}
+        <div class="col-lg-12" style="text-align: center; margin-top:20px;">
+            <img src="https://www.zamzar.com/images/filetypes/jpg.png" alt="Smiley face" height="700" width="700" id="image64">
+        </div>
     </div>
 
     <script>
         var messageRef = new Firebase('https://whiteboard-fb2e1.firebaseio.com/');
 
         messageRef.on('child_added',function(snapshot){
-        
             var message = snapshot.val();
             var src = message.image64;
             var image = document.getElementById('image64');
-        
             image['src'] = src;
           }); 
 

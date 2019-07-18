@@ -562,49 +562,47 @@ $(document).ready(function() {
    <div id="helpWindow" class="easyui-window" title="Help Guide for Whiteboard" data-options="iconCls:'icon-help'" style="width:955px;height:500px;">
       <img src=""/>
    </div>
-
 <script>
 
-window.addEventListener('load', function () {
+   window.addEventListener('load', () => {
 
-   var layout_expand_south = document.getElementsByClassName('layout-expand-south');
-   layout_expand_south[0].setAttribute("id", "layout_expand_south");
-   
-   var remove_pannel_south = document.getElementById("layout_expand_south");
-   remove_pannel_south.remove();
+      var layout_expand_south = document.getElementsByClassName('layout-expand-south');
+      layout_expand_south[0].setAttribute("id", "layout_expand_south");
+      
+      var remove_pannel_south = document.getElementById("layout_expand_south");
+      remove_pannel_south.remove();
 
-   var layout = document.getElementsByClassName('layout-expand-east');
-   layout[0].setAttribute("id", "remove_pannel_body");
+      var layout = document.getElementsByClassName('layout-expand-east');
+      layout[0].setAttribute("id", "remove_pannel_body");
 
-   var remove_pannel_body = document.getElementById("remove_pannel_body");
-   remove_pannel_body.remove();
+      var remove_pannel_body = document.getElementById("remove_pannel_body");
+      remove_pannel_body.remove();
 
-});
+   });
 
-    var messageRef = new Firebase('https://whiteboard-fb2e1.firebaseio.com/');
+   var messageRef = new Firebase('https://whiteboard-fb2e1.firebaseio.com/');
 
-    setInterval(function(){
+   setInterval(function(){
          
-         var canvas1 = document.getElementsByClassName('canvas-container');
-         canvas1[0].setAttribute("id", "myCanvas");
+      var canvasContainer = document.getElementsByClassName('canvas-container');
+      canvasContainer[0].setAttribute("id", "myCanvas");
          
-         var c = document.getElementById("canvasBoard");
-         var image64 = c.toDataURL();
+      var c = document.getElementById("canvasBoard");
+      var image64 = c.toDataURL();
 
-         messageRef.push({
-            image64:image64
-         });
+      messageRef.push({
+         image64:image64
+      });
          
-            messageRef.on('child_added',function(snapshot){
-            var message = snapshot.val();
-        }); 
-    }, 500);
+      messageRef.on('child_added',function(snapshot){
+         var message = snapshot.val();
+      }); 
+    }, 200);
 
 </script>
+
 <script src="{{ asset('/public/js/tutorialspoint.js') }}"></script>
-
 <script src="theme/js/lightslider.js"></script>
-
 <script src="https://www.google-analytics.com/urchin.js"></script>
 <script type="text/javascript">
 _uacct = "UA-232293-6";

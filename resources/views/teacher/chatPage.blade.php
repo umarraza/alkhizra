@@ -34,8 +34,7 @@
     $('#messageInput').keypress(function(e){
 
         if(e.keyCode == 13) {
-
-
+            
         function formatAMPM(date) {
 
             var hours = date.getHours();
