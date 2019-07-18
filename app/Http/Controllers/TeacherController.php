@@ -150,6 +150,11 @@ class TeacherController extends Controller
 
     // Forms and Views Routes
 
+    public function startSession(Classes $class) {
+        $classId = $class->id;
+        return view('whiteboard.newwhiteboard', compact('classId'));
+    }
+
     public function teacherCourses(Request $request) {
 
         $teacher = Teacher::whereUserid(Auth::User()->id)->first();

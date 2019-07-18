@@ -130,13 +130,22 @@ class StudentController extends Controller
 
     }
 
+    public function startSession(Classes $class) {
+        $class_id = $class->id;
+        return view('whiteboard.e', compact('class_id'));
+    }
+
     public function studentClasses(Request $request) {
 
         $student = Student::whereUserid(Auth::User()->id)->first();
         $course = $student->course;
         $course_name  =  $course->course_name;
         $class =  Classes::where('course_id', '=', $course->id)->first();
-        return view('students.student_classes', compact('class'));
+        if (isset($class)) {
+            return view('students.student_classes', compact('class'));
+        } else {
+            return \Redirect::back()->with('msg', 'The Message');
+        }
     }
 
     public function studentCourses(Request $request) {

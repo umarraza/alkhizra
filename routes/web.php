@@ -25,13 +25,7 @@ Route::get('/whiteboard', function() {
     return view('whiteboard.whiteboard');
 });
 
-Route::get('/newwhiteboard', function() {
-    return view('whiteboard.newwhiteboard');
-});
 
-Route::get('/screen', function() {
-    return view('whiteboard.e');
-});
 
 Route::get('/home', 'HomeController@index');
 
@@ -59,6 +53,7 @@ Route::get('/chat-page', 'TeacherController@chatPage');
 Route::get('/teacher-delete/{teacher}', 'TeacherController@deleteTeacher')->middleware('lmsRole');
 Route::post('/teacher-update/{teacher}', 'TeacherController@teacherUpdate')->middleware('lmsRole');
 Route::get('/teacher-update-form/{teacher}', 'TeacherController@updateTeacherForm')->middleware('lmsRole');
+Route::get('/start-session/{class}', 'TeacherController@startSession');
 
 /* ========= Student Routes ========= */
 
@@ -71,6 +66,7 @@ Route::get('/student-update-form/{student}', 'StudentController@updateStudentFor
 Route::post('/student-update/{student}', 'StudentController@updateStudent')->middleware('lmsRole');
 Route::get('/student-delete/{student}', 'StudentController@deleteStudent')->middleware('lmsRole');
 Route::get('/start-class/{class}', 'StudentController@startClass');
+Route::get('/start-student-session/{class}', 'StudentController@startSession');
 
 /* ========= Course Routes ========= */
 

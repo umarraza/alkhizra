@@ -13,23 +13,30 @@
     {{-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script> --}}
 
+
 </head>
 <body>
-
     <div class="container">
         <div class="col-lg-12" style="text-align: center; margin-top:20px;">
+            <h1>Student Session</h1>
             <img src="https://www.zamzar.com/images/filetypes/jpg.png" alt="Smiley face" height="700" width="700" id="image64">
         </div>
     </div>
+    <input id="classId" class="form-control form-control-sm" type="text" value="{{$class_id}}">
 
     <script>
         var messageRef = new Firebase('https://whiteboard-fb2e1.firebaseio.com/');
 
         messageRef.on('child_added',function(snapshot){
             var message = snapshot.val();
-            var src = message.image64;
-            var image = document.getElementById('image64');
-            image['src'] = src;
+            var classId = document.getElementById('classId').value;
+            
+            if (message.classId == classId) {
+                console.log(classId);
+                var src = message.image64;
+                var image = document.getElementById('image64');
+                image['src'] = src;
+            }
           }); 
 
 </script>

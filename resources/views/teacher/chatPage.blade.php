@@ -81,7 +81,6 @@
     messageRef.on('child_added',function(snapshot){
         
         var message = snapshot.val();
-        console.log(message);
         var class_id = $('#classId').val();
 
         if (message.classId == class_id) {

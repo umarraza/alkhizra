@@ -24,7 +24,6 @@
                                     <th>End Time</th>
                                     <th>Description</th>
                                     <th>Teacher Description</th>
-                                    {{-- <th>Course Name</th> --}}
                                     <th>Chat Room</th>
                                     <th>Start Session</th>
 
@@ -42,8 +41,8 @@
                                     <td>{{ $class->time_to }}</td>
                                     <td>{{ $class->description }}</td>
                                     <td>{{ $class->teacher_description }}</td>
-                                    <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Chat Room</a></td>
-                                    <td><a href="{{url('/screenshare')}}" target="_blank" type="button" class="btn btn-default btn-sm">Start Session</a></td>
+                                    <td><a href="{{url('/start-chat/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Chat Room</a></td>
+                                    <td><a href="{{url('/start-session/'.$class->id)}}" target="_blank" type="button" class="btn btn-default btn-sm">Start Session</a></td>
                                 </tr>
                                 @php $count++; @endphp
                                 @endforeach

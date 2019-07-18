@@ -23,7 +23,6 @@
                                     <th>Start Time</th>
                                     <th>End Time</th>
                                     <th>Description</th>
-                                    {{-- <th>Course Name</th> --}}
                                     <th>Chat Room</th>
                                     <th>Take Session</th>
                                 </tr>
@@ -36,9 +35,8 @@
                                     <td>{{ $class->time_to }}</td>
                                     <td>{{ $class->description }}</td>
                                     <td>{{ $class->teacher_description }}</td>
-                                    {{-- <td>{{ $class->course_name }}</td> --}}
                                     <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Chat Room</a></td>
-                                    <td><a href="{{url('/start-class/'.$class->id)}}" type="button" class="btn btn-default btn-sm" target="_blank">Take Session</a></td>
+                                    <td><a href="{{url('/start-student-session/'.$class->id)}}" type="button" class="btn btn-default btn-sm" target="_blank">Take Session</a></td>
                                 </tr>
                             </tbody>
                         </table>
