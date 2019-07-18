@@ -25,10 +25,10 @@
 <link rel="stylesheet" type="text/css" href="theme/css/slick-theme.css"/>
 <script type="text/javascript" src="theme/js/slick.min.js"></script>
 <script type="text/javascript" src="tutor_connect/js/bootstrap.min.js"></script>
-    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-firestore.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-firestore.js"></script>
 
 <style>
 .fa-refresh:before {content:"\f079"; font-family:'FontAwesome'; font-size:150%; font-style:normal;}
@@ -93,7 +93,7 @@ $(document).ready(function() {
 <!-- end of Loader html code -->
 
 <!-- popup html code -->
-<div id="boxes">         
+{{-- <div id="boxes">         
    <div id="dialog" class="window">         
       <div id="popupfoot"> <a href="#" class="close agree" title="close window">x</a></div>            
          <div class="bs-example">
@@ -127,7 +127,7 @@ $(document).ready(function() {
          </div>          
    </div>
    <div id="mask"></div>
-</div>
+</div> --}}
 <!-- end of popup html code -->
 
 
@@ -158,10 +158,10 @@ $(document).ready(function() {
       <a href="javascript:void(0)" class="easyui-linkbutton" id="create_meeting_room">Create Meeting Room</a>
       <a href="javascript:void(0)" class="easyui-linkbutton" id="join_meeting_room">Join Meeting Room</a>
    </div>
-   <a href='http://www.tutorialspoint.com/'>
-      <img src="" height="50px" style="padding:5px; float:left;"/>
+   <a href='http://localhost/alkhizra/newwhiteboard'>
+      <img src="http://www.eatlogos.com/education_logos/png/m-letter-with-book-logo-design.png" height="50px" style="padding:5px; float:left;"/>
    </a>
-   <h1 class="whtboard">Whiteboard</h1>
+   <h1 class="whtboard">ALKHIZRA</h1>
 
    <!-- header top right menu first -->      
    <div style="margin:18px 0px 0px 0px;">
@@ -175,15 +175,15 @@ $(document).ready(function() {
          <a href='javascript:void(0)'  title="Clear all" class="clrDynamicCanvas">
             <div class="sub-default-lft wbitem" style="border-right:none;"><img src="whiteboard/images/clear.png" style="vertical-align:bottom; height:17px;"/></div>
          </a>
-         <a href='javascript:void(0)' id="maximize" title="Maximize" >
+         {{-- <a href='javascript:void(0)' id="maximize" title="Maximize" >
             <div class="sub-default-lft" ><i class="fa-expand"></i></div>
-         </a>
+         </a> --}}
          <a href='javascript:void(0)' id="refresh" title="Refresh Connection">
             <div class="sub-default-lft" ><i class="fa-refresh"></i></div>
          </a>   
-         <a href="javascript:void(0);" id="ancHelpMain" title="Help Whiteboard">
+         {{-- <a href="javascript:void(0);" id="ancHelpMain" title="Help Whiteboard">
            <div class="sub-default-lft" style="border-right:none;"><img src="theme/css/icons/help.png" /></div>
-         </a>      
+         </a>       --}}
       </div>
    </div> 
    <!-- end of header top right menu first -->   
@@ -250,9 +250,9 @@ $(document).ready(function() {
              <a href="javascript:void(0);" id="ancBackground" title="Background">
                <div class="sub-default-lft"><i class="fa-circle wbitem"></i></div>
              </a>
-             <a href="javascript:void(0);" id="ancPattern" title="Pattern">
+             {{-- <a href="javascript:void(0);" id="ancPattern" title="Pattern">
                <div class="sub-default-lft" ><img src="whiteboard/images/pattern-icon.png" style="border:1px solid #ccc;border-radius:60px;"/ crossorigin="anonymous"></div>
-             </a>
+             </a> --}}
              <a href="javascript:void(0);" id="ancPencil" title="Pencil">
                <div class="sub-default-lft" style="border-right:none;"><i class="fa-pencil wbitem" style="font-size:120%;"></i></div>
              </a>
@@ -268,17 +268,16 @@ $(document).ready(function() {
              <a href="javascript:void(0);" id="ancImage" title="Image">
                <div class="sub-default-lft" style="border-right:none;"><i class="fa-file-image-o"></i></div>
              </a>                         
-               
+{{--                
             <a href="javascript:void(0);" id="ancTutorConnect" title="Tutor Connect Content Presentation">
                <div class="sub-default-lft" style="border-right:none;"><img src="theme/css/icons/image-editor.png" /></div>
-            </a>             
-            <a href="javascript:void(0);" id="ancStartChat" title="Meeting">
+            </a>              --}}
+            {{-- <a href="javascript:void(0);" id="ancStartChat" title="Meeting">
                <div class="sub-default-lft" style="border-right:none;"><img src="theme/css/icons/chat_room.png" /></div>
-            </a> 		             
+            </a> 		              --}}
             <a href="javascript:void(0);" id="ancDownload" title="Download/Upload">
                <div class="sub-default-lft" style="border-right:none;"><img src="whiteboard/images/up-down.png" /></div>
             </a> 		   
-            <button type="button" onclick="copy()">Get Data</button>                                  
          </div>
       </div>
     </div>           
@@ -566,30 +565,45 @@ $(document).ready(function() {
 
 <script>
 
+window.addEventListener('load', function () {
+
+   var layout_expand_south = document.getElementsByClassName('layout-expand-south');
+   layout_expand_south[0].setAttribute("id", "layout_expand_south");
+   
+   var remove_pannel_south = document.getElementById("layout_expand_south");
+   remove_pannel_south.remove();
+
+   var layout = document.getElementsByClassName('layout-expand-east');
+   layout[0].setAttribute("id", "remove_pannel_body");
+
+   var remove_pannel_body = document.getElementById("remove_pannel_body");
+   remove_pannel_body.remove();
+
+});
+
     var messageRef = new Firebase('https://whiteboard-fb2e1.firebaseio.com/');
 
-    function copy(){
+    setInterval(function(){
+         
+         var canvas1 = document.getElementsByClassName('canvas-container');
+         canvas1[0].setAttribute("id", "myCanvas");
+         
+         var c = document.getElementById("canvasBoard");
+         var image64 = c.toDataURL();
 
-        var canvas1 = document.getElementsByClassName('canvas-container');
-
-        canvas1[0].setAttribute("id", "myCanvas");
-        var c = document.getElementById("canvasBoard");
-        var image64 = c.toDataURL();
-
-        console.log(image64);
-        messageRef.push({
+         messageRef.push({
             image64:image64
-        });
+         });
+         
             messageRef.on('child_added',function(snapshot){
             var message = snapshot.val();
-            console.log(message.image64);
         }); 
-    }
+    }, 500);
 
 </script>
+<script src="{{ asset('/public/js/tutorialspoint.js') }}"></script>
 
 <script src="theme/js/lightslider.js"></script>
-<script src="{{ asset('/public/js/tutorialspoint.js') }}"></script>
 
 <script src="https://www.google-analytics.com/urchin.js"></script>
 <script type="text/javascript">
