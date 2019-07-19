@@ -14,31 +14,49 @@ window.addEventListener('load', () => {
 
 });
 
-var messageRef = new Firebase('https://whiteboard-fb2e1.firebaseio.com/');
 
-setInterval(function(){
-       
-    var canvasContainer = document.getElementsByClassName('canvas-container');
-    canvasContainer[0].setAttribute("id", "myCanvas");
-       
-    var c = document.getElementById("canvasBoard");
-    var image64 = c.toDataURL();
+  // Your web app's Firebase configuration
+var firebaseConfig = {
+	apiKey: "AIzaSyBbgkmXS7P8ExVMsKi9zLt3_rlo6kR1jyk",
+   	authDomain: "umarraza-c491c.firebaseapp.com",
+   	databaseURL: "https://umarraza-c491c.firebaseio.com",
+   	projectId: "umarraza-c491c",
+   	storageBucket: "umarraza-c491c.appspot.com",
+   	messagingSenderId: "943661641353",
+   	appId: "1:943661641353:web:e7a08b1ce1b52a03"
+};
+ 	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
 
-    var classId  =  document.getElementById('classId').value;
-    var name     =  document.getElementById('nameInput').value;
-    var userId   =  document.getElementById('userId').value;
-    var roleId   =  document.getElementById('roleId').value;
+	// var messageRef = new Firebase('https://umarraza-c491c.firebaseio.com/');
+	var database = firebase.database();
+	
+	setInterval(() => {
 
-    messageRef.push({
-       image64:image64,
-       classId:classId,
-       name:name,
-       userId:userId,
-       roleId:roleId
-    });
-       
-    messageRef.on('child_added',function(snapshot){
-       var message = snapshot.val();
-       console.log(classId);
-    }); 
-  }, 200);
+		var canvasContainer = document.getElementsByClassName('canvas-container');
+		canvasContainer[0].setAttribute("id", "myCanvas");
+		var c        =  document.getElementById("canvasBoard");
+		var image64  =  c.toDataURL();
+		var classId  =  document.getElementById('classId').value;
+		var roleId   =  document.getElementById('roleId').value;
+		var userRef  =  this.database.ref('class/' + classId);
+		console.log(image64);
+		userRef.set({
+			'image': image64,
+			'classId': classId,
+			'roleId': roleId
+		});
+	}, 0.1);
+
+	var delSession = document.getElementById('delSession');
+
+	delSession.addEventListener('click', () => {
+		
+		var classId  =  document.getElementById('classId').value;
+		var session = this.database.ref('class/' + classId);
+		session.remove();
+		window.close();
+
+	});
+
+

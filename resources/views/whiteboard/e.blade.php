@@ -13,7 +13,6 @@
     {{-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script> --}}
 
-
 </head>
 <body>
     <div class="container">
@@ -22,22 +21,57 @@
             <img src="https://www.zamzar.com/images/filetypes/jpg.png" alt="Smiley face" height="700" width="700" id="image64">
         </div>
     </div>
-    <input id="classId" class="form-control form-control-sm" type="text" value="{{$class_id}}">
+    <input id="classId" class="form-control form-control-sm" type="hidden" value="{{$class_id}}">
 
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     <script>
-        var messageRef = new Firebase('https://whiteboard-fb2e1.firebaseio.com/');
+        //var messageRef = new Firebase('https://umarraza-c491c.firebaseio.com/');
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBbgkmXS7P8ExVMsKi9zLt3_rlo6kR1jyk",
+            authDomain: "umarraza-c491c.firebaseapp.com",
+            databaseURL: "https://umarraza-c491c.firebaseio.com",
+            projectId: "umarraza-c491c",
+            storageBucket: "umarraza-c491c.appspot.com",
+            messagingSenderId: "943661641353",
+            appId: "1:943661641353:web:e7a08b1ce1b52a03"
+        };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
 
-        messageRef.on('child_added',function(snapshot){
+            // var messageRef = new Firebase('https://umarraza-c491c.firebaseio.com/');
+            var database = firebase.database();
+            var messageRef = firebase.database().ref();
+            var classId = document.getElementById('classId').value;
+                console.log(classId);
+                var messageRef = firebase.database().ref('class/' + classId);
+                messageRef.on('value', function(snapshot) {
+                var message = snapshot.val();
+                if (message.classId == classId) {
+                    var src = message.image;
+                    console.log(src);
+                    var image = document.getElementById('image64');
+                    image['src'] = src;
+                }
+            });
+
+    /*
+     messageRef.on('child_added',function(snapshot){
+
             var message = snapshot.val();
             var classId = document.getElementById('classId').value;
             
             if (message.classId == classId) {
-                console.log(classId);
                 var src = message.image64;
                 var image = document.getElementById('image64');
                 image['src'] = src;
             }
           }); 
+*/
 
 </script>
 </body>
