@@ -15,10 +15,14 @@
 
 </head>
 <body>
+    <h1>Student Details</h1>
+    <p>Name: <b>{{$username}}</b></p>
+    <p>Email: <b>{{$email}}</b></p>
+
     <div class="container">
         <div class="col-lg-12" style="text-align: center; margin-top:20px;">
-            <h1>Student Session</h1>
-            <img src="https://www.zamzar.com/images/filetypes/jpg.png" alt="Smiley face" height="700" width="700" id="image64">
+            <img src="https://www.zamzar.com/images/filetypes/jpg.png" alt="Smiley face" id="image64" style="width: -webkit-fill-available;
+    height: -webkit-fill-available;">
         </div>
     </div>
     <input id="classId" class="form-control form-control-sm" type="hidden" value="{{$class_id}}">
@@ -47,13 +51,11 @@
             var database = firebase.database();
             var messageRef = firebase.database().ref();
             var classId = document.getElementById('classId').value;
-                console.log(classId);
                 var messageRef = firebase.database().ref('class/' + classId);
                 messageRef.on('value', function(snapshot) {
                 var message = snapshot.val();
                 if (message.classId == classId) {
                     var src = message.image;
-                    console.log(src);
                     var image = document.getElementById('image64');
                     image['src'] = src;
                 }

@@ -40,23 +40,11 @@ var firebaseConfig = {
 		var classId  =  document.getElementById('classId').value;
 		var roleId   =  document.getElementById('roleId').value;
 		var userRef  =  this.database.ref('class/' + classId);
-		console.log(image64);
 		userRef.set({
 			'image': image64,
 			'classId': classId,
 			'roleId': roleId
 		});
-	}, 0.1);
-
-	var delSession = document.getElementById('delSession');
-
-	delSession.addEventListener('click', () => {
-		
-		var classId  =  document.getElementById('classId').value;
-		var session = this.database.ref('class/' + classId);
-		session.remove();
-		window.close();
-
-	});
+	}, 100);
 
 

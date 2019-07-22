@@ -131,8 +131,11 @@ class StudentController extends Controller
     }
 
     public function startSession(Classes $class) {
+        $username = Auth::User()->name;
+        $email = Auth::User()->email;
+
         $class_id = $class->id;
-        return view('whiteboard.e', compact('class_id'));
+        return view('whiteboard.e', compact('class_id','username', 'email'));
     }
 
     public function studentClasses(Request $request) {
