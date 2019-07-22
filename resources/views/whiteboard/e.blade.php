@@ -33,8 +33,9 @@
     <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-database.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     <script>
-        //var messageRef = new Firebase('https://umarraza-c491c.firebaseio.com/');
+
         // Your web app's Firebase configuration
+
         var firebaseConfig = {
             apiKey: "AIzaSyBbgkmXS7P8ExVMsKi9zLt3_rlo6kR1jyk",
             authDomain: "umarraza-c491c.firebaseapp.com",
@@ -47,33 +48,22 @@
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig);
 
-            // var messageRef = new Firebase('https://umarraza-c491c.firebaseio.com/');
             var database = firebase.database();
             var messageRef = firebase.database().ref();
             var classId = document.getElementById('classId').value;
                 var messageRef = firebase.database().ref('class/' + classId);
+                
                 messageRef.on('value', function(snapshot) {
-                var message = snapshot.val();
+
+                let message = snapshot.val();
+
                 if (message.classId == classId) {
                     var src = message.image;
                     var image = document.getElementById('image64');
                     image['src'] = src;
                 }
+
             });
-
-    /*
-     messageRef.on('child_added',function(snapshot){
-
-            var message = snapshot.val();
-            var classId = document.getElementById('classId').value;
-            
-            if (message.classId == classId) {
-                var src = message.image64;
-                var image = document.getElementById('image64');
-                image['src'] = src;
-            }
-          }); 
-*/
 
 </script>
 </body>

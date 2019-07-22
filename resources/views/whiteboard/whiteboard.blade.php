@@ -185,25 +185,24 @@
     </script>
     <script>
 
-      var messageRef = new Firebase('https://whiteboard-fb2e1.firebaseio.com/');
+	var messageRef = new Firebase('https://whiteboard-fb2e1.firebaseio.com/');
 
-      setInterval(function(){
+	setInterval(function(){
         
         var canvas1 = document.getElementsByClassName('zwibbler-main-canvas');
         canvas1[0].setAttribute("id", "myCanvas");
         var c = document.getElementById("myCanvas");
-        var image64 = c.toDataURL();
-        console.log(image64);
-        messageRef.push({
-          image64:image64
-        });
+    
+	    var image64 = c.toDataURL();
+
+		messageRef.push({
+            image64:image64
+		});
             messageRef.on('child_added',function(snapshot){
             var message = snapshot.val();
-            console.log(message.image64);
+
           }); 
       }, 200);
-
-
 
 </script>
 </body>

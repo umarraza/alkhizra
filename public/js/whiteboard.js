@@ -1,15 +1,15 @@
 window.addEventListener('load', () => {
 
-    var layout_expand_south = document.getElementsByClassName('layout-expand-south');
+    let layout_expand_south = document.getElementsByClassName('layout-expand-south');
     layout_expand_south[0].setAttribute("id", "layout_expand_south");
     
-    var remove_pannel_south = document.getElementById("layout_expand_south");
+    let remove_pannel_south = document.getElementById("layout_expand_south");
     remove_pannel_south.remove();
 
-    var layout = document.getElementsByClassName('layout-expand-east');
+    let layout = document.getElementsByClassName('layout-expand-east');
     layout[0].setAttribute("id", "remove_pannel_body");
 
-    var remove_pannel_body = document.getElementById("remove_pannel_body");
+    let remove_pannel_body = document.getElementById("remove_pannel_body");
     remove_pannel_body.remove();
 
 });
@@ -33,7 +33,7 @@ var firebaseConfig = {
 	
 	setInterval(() => {
 
-		var canvasContainer = document.getElementsByClassName('canvas-container');
+		let canvasContainer = document.getElementsByClassName('canvas-container');
 		canvasContainer[0].setAttribute("id", "myCanvas");
 		var c        =  document.getElementById("canvasBoard");
 		var image64  =  c.toDataURL();
