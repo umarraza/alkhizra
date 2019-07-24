@@ -28,6 +28,7 @@ Route::get('/whiteboard', function() {
 
 
 Route::get('/home', 'HomeController@index');
+Route::get('/get-users/{id}', 'VideoController@getUsers');
 
 // =========== mail Routes =========== //
 
