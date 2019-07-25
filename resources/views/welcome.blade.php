@@ -158,8 +158,8 @@
         <a class="nav-link" href="#"  style="text-transform: inherit;padding-top: 25px;">About Us</a>
         <a class="nav-link" href="#"  style="text-transform: inherit;padding-top: 25px;">Service</a>
         <a class="nav-link" href="#"  style="text-transform: inherit;padding-top: 25px;">Contact</a>
-        <a href="{{ route('login') }}" style="width: 150px; height:45px; margin-top:15px; border-radius: 30px;color: white; background-color:#38ADA9">Login</a>
-        {{-- <button type="button"  style="width: 190px; height:60px; border-radius: 30px;color: white; background-color:#38ADA9">Sign In</button> --}}
+        <a href="{{ route('login') }}" style="padding: 12px 0px 0px 49px; width: 150px; height:45px; margin-top:15px; border-radius: 30px;color: white; background-color:#38ADA9">Sign In</a>
+        {{-- <button type="button" style="width: 190px; height:60px; border-radius: 30px;color: white; background-color:#38ADA9">Sign In</button> --}}
       </div>
     </div>
   </nav>
@@ -300,7 +300,6 @@
     <i style="font-size: 16px; color:#7C7C7C" class="fa fa-instagram"></i>
     <i style="font-size: 16px; color:#7C7C7C" class="fa fa-linkedin"></i>
     <i style="font-size: 16px; color:#7C7C7C" class="fa fa-twitter"></i>
-
  </div>
  <div class="col-4" style="text-align: -webkit-center;">
  <img  src="{{ URL::to('resources/views/image.jpg') }}" style="border-radius:50%" alt="Avatar">    <h3 style="margin-top:30px">Name</h3>

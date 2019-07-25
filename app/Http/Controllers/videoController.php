@@ -30,14 +30,13 @@ class videoController extends Controller
             
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_HTTPHEADER => array(
-                "authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Il8wMm9nOWhqUWZXTWpScmRKM3hXWlEiLCJleHAiOjE1NjQ1NjU0NTEsImlhdCI6MTU2Mzk2MDgxN30.6htJm-AiuFoNfEMb7lmtnFBsehJLQDTDOI5fEKeDv4M",
+                "authorization: Bearer safGb4J4RY_o_7A8aGKS6-9ss44d7UYxw",
                 "content-type: application/json"
             ),
         ));
 
         // get the response against the created meeting. get the join url and send to all students to participate in meeting
         $response = curl_exec($curl);
-
         $err = curl_error($curl);
 
         curl_close($curl);
