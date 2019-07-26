@@ -28,7 +28,7 @@ Route::get('/whiteboard', function() {
 
 
 Route::get('/home', 'HomeController@index');
-Route::get('/start-conference/{id}', 'VideoController@createMeeting');
+Route::get('/access-token', 'VideoController@getAccessToken');
 
 // =========== mail Routes =========== //
 
