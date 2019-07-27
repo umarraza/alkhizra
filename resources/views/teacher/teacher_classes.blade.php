@@ -7,7 +7,10 @@
                     <div class="box box-info">
                         <div class="box-header">
                             <h3 class="box-title">My Classes</h3>
+
                             <a href="{{ url('/admin') }}" class="small-box-footer">Home<i class="fa fa-arrow-circle-right"></i></a> <br>
+                            <a href="{{ url('/create-account-form') }}" class="small-box-footer">Create Zoom Account<i class="fa fa-arrow-circle-right"></i></a> <br>
+
                             <br>
                             <br>
                             <div class="pull-right">

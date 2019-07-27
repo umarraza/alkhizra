@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b126d51420c11da01fad456745a56b2a",
+    "content-hash": "3610cb7baad32e8f6b838f9fd680b595",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.107.7",
+            "version": "3.108.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "c3ebca7fc5d01098701bbc34f4c3396eae7abe49"
+                "reference": "df65815065b0195bc374bd17d8cc6884b4870da1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c3ebca7fc5d01098701bbc34f4c3396eae7abe49",
-                "reference": "c3ebca7fc5d01098701bbc34f4c3396eae7abe49",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/df65815065b0195bc374bd17d8cc6884b4870da1",
+                "reference": "df65815065b0195bc374bd17d8cc6884b4870da1",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-07-24T18:18:53+00:00"
+            "time": "2019-07-26T18:22:40+00:00"
         },
         {
             "name": "aws/aws-sdk-php-laravel",
@@ -865,16 +865,16 @@
         },
         {
             "name": "google/cloud-core",
-            "version": "v1.29.0",
+            "version": "v1.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-cloud-php-core.git",
-                "reference": "a7b3a821be80a86a111b7a271886faf3226a277d"
+                "reference": "5158d214f100ae0413e2bc829960e92c8f38136b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-cloud-php-core/zipball/a7b3a821be80a86a111b7a271886faf3226a277d",
-                "reference": "a7b3a821be80a86a111b7a271886faf3226a277d",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php-core/zipball/5158d214f100ae0413e2bc829960e92c8f38136b",
+                "reference": "5158d214f100ae0413e2bc829960e92c8f38136b",
                 "shasum": ""
             },
             "require": {
@@ -922,24 +922,25 @@
                 "Apache-2.0"
             ],
             "description": "Google Cloud PHP shared dependency, providing functionality useful to all components.",
-            "time": "2019-06-27T20:27:31+00:00"
+            "time": "2019-07-25T17:46:28+00:00"
         },
         {
             "name": "google/cloud-storage",
-            "version": "v1.12.3",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-cloud-php-storage.git",
-                "reference": "79cffd74f4a876e689b0c23248eb745c894f2e82"
+                "reference": "0db437b36ba9afd4bd4feadf96087c42c09ebd4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-cloud-php-storage/zipball/79cffd74f4a876e689b0c23248eb745c894f2e82",
-                "reference": "79cffd74f4a876e689b0c23248eb745c894f2e82",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php-storage/zipball/0db437b36ba9afd4bd4feadf96087c42c09ebd4a",
+                "reference": "0db437b36ba9afd4bd4feadf96087c42c09ebd4a",
                 "shasum": ""
             },
             "require": {
-                "google/cloud-core": "^1.28"
+                "google/cloud-core": "^1.28",
+                "google/crc32": "^0.1.0"
             },
             "require-dev": {
                 "erusev/parsedown": "^1.6",
@@ -972,7 +973,49 @@
                 "Apache-2.0"
             ],
             "description": "Cloud Storage Client for PHP",
-            "time": "2019-06-27T20:27:31+00:00"
+            "time": "2019-07-25T17:46:28+00:00"
+        },
+        {
+            "name": "google/crc32",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/google/php-crc32.git",
+                "reference": "a8525f0dea6fca1893e1bae2f6e804c5f7d007fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/google/php-crc32/zipball/a8525f0dea6fca1893e1bae2f6e804c5f7d007fb",
+                "reference": "a8525f0dea6fca1893e1bae2f6e804c5f7d007fb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.13 || v2.14.2",
+                "paragonie/random_compat": ">=2",
+                "phpunit/phpunit": "^4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Google\\CRC32\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Brampton",
+                    "email": "bramp@google.com"
+                }
+            ],
+            "description": "Various CRC32 implementations",
+            "homepage": "https://github.com/google/php-crc32",
+            "time": "2019-05-09T06:24:58+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

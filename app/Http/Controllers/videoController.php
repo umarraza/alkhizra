@@ -12,6 +12,7 @@ class videoController extends Controller
         $clientSecret="J3GsToxWSvPNv8Qx0tI8KXE496RW10Vr";
         $content = "grant_type=client_credentials&client_id=$clientID&client_secret=$clientSecret";
         $token_url="https://zoom.us/oauth/token";
+
         $curl = curl_init();
         
         curl_setopt_array($curl, array(
@@ -26,7 +27,8 @@ class videoController extends Controller
         curl_close($curl);
     
         $access_token = json_decode($response);
-        dd($access_token);
-    
+
+        return view('accounts.create_account', compact($access_token));
+        // return a view here to send an access token
     }
 }

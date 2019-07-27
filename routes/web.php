@@ -26,6 +26,39 @@ Route::get('/whiteboard', function() {
 });
 
 
+// Zoom API Routes
+
+
+Route::get('/create-account-form','AccountController@createAccountForm');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/home', 'HomeController@index');
 Route::get('/access-token', 'VideoController@getAccessToken');
