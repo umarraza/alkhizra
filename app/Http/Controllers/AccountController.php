@@ -8,8 +8,11 @@ class AccountController extends Controller
 {
     public function createAccount(Request $request) {
 
-        $clientID="4Z4EoIEtRV6MjEmga75K_w";
-        $clientSecret="J3GsToxWSvPNv8Qx0tI8KXE496RW10Vr";
+
+        $client_id = env('CLIENT_ID');
+        $client_secret = env('CLIENT_SECRET');
+
+        
         $content = "grant_type=client_credentials&client_id=$clientID&client_secret=$clientSecret";
         $token_url="https://zoom.us/oauth/token";
 
@@ -35,6 +38,8 @@ class AccountController extends Controller
 
         $client = new \GuzzleHttp\Client();
         
+        $api_key = env('API_KEY');
+        $api_secret = env('API_SECRET');
         
         $response = $client->request('POST', 'https://api.zoom.us/v2/accounts', [
 
@@ -46,8 +51,8 @@ class AccountController extends Controller
             ],
 
             'headers' => [
-                'API Key' => 'mI8UalOgQp6xPLXUaYZedQ',
-                'API Secret' => '8r3HYJdwBoeY6u47n9FvvF07RhWjWSj8kM56',
+                'API Key' => $api_key,
+                'API Secret' => $api_secret,
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'Authorization'     => 'Bearer '. $access_token
@@ -55,5 +60,9 @@ class AccountController extends Controller
         ]);
         $response = $response->getBody()->getContents();
         dd($response);
+    }
+
+    public function createAccountForm() {
+        return view('Accounts.createAccount');
     }
 }
