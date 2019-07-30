@@ -6,24 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <script src="{{ asset('/public/js/app.js') }}"></script>
-    
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
-
-    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    {{-- Stylesheet Links --}}
+    <link rel="stylesheet" href="{{ asset('/public/css/style.css')}}">
+    <link href="{{ asset('/public/css/app.css') }}" rel="stylesheet">
+
+    {{-- Javascript Links --}}
+
+
+    <script src="{{ asset('/public/js/app.js') }}"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{{ asset('/public/js/alkhizra.js')}}"></script>
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('/public/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div class="row">
@@ -60,7 +63,7 @@
                                 <li><a href="{{ route('login') }}">Login</a></li>
                                 <li><a href="{{ route('register') }}">Register</a></li>
                             @else
-                                <li class="dropdown">
+                                <li class="dropdown" style="position:absolute; right:0; margin-right:30px">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
@@ -78,6 +81,24 @@
                                             </form>
                                         </li>
                                     </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('list-teachers') }}">Teacher</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('show-students') }}">Student</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('show-classes') }}">Class</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('show-courses') }}">Conference</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('show-conference') }}">Test</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('show-conference') }}">Course</a>
                                 </li>
                             @endguest
                         </ul>

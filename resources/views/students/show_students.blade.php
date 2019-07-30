@@ -2,57 +2,210 @@
 
 @section('content')
     <div class="row">
-            <div class="container-fluid">
-                <div class="col-lg-6">
-                    <div class="box box-info">
-                        <div class="box-header">
-                            <h3 class="box-title">Students</h3>
-                            {{--  <a href="{{ url('/create-student-form/'.$id) }}" class="small-box-footer">Add Student<i class="fa fa-arrow-circle-right"></i></a> <br>  --}}
-                            
-                            <a href="{{ url('/admin') }}" class="small-box-footer">Home<i class="fa fa-arrow-circle-right"></i></a> <br>
-                            <a href="{{ url('/add-student-form') }}" class="small-box-footer">Add Student<i class="fa fa-arrow-circle-right"></i></a> <br>
+        <div class="container-fluid">
+            <div class="col-lg-10 col-lg-offset-1">
+                <div class="heading-pannel">
+                    <h1><b>Students</b></h1>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <button type="button" class="btn btn-success pull-right">Add Student</button>
+                    </form>
+                </div> <br>
 
-                            {{--  <a href="{{ url('/list-teachers') }}" class="small-box-footer">Show Teachers<i class="fa fa-arrow-circle-right"></i></a>  --}}
+                <div class="row">
 
-                            <br>
-                            <br>
-                            <div class="pull-right">
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
                         </div>
                     </div>
-                    <div class="box-body">
-                        <table id="dbookSales" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Sr#</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Gender</th>
-                                    <th>Grade</th>
-                                    <th>Email</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                @php $count=1; @endphp
-                                @foreach($students as $student)
-                                    <td><span>{{ $count }}</span></td>
-                                    <td>{{ $student->first_name }}</td>
-                                    <td>{{ $student->last_name }}</td>
-                                    <td>{{ $student->gender }}</td>
-                                    <td>{{ $student->grade }}</td>
-                                    <td>{{ $student->email }}
-                                    <td><a href="{{url('/student-update-form/'.$student->id)}}" type="button" class="btn btn-primary btn-sm">Update</a></td>
-                                    <td><a href="{{url('/student-delete/'.$student->id)}}" type="button" class="btn btn-danger btn-sm">Delete</a></td>                            
-                                </tr>
-                                @php $count++; @endphp
-                                @endforeach
-                            </tbody>
-                        </table>
+
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
                     </div>
-                </div>
+                    
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div> 
+                <br>
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card" style="width: 18rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                            <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >Card Title</h5>
+                            <h5>Web Technology</h5>
+                            <h5>03034969407</h5>
+                            <h5>umarraza2200@gmail.com</h5>
+                            <hr style=" border-top: 1px solid #DEDEDE;">
+                            <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px">
+                                <button type="button" class="btn btn-default">Update</button>
+                                <button type="button" class="btn btn-default">Delete</button>
+                            </div>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div> 
             </div>
-        <div class="col-lg-6"></div>        
+        </div>
     </div>
 @endsection

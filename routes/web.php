@@ -122,6 +122,14 @@ Route::get('/class-delete/{class}', 'ClassController@deleteClass')->middleware('
 Route::get('/class-update-form/{class}', 'ClassController@updateClassForm')->middleware('lmsRole');
 Route::post('/class-update/{class}', 'ClassController@updateClass')->middleware('lmsRole');
 
+
+/* ========= Classes Routes ========= */
+Route::get('/show-classes', 'ClassController@showClasse')->middleware('lmsRole');
+
+
+
+
+
 Route::get('firebase','FirebaseController@index');
 
 Route::get('/firebase', function () {

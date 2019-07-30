@@ -2,54 +2,44 @@
 
 @section('content')
     <div class="row">
-            <div class="container-fluid">
-                <div class="col-lg-10">
-                    <div class="box box-info">
-                        <div class="box-header">
-                            <h3 class="box-title">Classes</h3>
-                            <a href="{{ url('/admin') }}" class="small-box-footer">Home<i class="fa fa-arrow-circle-right"></i></a> <br>
-                            <a href="{{ url('/add-class-form') }}" class="small-box-footer">Add Class<i class="fa fa-arrow-circle-right"></i></a> <br>
-                            <br>
-                            <br>
-                            <div class="pull-right">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="heading-pannel">
+                <h1><b>Classes</b></h1>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    
+                    <button type="button" class="btn btn-success pull-right"><a href="{{ url('/add-class-form') }}" class="small-box-footer" style="color:#fff; text-decoration:none">Add Class</a></button>
+
+                </form>
+            </div> <br>
+            <div class="row">
+                @php $count=1; @endphp
+                @foreach($classes as $class)
+                <div class="col-md-4">
+                    <div class="card" style="width: 45rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
+                        <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
+                
+                        <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >{{$class->first_name}}</h5>
+                        <h5>{{$class->title}}</h5>
+                        <h5>{{$class->date}}</h5>
+                        <h5>{{$class->teacher_email}}</h5>
+
+                
+                        <hr style=" border-top: 1px solid #DEDEDE;">
+                        <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px"> 
+                            <button type="button" class="btn btn-info"><a href="{{url('/class-update-form/'.$class->id)}}" style="color:#000; text-decoration:none">Update</a></button>
+                            <button type="button" class="btn btn-danger"><a href="{{url('/class-delete/'.$class->id)}}" style="color:#000; text-decoration:none">Delete</a></button>
                         </div>
-                    </div>
-                    <div class="box-body">
-                        <table id="dbookSales" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Sr#</th>
-                                    <th>Title</th>
-                                    <th>Date</th>
-                                    <th>Time From</th>
-                                    <th>Time To</th>
-                                    <th>Description</th>
-                                    <th>Teacher Description</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                @php $count=1; @endphp
-                                @foreach($classes as $class)
-                                    <td><span>{{ $count }}</span></td>
-                                    <td>{{ $class->title }}</td>
-                                    <td>{{ $class->date }}</td>
-                                    <td>{{ $class->time_from }}</td>
-                                    <td>{{ $class->time_to }}</td>
-                                    <td>{{ $class->description }}</td>
-                                    <td>{{ $class->teacher_description }}</td>
-                                    <td><a href="{{url('/class-update-form/'.$class->id)}}" type="button" class="btn btn-primary btn-sm">Update</a></td>
-                                    <td><a href="{{url('/class-delete/'.$class->id)}}" type="button" class="btn btn-danger btn-sm">Delete</a></td>                            
-                                </tr>
-                                @php $count++; @endphp
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <p class="card-text"></p>
                     </div>
                 </div>
-            </div>
-        <div class="col-lg-10"></div>        
+                @php $count++; @endphp
+                @endforeach
+            </div> {{-- end row--}}
+            <br>
+        </div>
     </div>
+
+ 
 @endsection
