@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="heading-pannel">
-                <h1><b>Classes</b></h1>
+                <h1 style="color:#000"><b>Classes</b></h1>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -25,14 +25,12 @@
                         <h5>{{$class->date}}</h5>
                         <h5>{{$class->teacher_email}}</h5>
 
-                
-                        <hr style=" border-top: 1px solid #DEDEDE;">
-                        <div class="btn-group btn-group-xs pull-center" style="margin-left: 30px"> 
-                            <button type="button" class="btn btn-info"><a href="{{url('/class-update-form/'.$class->id)}}" style="color:#000; text-decoration:none">Update</a></button>
-                            <button type="button" class="btn btn-danger"><a href="{{url('/class-delete/'.$class->id)}}" style="color:#000; text-decoration:none">Delete</a></button>
-                        </div>
-                        <p class="card-text"></p>
+            
+                    <hr style=" border-top: 1px solid #DEDEDE;">
+                        <button class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i><a href="{{url('/class-update-form/'.$class->id)}}" style="color:#000; text-decoration:none">Update</a></button>
+                        <button class="btn btn-sm btn-info"><i class="fa fa-times"></i><a href="{{url('/class-delete/'.$class->id)}}" style="color:#000; text-decoration:none">Delete</a></button>
                     </div>
+                    <p class="card-text"></p>
                 </div>
                 @php $count++; @endphp
                 @endforeach

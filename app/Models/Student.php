@@ -20,8 +20,8 @@ class Student extends Model
 
         'first_name',
         'last_name',
-        'gender',
-        'grade',
+        'dateOfBirth',
+        'phoneNumber',
         'email',
         'course_id',
         'teacher_id',

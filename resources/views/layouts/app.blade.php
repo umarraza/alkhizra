@@ -11,6 +11,7 @@
     {{-- Stylesheet Links --}}
     <link rel="stylesheet" href="{{ asset('/public/css/style.css')}}">
     <link href="{{ asset('/public/css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     {{-- Javascript Links --}}
 
@@ -92,13 +93,13 @@
                                     <a class="nav-link" href="{{ url('show-classes') }}">Class</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('show-courses') }}">Conference</a>
+                                    <a class="nav-link" href="{{ url('show-conferenece') }}">Conference</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('show-courses') }}">Course</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('show-conference') }}">Test</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('show-conference') }}">Course</a>
                                 </li>
                             @endguest
                         </ul>

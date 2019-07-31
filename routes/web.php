@@ -124,8 +124,9 @@ Route::post('/class-update/{class}', 'ClassController@updateClass')->middleware(
 
 
 /* ========= Classes Routes ========= */
-Route::get('/show-classes', 'ClassController@showClasse')->middleware('lmsRole');
-
+Route::get('/add-conference-form', 'ConferenceController@confereneceForm')->middleware('lmsRole');
+Route::post('/create-conferenece', 'ConferenceController@createConferenec')->middleware('lmsRole');
+Route::get('/show-conferenece', 'ConferenceController@showConfreneces')->middleware('lmsRole');
 
 
 

@@ -22,8 +22,8 @@ class TeacherController extends Controller
         
             'first_name' => 'required',
             'last_name' => 'required',
-            'description' => 'required',
-            'address' => 'required',
+            'specialization' => 'required',
+            'phoneNumber' => 'required',
             'email' => 'required|unique:users',
 
         ]);
@@ -49,12 +49,12 @@ class TeacherController extends Controller
     
             $teacher = Teacher::create([
     
-                'first_name'   =>  $request->first_name,
-                'last_name'    =>  $request->last_name,
-                'address'      =>  $request->address,
-                'description'  =>  $request->description,
-                'email'        =>  $request->email,
-                'userId'       =>  $user->id,
+                'first_name'     =>  $request->first_name,
+                'last_name'      =>  $request->last_name,
+                'specialization' =>  $request->specialization,
+                'phoneNumber'    =>  $request->phoneNumber,
+                'email'          =>  $request->email,
+                'userId'         =>  $user->id,
     
             ]);
     

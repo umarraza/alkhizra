@@ -15,7 +15,7 @@ class AccountController extends Controller
         $client_id = env('CLIENT_ID');
         $client_secret = env('CLIENT_SECRET');
         
-        $content = "grant_type=client_credentials&client_id=$client_id&client_secret=$client_secret";
+        $content = "grant_type=code&client_id=$client_id&client_secret=$client_secret";
         $token_url="https://zoom.us/oauth/token";
 
         $curl = curl_init();
@@ -33,6 +33,9 @@ class AccountController extends Controller
         $data = curl_exec($curl);
         curl_close($curl);
         $result = json_decode($data);
+
+        dd($result);
+
         // Zoom gave an access token to alkhizra in order to managae Zoom user's meeting on user's behalf
         // alkhizra will send this token to authorize alkhizra to make changes/get rescources/ on the user's behalf 
         

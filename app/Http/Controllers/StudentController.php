@@ -21,8 +21,8 @@ class StudentController extends Controller
             'course_id' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'gender' => 'required',
-            'grade' => 'required',
+            'dateOfBirth' => 'required',
+            'phoneNumber' => 'required',
         ]);
 
         $course = Course::find($request->course_id);
@@ -54,8 +54,8 @@ class StudentController extends Controller
     
                 'first_name'  =>  $request->first_name,
                 'last_name'   =>  $request->last_name,
-                'gender'      =>  $request->gender,
-                'grade'       =>  $request->grade,
+                'dateOfBirth' =>  $request->dateOfBirth,
+                'phoneNumber' =>  $request->phoneNumber,
                 'email'       =>  $request->email,
                 'course_id'   =>  $request->course_id,
                 'teacher_id'  =>  $teacher->id,

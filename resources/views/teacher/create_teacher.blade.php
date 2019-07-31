@@ -15,11 +15,11 @@
                     <label class="form-check-label" for="exampleCheck1">Last Name</label>
                     <input class="form-control form-control-sm" name="last_name" type="text" placeholder="" required>
 
-                    <label class="form-check-label" for="exampleCheck1">Address</label>
-                    <input class="form-control form-control-sm" name="address" type="text" placeholder="" required>
+                    <label class="form-check-label" for="exampleCheck1">Specialization</label>
+                    <input class="form-control form-control-sm" name="specialization" type="text" placeholder="" required>
 
-                    <label class="form-check-label" for="exampleCheck1">About</label>
-                    <input class="form-control form-control-sm" name="description" type="text" placeholder="" required>
+                    <label class="form-check-label" for="exampleCheck1">Phone Number</label>
+                    <input class="form-control form-control-sm" name="phoneNumber" type="text" placeholder="" required>
 
                     <label class="form-check-label" for="exampleCheck1">Email</label>
                     <input class="form-control form-control-sm" name="email" type="text" placeholder="" required>
