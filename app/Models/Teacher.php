@@ -29,7 +29,7 @@ class Teacher extends Model
 
     public function courses()
     {
-        return $this->hasMany(Course::class,'id');
+        return $this->hasMany(Course::class,'teacherId');
     }
 
     public function students() {
@@ -38,6 +38,10 @@ class Teacher extends Model
 
     public function classes() {
         return $this->hasMany(Classes::class, 'teacherId');
+    }
+
+    public function conferences() {
+        return $this->hasMany(Conference::class, 'teacherId', 'id');
     }
 
     public function user() {

@@ -128,6 +128,13 @@ Route::get('/add-conference-form', 'ConferenceController@confereneceForm')->midd
 Route::post('/create-conferenece', 'ConferenceController@createConferenec')->middleware('lmsRole');
 Route::get('/show-conferenece', 'ConferenceController@showConfreneces')->middleware('lmsRole');
 
+/* ========= Conferences Routes ========= */
+Route::get('/teacher-conferences', 'ConferenceController@teacherConferences');
+
+/* ========= Conferences Routes ========= */
+Route::get('/create-test-form', 'TestController@testForm');
+Route::post('/create-test', 'TestController@createTest');
+Route::get('/show-tests', 'TestController@showTests');
 
 
 

@@ -15,6 +15,8 @@ class AccountController extends Controller
         $client_id = env('CLIENT_ID');
         $client_secret = env('CLIENT_SECRET');
         
+        
+
         $content = "grant_type=code&client_id=$client_id&client_secret=$client_secret";
         $token_url="https://zoom.us/oauth/token";
 
@@ -41,8 +43,6 @@ class AccountController extends Controller
         
         $access_token = $result->access_token;
 
-        $jwt_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Im1JOFVhbE9nUXA2eFBMWFVhWVplZFEiLCJleHAiOjE1NjUwMDAxOTgsImlhdCI6MTU2NDM5NTU3MH0.fBq3OuF8Cp1uVRJcWmg_KVxR3bg6CcV1YHfJ9KidQX0";
-        
         $client = new \GuzzleHttp\Client();
         
         $api_key = env('API_KEY');
@@ -75,7 +75,6 @@ class AccountController extends Controller
         $api_key = env('API_KEY');
         $api_secret = env('API_SECRET');
         $client_secret = env('CLIENT_SECRET');
-
         return view('Accounts.createAccount',compact('api_key','api_secret','client_secret'));
     }
 }

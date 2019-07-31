@@ -80,7 +80,7 @@ class CourseController extends Controller
 
             $userIds = $students->map(function($user) {
                 return $user['userId'];
-              });
+            });
             
             $users = User::whereIn('id', $userIds)->get();
             DB::beginTransaction();

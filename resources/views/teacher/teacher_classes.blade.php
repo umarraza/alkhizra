@@ -1,60 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+<div class="container" style="width:80%;padding: 0 0 20px">
+        <h1 style="color:#000"><b>Classes</b></h1>
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</div> 
+@php $count=1; @endphp
+@foreach($classes as $class)
+<div class="container" style="width:80%;border:1px solid #D4D4D5; padding:3px; border-radius:3px">
+
     <div class="row">
-            <div class="container-fluid">
-                <div class="col-lg-10">
-                    <div class="box box-info">
-                        <div class="box-header">
-                            <h3 class="box-title">My Classes</h3>
-
-                            <a href="{{ url('/admin') }}" class="small-box-footer">Home<i class="fa fa-arrow-circle-right"></i></a> <br>
-                            <a href="{{ url('/create-account-form') }}" class="small-box-footer">Create Zoom Account<i class="fa fa-arrow-circle-right"></i></a> <br>
-
-                            <br>
-                            <br>
-                            <div class="pull-right">
-                        </div>
-                    </div>
-                    <div class="box-body">
-                        <table id="dbookSales" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Sr#</th>
-                                    <th>Title</th>
-                                    <th>Class Date</th>
-                                    <th>Start Time</th>
-                                    <th>End Time</th>
-                                    <th>Description</th>
-                                    <th>Teacher Description</th>
-                                    <th>Chat Room</th>
-                                    <th>Start Session</th>
-                                    <th>Start Conference</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                  <tr> 
-                                @php $count=1; @endphp
-                                @foreach($classes as $class) {{-- Getting data from teacherController function teacherClasses --}}
-                                    
-                                    <td><span>{{ $count }}</span></td>
-                                    <td>{{ $class->title }}</td>
-                                    <td>{{ $class->date }}</td>
-                                    <td>{{ $class->time_from }}</td>
-                                    <td>{{ $class->time_to }}</td>
-                                    <td>{{ $class->description }}</td>
-                                    <td>{{ $class->teacher_description }}</td>
-                                    <td><a href="{{url('/start-class/'.$class->id)}}" target="_blank" type="button" class="btn btn-primary btn-sm">Chat Room</a></td>
-                                    <td><a href="{{url('/start-session/'.$class->id)}}" target="_blank" type="button" class="btn btn-default btn-sm">Start Session</a></td>
-                                    <td><a href="{{url('/access-token')}}" target="_blank" type="button" class="btn btn-default btn-sm">Start Session</a></td>
-                                </tr>
-                                @php $count++; @endphp
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        <div class="col-lg-2"></div>        
+        <div class="col-md-2" style="max-width:10%;">
+            <img src="{{url('/public/images/pic1.jpg')}}" alt="Image"/ width="120px" height="150px" style="border-radius:2px; padding:4px">
+        </div>
+        <div class="col-md-8">
+            <h5><b>{{$class->title}}</b></h5>
+            <p class="teacher-classes-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$class->date}}</p>
+            <p class="teacher-classes-para"><i class="fas fa-envelope"></i>&nbsp;&nbsp;{{$class->teacher_email}}</p>
+            <hr style="border-top: 1px solid #DEDEDE; width:136.5%">
+            <span><i class="fas fa-file"></i>&nbsp;&nbsp;Status:</span> <span style="color:#0DC500">Live</span>
+            <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;GMT Standard Time:</span>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-lg btn-success pull-right" style="background-color: #38ADA9; margin:20px 0 0 0"><a href="{{url('/start-session/'.$class->id)}}" style=" color:#fff; text-decoration:none">&nbsp;Start Class</a></button>
+        </div>
     </div>
+
+</div> 
+<br>
+    @php $count++; @endphp
+    @endforeach
 @endsection
