@@ -3,36 +3,41 @@
 @section('content')
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
-            <div class="heading-pannel">
-                <h1 style="color:#000"><b>Students</b></h1>
+            <div class="heading-pannel" id="heading-pannel">
+                <h1 id="user-heading"><b>Students</b></h1>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    <button type="button" class="btn btn-success pull-right"><a href="{{ url('/add-student-form') }}" class="small-box-footer" style="color:#fff; text-decoration:none">Add student</a></button>
+                    <button type="button" class="btn btn-lg pull-right add-user-btn">
+                        <i class="fas fa-user-plus fa-user-color"></i>
+                        <a class="create-user-link" href="{{ url('/create-student-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Student</a>
+                    </button>
                 </form>
             </div> <br>
             <div class="row">
                 @php $count=1; @endphp
                 @foreach($students as $student)
-                <div class="col-md-3 col-sm-6">
-                    <div class="card" style="width: 30rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
-                        <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
-                
-                        <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >{{$student->first_name . ' ' . $student->last_name}}</h5>
-                        <h5>{{$student->phoneNumber}}</h5>
-                        <h5>{{$student->dateOfBirth}}</h5>
-                        <h5>{{$student->email}}</h5>
-                
-                        <hr style=" border-top: 1px solid #DEDEDE;">
-                            <button class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i><a href="{{url('/student-update-form/'.$student->id)}}" style="color:#000; text-decoration:none">Update</a></button>
-                            <button class="btn btn-sm btn-info"><i class="fa fa-times"></i><a href="{{url('/student-delete/'.$student->id)}}" style="color:#000; text-decoration:none">Delete</a></button>
-                        <p class="card-text"></p>
+                <div class="col-md-3 col-sm-6 style-md-3-col">
+                    <div class="row" id="sub-row">
+                        <div class="col-md-2">
+                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded img-style" alt="Image"/ width="60px" height="60px">
+                        </div>
+                        <div class="col-md-10 sub-col-md-10">
+                            <div class="card style-card">
+                                <h5 class="card-title style-card-title">{{$student->first_name . ' ' . $student->last_name}}</h5>
+                                <p class="style-paragraph">{{$student->specialization}}</p>
+                                <h5 class="style-headings-1"><i class="fas fa-phone-alt"></i>&nbsp;&nbsp;{{$student->phoneNumber}}</h5>
+                                <h5 class="style-headings-2"><i class="far fa-envelope"></i>&nbsp;&nbsp;{{$student->email}}</h5>
+                            </div>
+                            <hr class="show-user-hr">
+                            <a class="icon-links" href="{{url('/student-delete/'.$student->id)}}"><i class="far fa-edit show-user-phone-icon"></i></a>
+                            <a class="icon-links" href="{{url('/student-update-form/'.$student->id)}}"><i class="far fa-trash-alt show-user-trash-icon"></i></a>
+                        </div>
                     </div>
                     <br>
                 </div>
                 @php $count++; @endphp
                 @endforeach
-
             </div> {{-- end row--}}
             <br>
         </div>

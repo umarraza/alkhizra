@@ -1,5 +1,144 @@
+/* TEACHER'S CLASSES VIEW */
 .teacher-classes-para {
     line-height: 3px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px;
+}
+
+/* TEACHER'S TESTS VIEW */
+
+.teacher-test-para {
+    line-height: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    width: 68%;
+}
+
+/* TEACHER'S COURSES VIEW */
+
+.teacher-courses-col-8{
+    padding: 0 15px 0 0;
+    margin: 0 0 -12px 0;
+}
+
+/* SHOW ALL TEACHERS VIEW */
+
+#heading-pannel {
+    margin-left:-10px;
+}
+
+#user-heading{
+    color:#000;
+}
+.style-md-3-col {
+    padding:5px;
+}
+.img-style{
+    border-radius: 50%; 
+    margin:10px 0 0 -8px;
+}
+.sub-col-md-10{
+    padding-right: 0;
+}
+.style-card{
+    min-width: 100%;  
+    padding-left: 20px;
+}
+.style-card-title{
+    display: inline-block; 
+    color:#000; 
+    font-size:20px; 
+    font-weight:bold; 
+    margin: 11px 0 0 0;
+}
+.style-paragraph{
+    margin-top:0px; 
+    font-size:11px;
+    color:#ACACAC
+}
+.style-headings-1 {
+    margin-bottom:0px; 
+    font-size:12px;
+    font-family:arial;
+}
+.style-headings-2{
+    margin-top:2px; 
+    font-size:12px;
+    font-family:arial
+}
+.icon-links{
+    color:#000; 
+    text-decoration:none;
+}
+.create-user-link{
+    color:#fff; 
+    text-decoration:none;
+}
+#sub-row{
+    border:1px solid #DEDEDE; 
+    border-radius: 5px; 
+    width:100%;
+}
+.show-user-phone-icon{
+    font-size: 20px;
+    margin: 10px 0 10px 70px;
+    color: #CACACA;
+}
+.show-user-trash-icon{
+    font-size: 20px;
+    margin: 10px 0 10px 5px;
+    color: #CACACA;
+}
+.show-user-hr{
+    border-top: 1px solid #DEDEDE; 
+    min-width:100%;
+    margin:10px 0 0 0
+}
+.show-teachers-row-sm{
+    border:1px solid #DEDEDE; 
+    border-radius: 5px; 
+    width:100%;
+}
+.add-user-btn{
+    background: #38ADA9;
+}
+.fa-user-color{
+    color: #DEDEDE;
+}
+
+/* SHOW ALL CLASSES VIEW */
+.class-teacher{
+    font-size: 11px;
+    margin-bottom: 0px;
+    
+}
+.class-title{
+    margin-bottom: 0px;
+    color: #000
+}
+.teacher-class-para{
+    margin-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+.style-spam{
+    color: #0DC500;
+}
+div.container.show-class-container{
+    width:80%;
+    border:1px solid #D4D4D5; 
+    padding:3px; 
+    border-radius:3px;
+    margin: 0 0 0 169px;
+}
+.show-classes-hr{
+    border-top: 1px solid #DEDEDE; 
+    width:136.5%;
+    margin: 38px 0 0 0;
+}
+.pull-right-div{
+    margin-top: 6px;
+}
+div.col-md-1{
+    margin: 0;
 }

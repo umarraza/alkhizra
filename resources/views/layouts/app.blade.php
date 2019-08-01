@@ -98,10 +98,10 @@
                                         <a class="nav-link" href="{{ url('show-conferenece') }}">Conference</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('show-courses') }}">Course</a>
+                                        <a class="nav-link" href="{{ url('show-admin-tests') }}">Test</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('show-conference') }}">Test</a>
+                                        <a class="nav-link" href="{{ url('show-courses') }}">Course</a>
                                     </li>
                                 @endif
                                 @if (Auth::User()->roleId == 2)

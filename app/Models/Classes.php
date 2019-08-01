@@ -18,8 +18,7 @@ class Classes extends Model
     protected $fillable = [
         'title',
         'date',
-        'time_from',
-        'time_to',
+        'time',
         'description',
         'teacher_description',
         'teacher_email',
@@ -94,7 +93,6 @@ class Classes extends Model
     public function teacher() {
         return $this->belongsTo(Teacher::class, 'id');
     }
-
     public function course() {
         return $this->belongsTo(Course::class, 'id', 'course_id');
     }

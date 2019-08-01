@@ -65,7 +65,11 @@ class TestController extends Controller
         $teacher = Teacher::whereUserid(Auth::User()->id)->first();
         $course = Course::where('teacherId', $teacher->id)->first();
         $tests = Test::where('courseId', $course->id)->get();
-        return view('Tests.show_tests', compact('tests'));
+        return view('Tests.show_teacher_tests', compact('tests'));
     }
 
+    public function listsAdminTests() {
+        $tests = Test::all();
+        return view('Tests.show_tests', compact('tests'));
+    }
 }

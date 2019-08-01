@@ -19,8 +19,7 @@ class ClassController extends Controller
         
             'title' => 'required|unique:classes',
             'date' => 'required',
-            'time_from' => 'required',
-            'time_to' => 'required',
+            'time' => 'required',
             'description' => 'required',
             'teacher_description' => 'required',
             'course_Id' => 'required|unique:classes'
@@ -37,8 +36,7 @@ class ClassController extends Controller
  
                 'title'                =>  $request->title,
                 'date'                 =>  $request->date,
-                'time_from'            =>  $request->time_from,
-                'time_to'              =>  $request->time_to,
+                'time'              =>  $request->time_to,
                 'description'          =>  $request->description,
                 'teacher_description'  =>  $request->teacher_description,
                 'teacher_email'        =>  $teacher->email,
@@ -70,8 +68,7 @@ class ClassController extends Controller
         
             'title' => 'required',
             'date' => 'required',
-            'time_from' => 'required',
-            'time_to' => 'required',
+            'time' => 'required',
             'description' => 'required',
             'teacher_description' => 'required',
             'course_Id' => 'required'
@@ -112,6 +109,11 @@ class ClassController extends Controller
        
         // letter get all the classes that are not started yet. set the status of class i.e either active, closed and not started
         $classes = Classes::all();
+
+        foreach($classes as $class) {
+            $teacher = Teacher::whereId($class->teacherId)->first();
+            $class['teacher'] = $teacher;
+        }
         return view('Classes.show_classes', compact('classes'));
 
     }

@@ -1,43 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
-            <div class="heading-pannel">
-                <h1 style="color:#000"><b>Classes</b></h1>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    
-                    <button type="button" class="btn btn-success pull-right"><a href="{{ url('/add-class-form') }}" class="small-box-footer" style="color:#fff; text-decoration:none">Add Class</a></button>
 
-                </form>
-            </div> <br>
-            <div class="row">
-                @php $count=1; @endphp
-                @foreach($classes as $class)
-                <div class="col-md-4">
-                    <div class="card" style="width: 45rem; border:1px solid #DEDEDE; border-radius: 5px; padding:5px">
-                        <img src="{{url('/public/images/pic1.jpg')}}" class="rounded" alt="Image"/ width="50px" height="50px" style="border-radius: 50%;">
-                
-                        <h5 class="card-title" style="display: inline-block; color:#000; font-size:20px; font-weight:bold" >{{$class->first_name}}</h5>
-                        <h5>{{$class->title}}</h5>
-                        <h5>{{$class->date}}</h5>
-                        <h5>{{$class->teacher_email}}</h5>
 
-            
-                    <hr style=" border-top: 1px solid #DEDEDE;">
-                        <button class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i><a href="{{url('/class-update-form/'.$class->id)}}" style="color:#000; text-decoration:none">Update</a></button>
-                        <button class="btn btn-sm btn-info"><i class="fa fa-times"></i><a href="{{url('/class-delete/'.$class->id)}}" style="color:#000; text-decoration:none">Delete</a></button>
-                    </div>
-                    <p class="card-text"></p>
-                </div>
-                @php $count++; @endphp
-                @endforeach
-            </div> {{-- end row--}}
-            <br>
+<div class="container" style="width:80%;padding: 0 0 20px">
+        <h1 style="color:#000"><b>classs</b></h1>
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button type="button" class="btn btn-lg pull-right add-user-btn">
+            <i class="fas fa-plus-circle fa-user-color"></i>
+            <a class="create-user-link" href="{{ url('/create-teacher-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Class</a>
+        </button>
+    </form>
+</div> 
+@php $count=1; @endphp
+@foreach($classes as $class)
+<div class="container show-class-container">
+
+    <div class="row show-class-main-row">
+        <div class="col-md-2" style="max-width:10%;">
+            <img src="{{url('/public/images/pic1.jpg')}}" alt="Image"/ width="120px" height="170px" style="border-radius:2px; padding:4px">
+        </div>
+        <div class="col-md-8">
+            <h5 class="class-title"><b>{{$class->title}}</b></h5>
+            <p class="class-teacher">{{$class->teacher->first_name. ' ' . $class->teacher->last_name}}</p>
+            <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$class->date}}</p>
+            <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$class->time}}</p>
+
+            <hr class="show-classes-hr">
+            <span><i class="fas fa-file"></i>&nbsp;&nbsp;Status:</span><span class="style-spam">&nbsp;&nbsp;Live</span>
+            <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;Attempts:</span>&nbsp;&nbsp;GMT Standard Time</span>
+            <div class="pull-right pull-right-div">
+                <a href="{{url('/class-update-form/'.$class->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="far fa-edit"aria-hidden="true"></i></button></a>
+                <a href="{{url('/class-update-form/'.$class->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>
+           
+            </div>
+        </div>
+        <div class="col-md-2 md-2-col">
+            <button class="btn btn-lg btn-success pull-right" style="background-color: #38ADA9; margin:44px -57px 0px 0px"><a href="{{url('/start-session/'.$class->id)}}" style=" color:#fff; text-decoration:none">&nbsp;Join</a></button>
         </div>
     </div>
 
- 
+</div> 
+<br>
+@php $count++; @endphp
+@endforeach
 @endsection

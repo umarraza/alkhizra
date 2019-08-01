@@ -34,33 +34,6 @@ Route::get('/create-account-form','AccountController@createAccountForm');
 Route::post('/create-account','AccountController@createAccount');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/home', 'HomeController@index');
 Route::get('/access-token', 'VideoController@getAccessToken');
 
@@ -135,6 +108,11 @@ Route::get('/teacher-conferences', 'ConferenceController@teacherConferences');
 Route::get('/create-test-form', 'TestController@testForm');
 Route::post('/create-test', 'TestController@createTest');
 Route::get('/show-tests', 'TestController@showTests');
+
+Route::get('/show-admin-tests', 'TestController@listsAdminTests');
+
+
+
 
 
 
