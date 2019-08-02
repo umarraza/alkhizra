@@ -10,7 +10,7 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     <button type="button" class="btn btn-lg pull-right add-user-btn">
                         <i class="fas fa-user-plus fa-user-color"></i>
-                        <a class="create-user-link" href="{{ url('/create-student-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Student</a>
+                        <a class="create-user-link" href="{{ url('/add-student-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Student</a>
                     </button>
                 </form>
             </div> <br>

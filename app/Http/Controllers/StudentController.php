@@ -7,7 +7,10 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Classes;
+use App\Models\Conference;
+use App\Models\Test;
 use App\Models\User;
+
 use Auth;
 use DB;
 
@@ -26,7 +29,6 @@ class StudentController extends Controller
         ]);
 
         $course = Course::find($request->course_id);
-        
         $teacher = Teacher::find($course->teacherId);
         $first_name = $request->first_name;
         $last_name = $request->last_name;
@@ -142,22 +144,24 @@ class StudentController extends Controller
         $student = Student::whereUserid(Auth::User()->id)->first();
         $course = $student->course;
         $course_name  =  $course->course_name;
-        $class =  Classes::where('course_id', '=', $course->id)->first();
-        if (isset($class)) {
-            return view('students.student_classes', compact('class'));
+
+        $classes =  Classes::where('courseId', '=', $course->id)->get();
+        if (isset($classes)) {
+            return view('students.student_classes', compact('classes'));
         } else {
-            return \Redirect::back()->with('msg', 'The Message');
+            return \Redirect::back()->with('msg', 'No claases are set');
         }
     }
 
     public function studentCourses(Request $request) {
 
         $student = Student::whereUserid(Auth::User()->id)->first();
-        $course = $student->course;
-        return view('students.student_courses', compact('course'));
+        // $courses = $student->course;
+        // return $courses;
+        $courses = Course::whereId($student->course_id)->get();
+        return view('students.student_courses', compact('courses'));
 
     }
-
 
     public function startClass(Classes $class) {
 
@@ -173,8 +177,18 @@ class StudentController extends Controller
     } 
 
     public function showStudents(Request $request) {
-       
         $students = Student::all();
         return view('students.show_students', compact('students'));
     }
+
+    public function studentConfrences(Request $request) {
+        $confrences = Conference::all();    // latter change to student confrences
+        return view('Conference.student_confrences', compact('confrences'));
+    }
+
+    public function studentTests(Request $request) {
+        $tests = Test::all();    // latter change to student tests
+        return view('Tests.student_tests', compact('tests'));
+    }
+
 }

@@ -16,14 +16,12 @@ class Classes extends Model
     protected $table = 'classes';
 
     protected $fillable = [
-        'title',
-        'date',
-        'time',
-        'description',
-        'teacher_description',
-        'teacher_email',
+        'classTitle',
+        'classDate',
+        'classTime',
+        'timeZone',
         'room_token',
-        'course_Id',
+        'courseId',
         'teacherId'
     ];
 
@@ -91,7 +89,7 @@ class Classes extends Model
     }
 
     public function teacher() {
-        return $this->belongsTo(Teacher::class, 'id');
+        return $this->belongsTo(Teacher::class);
     }
     public function course() {
         return $this->belongsTo(Course::class, 'id', 'course_id');

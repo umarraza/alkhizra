@@ -32,7 +32,6 @@ class Student extends Model
     public function teacher() {
         return $this->belongsTo(Teacher::class, 'id', 'teacher_id');
     }
-
     public function course() {
         return $this->belongsTo(Course::class);
     }

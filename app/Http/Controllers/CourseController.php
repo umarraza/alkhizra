@@ -17,13 +17,10 @@ class CourseController extends Controller
 
         $validatedData = $request->validate([
         
-            'teacherId' => 'required',
-            'course_name' => 'required|unique:courses',
+            'courseName' => 'required|unique:courses',
+            'courseType' => 'required',
             'description' => 'required',
-            'about_instructor' => 'required',
-            'category' => 'required',
-            'type' => 'required'
-        
+            'teacherId' => 'required',
         ]);
 
         DB::beginTransaction();
@@ -31,12 +28,10 @@ class CourseController extends Controller
 
             $course = Course::create([
 
-                'course_name'      =>  $request->course_name,
-                'description'      =>  $request->description,
-                'about_instructor' =>  $request->about_instructor,
-                'category'         =>  $request->category,
-                'type'             =>  $request->type,
-                'teacherId'        =>  $request->teacherId
+                'courseName'    =>  $request->courseName,
+                'courseType'    =>  $request->courseType,
+                'description'   =>  $request->description,
+                'teacherId'     =>  $request->teacherId
             ]);
     
             DB::commit();
@@ -59,11 +54,9 @@ class CourseController extends Controller
     {
         $data = request()->validate([
 
-            'course_name' => 'required',
+            'courseName' => 'required',
+            'courseType' => 'required',
             'description' => 'required',
-            'about_instructor' => 'required',
-            'category' => 'required',
-            'type' => 'required',
             'teacherId' => 'required',
 
         ]);

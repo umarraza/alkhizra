@@ -17,32 +17,27 @@ class ClassController extends Controller
 
         $validatedData = $request->validate([
         
-            'title' => 'required|unique:classes',
-            'date' => 'required',
-            'time' => 'required',
-            'description' => 'required',
-            'teacher_description' => 'required',
-            'course_Id' => 'required|unique:classes'
-        
+            'classTitle' => 'required|unique:classes',
+            'classDate' => 'required',
+            'classTime' => 'required',
+            'timeZone' => 'required',
+            'courseId' => 'required'
         ]);
 
-        $course = Course::find($request->course_Id);
+        $course = Course::find($request->courseId);
         $teacher = $course->teacher;
-
         DB::beginTransaction();
         try {
 
             $class = Classes::create([
  
-                'title'                =>  $request->title,
-                'date'                 =>  $request->date,
-                'time'              =>  $request->time_to,
-                'description'          =>  $request->description,
-                'teacher_description'  =>  $request->teacher_description,
-                'teacher_email'        =>  $teacher->email,
-                'room_token'           =>  uniqid(),
-                'course_Id'            =>  $request->course_Id,
-                'teacherId'            =>  $teacher->id
+                'classTitle'   =>  $request->classTitle,
+                'classDate'    =>  $request->classDate,
+                'classTime'    =>  $request->classTime,
+                'timeZone'     =>  $request->timeZone,
+                'room_token'   =>  uniqid(),
+                'courseId'     =>  $request->courseId,
+                'teacherId'    =>  $teacher->id
             ]);
     
             DB::commit();
@@ -66,12 +61,11 @@ class ClassController extends Controller
     {
         $data = request()->validate([
         
-            'title' => 'required',
-            'date' => 'required',
-            'time' => 'required',
-            'description' => 'required',
-            'teacher_description' => 'required',
-            'course_Id' => 'required'
+            'classTitle' => 'required',
+            'classDate' => 'required',
+            'classTime' => 'required',
+            'timeZone' => 'required',
+            'courseId' => 'required'
         ]);
 
         $class->update($data);

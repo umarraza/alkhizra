@@ -120,22 +120,16 @@
                                 @endif
                                 @if (Auth::User()->roleId == 3)
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('list-teachers') }}">Teacher</a>
+                                        <a class="nav-link" href="{{ url('student-classes') }}">Classes</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('show-students') }}">Student</a>
+                                        <a class="nav-link" href="{{ url('student-confrences') }}">Confreneces</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('show-classes') }}">Class</a>
+                                        <a class="nav-link" href="{{ url('student-courses') }}">Courses</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('show-conferenece') }}">Conference</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('show-courses') }}">Course</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('show-conference') }}">Test</a>
+                                        <a class="nav-link" href="{{ url('student-tests') }}">Tests</a>
                                     </li>
                                 @endif
                             @endguest

@@ -29,15 +29,15 @@ class Teacher extends Model
 
     public function courses()
     {
-        return $this->hasMany(Course::class,'teacherId');
+        return $this->hasMany(Course::class,'id');
     }
 
     public function students() {
-        return $this->hasMany(Student::class, 'teacher_id', 'id');
+        return $this->hasMany(Student::class);
     }
 
     public function classes() {
-        return $this->hasMany(Classes::class, 'teacherId');
+        return $this->hasMany(Classes::class);
     }
   
     public function conferences() {

@@ -17,31 +17,28 @@ class Course extends Model
 
     protected $fillable = [
 
-        'course_name',
+        'courseName',
+        'courseType',
         'description',
-        'about_instructor',
-        'category',
-        'type',
         'teacherId',
 
     ];
 
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class,'id');
+        return $this->belongsTo(Teacher::class,'teacherId');
     }
 
     public function tests()
     {
         return $this->belongsTo(Tests::class, 'courseId');
     }
-
     public function students() {
         return $this->hasMany(Student::class);
     }
 
     public function class() {
-        return $this->hasOne(Classes::class, 'course_id');
+        return $this->hasOne(Classes::class, 'courseId');
     }
 
 }
