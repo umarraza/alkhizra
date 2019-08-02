@@ -10,7 +10,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         <button type="button" class="btn btn-lg pull-right add-user-btn">
             <i class="fas fa-plus-circle fa-user-color"></i>
-            <a class="create-user-link" href="{{ url('/create-teacher-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Test</a>
+            <a class="create-user-link" href="{{ url('/create-test-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Test</a>
         </button>
     </form>
 </div> 
@@ -24,9 +24,12 @@
         </div>
         <div class="col-md-8">
             <h5 class="class-title"><b>{{$test->testName}}</b></h5>
-            <p class="class-teacher">{{$test->date}}</p>
-            <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$test->time}}</p>
-            <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$test->timeZone}}</p>
+            <p class="class-teacher">{{$test->description}}</p>
+            <p class="class-teacher">{{$test->description}}</p>
+            <p class="class-teacher">{{$test->description}}</p>
+
+            {{-- <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$test->time}}</p>
+            <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$test->timeZone}}</p> --}}
 
             <hr class="show-classes-hr">
             <span><i class="fas fa-file"></i>&nbsp;&nbsp;Status:</span><span class="style-spam">&nbsp;&nbsp;Live</span>

@@ -21,6 +21,9 @@
         <div class="col-md-8">
             <h5 class="class-title"><b>{{$test->testName}}</b></h5>
             <p class="class-teacher">{{$test->description}}</p>
+            <p class="class-teacher">{{$test->description}}</p>
+            <p class="class-teacher">{{$test->description}}</p>
+
             {{-- <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$test->totalMarks}}</p>
             <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$test->passingMarks}}</p> --}}
 

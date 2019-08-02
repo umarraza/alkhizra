@@ -7,8 +7,11 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <h4>Create Teacher</h4>
-
+                    <div class="row">
+                        <div class="col text-center modal-title-margin">
+                            <h4 class="create-teacher-title">Create Teacher</h4>
+                        </div>
+                    </div>
                     <label class="form-check-label" for="exampleCheck1">First Name</label>
                     <input class="form-control form-control-sm" name="first_name" type="text" placeholder="" required>
 
@@ -25,9 +28,11 @@
                     <input class="form-control form-control-sm" name="email" type="text" placeholder="" required>
 
                     <br>
-                    <button type="submit" class="btn btn-primary btn-sm">Create Teacher</button>
-                    <a href="{{ url('/list-teachers') }}" class="small-box-footer">Show Teachers<i class="fa fa-arrow-circle-right"></i></a>
-
+                     <div class="row">
+                        <div class="col text-center modal-title-margin">
+                            <button type="submit" class="btn btn btn-lg add-teacher-btn"><i class="fas fa-user-plus fa-user-color"></i>&nbsp;&nbsp;Add Teacher</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-4"></div>
             </div>

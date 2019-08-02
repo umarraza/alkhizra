@@ -92,14 +92,13 @@ class TeacherController extends Controller
 
     public function teacherUpdate(Teacher $teacher)
     {
-
         $data = request()->validate([
 
             'first_name'   =>  'required',
             'last_name'    =>  'required',
-            'address'      =>  'required',
-            'description'  =>  'required'
-        
+            'specialization'      =>  'required',
+            'phoneNumber'  =>  'required',
+            'email'  =>  'required'
         ]);
     
         DB::beginTransaction();
@@ -118,15 +117,15 @@ class TeacherController extends Controller
     }
 
     public function deleteTeacher(Teacher $teacher) {
-        
+
         $courses  = $teacher->courses;        
         $students = $teacher->students;
         $classes  = $teacher->classes;
         $user     = $teacher->user;
-        
         $userIds = $students->map(function($user) {
             return $user['userId'];
         });
+
         $taachers = $teacher->classes;
         
         DB::beginTransaction();
@@ -172,7 +171,6 @@ class TeacherController extends Controller
     }
 
     public function teacherClasses(Request $request) {
-
         $teacher = Teacher::whereUserid(Auth::User()->id)->first();
         $classes = $teacher->classes;
         return view('teacher.teacher_classes', compact('classes'));
@@ -187,7 +185,6 @@ class TeacherController extends Controller
     } 
 
     public function updateTeacherForm(Teacher $teacher) {
-
         return view('teacher.update_teacher', compact('teacher'));
     }
 }

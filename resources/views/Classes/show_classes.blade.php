@@ -10,7 +10,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         <button type="button" class="btn btn-lg pull-right add-user-btn">
             <i class="fas fa-plus-circle fa-user-color"></i>
-            <a class="create-user-link" href="{{ url('/add-class-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Class</a>
+            <a href="{{ url('/add-class-form') }}" class="small-box-footer create-user-link" style="color:#fff; font-size:15px;font-weight:900;text-decoration:none">&nbsp;&nbsp;Add Class</a>
         </button>
     </form>
 </div> 
@@ -24,7 +24,6 @@
         </div>
         <div class="col-md-8">
             <h5 class="class-title"><b>{{$class->classTitle}}</b></h5>
-            <p class="class-teacher">{{$class->teacher->first_name. ' ' . $class->teacher->last_name}}</p>
             <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$class->classDate}}</p>
             <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$class->classTime}}</p>
 

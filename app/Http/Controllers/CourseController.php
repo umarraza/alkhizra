@@ -69,6 +69,7 @@ class CourseController extends Controller
     public function deleteCourse(Course $course) {
 
             $students = $course->students;
+
             $class = $course->class;
 
             $userIds = $students->map(function($user) {
@@ -103,6 +104,10 @@ class CourseController extends Controller
     public function showCourses(Request $request) {
        
         $courses = Course::all();
+
+        foreach ($courses as $course) {
+            $course['teacher'] = $course->teacher;
+        }
         return view('Courses.show_courses', compact('courses'));
     }
 }

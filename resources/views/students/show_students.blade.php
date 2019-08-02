@@ -10,7 +10,7 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     <button type="button" class="btn btn-lg pull-right add-user-btn">
                         <i class="fas fa-user-plus fa-user-color"></i>
-                        <a class="create-user-link" href="{{ url('/add-student-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Student</a>
+                        <a href="{{ url('/add-student-form') }}" class="small-box-footer create-user-link" style="color:#fff; font-size:15px;font-weight:900;text-decoration:none">&nbsp;&nbsp;Add Student</a>
                     </button>
                 </form>
             </div> <br>
@@ -30,8 +30,8 @@
                                 <h5 class="style-headings-2"><i class="far fa-envelope"></i>&nbsp;&nbsp;{{$student->email}}</h5>
                             </div>
                             <hr class="show-user-hr">
-                            <a class="icon-links" href="{{url('/student-delete/'.$student->id)}}"><i class="far fa-edit show-user-phone-icon"></i></a>
-                            <a class="icon-links" href="{{url('/student-update-form/'.$student->id)}}"><i class="far fa-trash-alt show-user-trash-icon"></i></a>
+                            <a class="icon-links" href="{{url('/student-update-form/'.$student->id)}}"><i class="far fa-edit show-user-phone-icon"></i></a>
+                            <a class="icon-links" href="{{url('/student-delete/'.$student->id)}}"><i class="far fa-trash-alt show-user-trash-icon"></i></a>
                         </div>
                     </div>
                     <br>

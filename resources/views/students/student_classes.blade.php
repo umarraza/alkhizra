@@ -30,7 +30,9 @@
             <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i></span>&nbsp;&nbsp;{{$class->timeZone}}</span>
         </div>
         <div class="col-md-2 md-2-col">
-            <button class="btn btn-lg btn-success pull-right" style="background-color: #38ADA9; margin:44px -57px 0px 0px"><a href="{{url('/start-session/'.$class->id)}}" style=" color:#fff; text-decoration:none">&nbsp;Join</a></button>
+            <button class="btn btn-lg btn-success pull-right" style="background-color: #38ADA9; margin:44px -57px 0px 0px"><a href="{{url('/start-student-session/'.$class->id)}}" target="blank" style=" color:#fff; text-decoration:none">&nbsp;Join</a></button>
+            <button class="btn btn-lg btn-info pull-right" style="background-color: #38ADA9; margin:44px 10px 15px 0"><a target="blank" href="{{url('/start-class/'.$class->id)}}" style=" color:#fff; text-decoration:none">Chat Room</a></button>
+        
         </div>
     </div>
 

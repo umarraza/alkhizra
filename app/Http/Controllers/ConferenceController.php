@@ -19,8 +19,8 @@ class ConferenceController extends Controller
         $validatedData = $request->validate([
         
             'conferenceName' => 'required',
-            'date' => 'required',
-            'time' => 'required',
+            'conferenceDate' => 'required',
+            'conferenceTime' => 'required',
             'timeZone' => 'required',
             'teacherId' => 'required',
         ]);
@@ -31,8 +31,8 @@ class ConferenceController extends Controller
             $course = Conference::create([
 
                 'conferenceName' =>  $request->conferenceName,
-                'date'           =>  $request->date,
-                'time'           =>  $request->time,
+                'conferenceDate' =>  $request->conferenceDate,
+                'conferenceTime' =>  $request->conferenceTime,
                 'timeZone'       =>  $request->timeZone,
                 'teacherId'      =>  $request->teacherId,
 
@@ -67,6 +67,4 @@ class ConferenceController extends Controller
         return view('Conference.teacher-conferences', compact('conferences', 'teacher'));
 
     }
-
-
 }

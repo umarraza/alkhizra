@@ -8,10 +8,6 @@
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        <button type="button" class="btn btn-lg pull-right add-user-btn">
-            <i class="fas fa-plus-circle fa-user-color"></i>
-            <a class="create-user-link" href="{{ url('/create-teacher-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Test</a>
-        </button>
     </form>
 </div> 
 @php $count=1; @endphp
@@ -24,7 +20,7 @@
         </div>
         <div class="col-md-8">
             <h5 class="class-title"><b>{{$test->testName}}</b></h5>
-            <p class="class-teacher">{{$test->description}}</p>
+            <p class="class-title">{{$test->description}}</p>
             {{-- <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$test->totalMarks}}</p>
             <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$test->passingMarks}}</p> --}}
 

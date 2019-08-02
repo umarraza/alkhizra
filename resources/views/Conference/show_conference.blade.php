@@ -10,7 +10,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         <button type="button" class="btn btn-lg pull-right add-user-btn">
             <i class="fas fa-plus-circle fa-user-color"></i>
-            <a class="create-user-link" href="{{ url('/create-teacher-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Conference</a>
+            <a class="create-user-link" href="{{ url('/add-conference-form') }}" class="small-box-footer" style="color:#fff; font-size:15px;font-weight:900;text-decoration:none">&nbsp;&nbsp;Add Conference</a>
         </button>
     </form>
 </div> 
@@ -25,12 +25,12 @@
         <div class="col-md-8">
             <h5 class="class-title"><b>{{$conference->conferenceName}}</b></h5>
             <p class="class-teacher">{{$conference->date}}</p>
-            <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$conference->time}}</p>
-            <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$conference->timeZone}}</p>
+            <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$conference->conferenceDate}}</p>
+            <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$conference->conferenceTime}}</p>
 
             <hr class="show-classes-hr">
             <span><i class="fas fa-file"></i>&nbsp;&nbsp;Status:</span><span class="style-spam">&nbsp;&nbsp;Live</span>
-            <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;Attempts:</span>&nbsp;&nbsp;GMT Standard Time</span>
+            <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i></span>&nbsp;&nbsp;{{$conference->timeZone}}</span>
             <div class="pull-right pull-right-div">
                 <a href="{{url('/class-update-form/'.$conference->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="far fa-edit"aria-hidden="true"></i></button></a>
                 <a href="{{url('/class-update-form/'.$conference->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>

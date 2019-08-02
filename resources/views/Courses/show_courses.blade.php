@@ -10,7 +10,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         <button type="button" class="btn btn-lg pull-right add-user-btn">
             <i class="fas fa-plus-circle fa-user-color"></i>
-            <a class="create-user-link" href="{{ url('/add-course-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Course</a>
+            <a href="{{ url('/add-course-form') }}" class="small-box-footer create-user-link" style="color:#fff; font-size:15px;font-weight:900;text-decoration:none">&nbsp;&nbsp;Add Course</a>
         </button>
     </form>
 </div> 
@@ -23,20 +23,22 @@
             <img src="{{url('/public/images/pic1.jpg')}}" alt="Image"/ width="120px" height="170px" style="border-radius:2px; padding:4px">
         </div>
         <div class="col-md-8">
-            <h5 class="class-title"><b>{{$course->course_name}}</b></h5>
+            <h5 class="class-title"><b>{{$course->courseName}}</b></h5>
+            <p class="style-paragraph">{{$course->teacher->first_name. ' ' .$course->teacher->last_name}}</p>
             <p class="class-teacher">{{$course->description}}</p>
 
             <hr class="show-classes-hr">
             <span><i class="fas fa-file"></i>&nbsp;&nbsp;Questions:</span><span class="style-spam">&nbsp;&nbsp;10</span>
             <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;Attempts:</span>&nbsp;&nbsp;11</span>
             <div class="pull-right pull-right-div">
-                <a href="{{url('/class-update-form/'.$course->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="far fa-edit"aria-hidden="true"></i></button></a>
-                <a href="{{url('/class-update-form/'.$course->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>
+                <a href="{{url('/course-update-form/'.$course->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="far fa-edit"aria-hidden="true"></i></button></a>
+                <a href="{{url('/course-delete/'.$course->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>
            
             </div>
         </div>
         <div class="col-md-2 md-2-col">
             <button class="btn btn-lg btn-success pull-right" style="background-color: #38ADA9; margin:44px -57px 0px 0px"><a href="{{url('/start-session/'.$course->id)}}" style=" color:#fff; text-decoration:none">&nbsp;Content</a></button>
+        
         </div>
     </div>
 

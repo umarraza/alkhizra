@@ -99,12 +99,16 @@ class StudentController extends Controller
         $data = request()->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'gender' => 'required',
-            'grade' => 'required',
-            'course_id' => 'required',
+            'dateOfBirth' => 'required',
+            'phoneNumber' => 'required',
+            'email' => 'required',
         ]);
 
+        // $student->user->email = $student->email; latter update user email as well for all users
+
         $student->update($data);
+
+
 
         return redirect()->action('StudentController@showStudents');
     }
@@ -173,7 +177,7 @@ class StudentController extends Controller
     public function addStudentForm(Request $request) {
 
         $courses = Course::all();
-        return view('students.create_student', compact('courses'));
+        return view('Students.create_student', compact('courses'));
     } 
 
     public function showStudents(Request $request) {

@@ -70,7 +70,7 @@
             }
         </style> -->
         <style>
-        body, html {
+body, html {
     height: 100%;
     margin: 0;
   }
@@ -144,7 +144,7 @@
 .fa-user:hover {
   color: #eee;
 }
-        </style>
+      </style>
     </head>
     
 <body style="font-family: 'Poppins'; color: #38ADA9">

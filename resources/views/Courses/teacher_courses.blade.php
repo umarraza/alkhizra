@@ -4,7 +4,7 @@
 
 
 <div class="container" style="width:80%;padding: 0 0 20px">
-        <h1 style="color:#000"><b>Classes</b></h1>
+        <h1 style="color:#000"><b>Course</b></h1>
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -19,11 +19,11 @@
             <img src="{{url('/public/images/pic1.jpg')}}" alt="Image"/ width="120px" height="150px" style="border-radius:2px; padding:4px">
         </div>
         <div class="col-md-8">
-            <h5><b>{{$course->course_name}}</b></h5>
+            <h5><b>{{$course->courseName}}</b></h5>
             <p class="teacher-classes-para">{{$course->description}}</p>
-            <p class="teacher-classes-para">{{$course->about_instructor}}</p>
+            <p class="teacher-classes-para">{{$course->courseType}}</p>
             <hr style="border-top: 1px solid #DEDEDE; width:136.5%">
-            <span><i class="fas fa-file"></i>&nbsp;&nbsp;Type:</span> <span style="color:#0DC500">{{$course->type}}</span>
+            <span><i class="fas fa-file"></i>&nbsp;&nbsp;Type:</span> <span>{{$course->courseType}}</span>
         </div>
         <div class="col-md-2">
             <button class="btn btn-lg btn-success pull-right" style="background-color: #38ADA9; margin:20px 0 0 0"><a href="{{url('/start-session/'.$course->id)}}" style=" color:#fff; text-decoration:none">&nbsp;Content</a></button>

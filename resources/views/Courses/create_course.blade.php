@@ -7,7 +7,11 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <h4>Create Course</h4>
+                    <div class="row">
+                        <div class="col text-center modal-title-margin">
+                            <h4 class="create-teacher-title">Create Course</h4>
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Select Teacher:</label>
@@ -18,26 +22,21 @@
                         </select>
                     </div>
 
+                    <label class="form-check-label" for="exampleCheck1">Course Name</label>
+                    <input class="form-control form-control-sm" name="courseName" type="text" placeholder="" required>
 
-                    <label class="form-check-label" for="exampleCheck1">Title</label>
-                    <input class="form-control form-control-sm" name="course_name" type="text" placeholder="" required>
+                    <label class="form-check-label" for="exampleCheck1">Course Type</label>
+                    <input class="form-control form-control-sm" name="courseType" type="text" placeholder="" required>
 
-                    <label class="form-check-label" for="exampleCheck1">Description</label>
-                    <input class="form-control form-control-sm" name="description" type="text" placeholder="" required>
-
-                    <label class="form-check-label" for="exampleCheck1">About Instructor</label>
-                    <input class="form-control form-control-sm" name="about_instructor" type="text" placeholder="" required>
-
-                    <label class="form-check-label" for="exampleCheck1">Category</label>
-                    <input class="form-control form-control-sm" name="category" type="text" placeholder="" required>
-
-                    <label class="form-check-label" for="exampleCheck1">Type</label>
-                    <input class="form-control form-control-sm" name="type" type="text" placeholder="" required>
+                    <label for="exampleFormControlTextarea1">Description</label>
+                    <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
 
                     <br>
-                    <button type="submit" class="btn btn-primary btn-sm">Create Course</button>
-                    <a href="{{url('/show-courses')}}" class="small-box-footer">Show Courses<i class="fa fa-arrow-circle-right"></i></a>
-
+                     <div class="row">
+                        <div class="col text-center modal-title-margin">
+                            <button type="submit" class="btn btn btn-lg add-teacher-btn" style="color:#fff; font-size:15px;text-decoration:none"><i class="fas fa-plus-circle fa-user-color"></i>&nbsp;&nbsp;Add Course</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-4"></div>
             </div>
@@ -52,7 +51,7 @@
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
-                           <li>{{$error}}</li>
+                            <li>{{$error}}</li>
                         @endforeach
                     </ul>
                 </div>

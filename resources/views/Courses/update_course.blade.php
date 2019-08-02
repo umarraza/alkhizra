@@ -1,79 +1,65 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h1 class="box-title">Edit Course</h1>
-                    <div class="pull-right">
-                        <a href="{{ url('show-courses') }}" type="button" class="btn btn-danger">Back</a>
+    <form action="/alkhizra/course-update/{{ $course->id }}" method="post">
+    {{ csrf_field() }}
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col text-center modal-title-margin">
+                            <h4 class="create-teacher-title">Update course</h4>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select Teacher:</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="teacherId">
+                            @foreach ($teachers as $teacher)
+                                <option value="{{$teacher->id}}" name="course_name">{{$teacher->first_name. ' '. $teacher->last_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <label class="form-check-label" for="exampleCheck1">First Name</label>
+                    <input type="text" class="form-control" id="courseName" name="courseName" placeholder="" required="true" value="{{$course->courseName}}">
+
+
+                    <label class="form-check-label" for="exampleCheck1">Last Name</label>
+                    <input type="text" class="form-control" id="courseType" name="courseType" placeholder="" required="true" value="{{$course->courseType}}">
+
+
+                    <label class="form-check-label" for="exampleCheck1">Specialization</label>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="" required="true" value="{{$course->description}}">
+
+                    <br>
+                     <div class="row">
+                        <div class="col text-center modal-title-margin">
+                            <button type="submit" class="btn btn btn-lg update-teacher-btn" style="color:#fff; font-size:15px;"><i class="fas fa-user-plus fa-user-color"></i>&nbsp;&nbsp;Update course</button>
+                        </div>
                     </div>
                 </div>
-
-                <form class="form-horizontal" method="post" action="{{url('/course-update/'.$course->id)}}">
-                {{ csrf_field() }}
-
-                    <div class="box-body">
-
-                        <br>
-
-                        <div class="form-group">
-                        
-                            <label for="exampleFormControlSelect1">Update Teacher:</label>
-                            
-                            <select class="form-control" id="exampleFormControlSelect1" name="teacherId">
-                                @foreach ($teachers as $teacher)
-                                    <option value="{{$teacher->id}}" name="course_name">{{$teacher->first_name. ' '. $teacher->last_name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Course Name:</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="course_name" name="course_name" placeholder="" required="true" value="{{$course->course_name}}">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Description:</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="description" name="description" placeholder="" required="true" value="{{$course->description}}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">About Instructor:</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="about_instructor" name="about_instructor" placeholder="" required="true" value="{{$course->about_instructor}}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Category:</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="category" name="category" placeholder="" required="true" value="{{$course->category}}">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Type:</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" id="type" name="type" placeholder="" required="true" value="{{$course->type}}">
-                            </div>
-                        </div>
-
-                        <input type="hidden" class="form-control" id="id" name="id" placeholder="" required="true" value="{{$course->id}}">
-
-                    </div>
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-info pull-right">Update</button>
-                    </div>
-                </form>
+                <div class="col-md-4"></div>
             </div>
         </div>
-        <div class="col-lg-4"></div>
+    </form>
+
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
+        <div class="col-md-4"></div>
     </div>
+
 @endsection

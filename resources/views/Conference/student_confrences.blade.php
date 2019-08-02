@@ -20,13 +20,12 @@
         </div>
         <div class="col-md-8">
             <h5 class="class-title"><b>{{$conference->conferenceName}}</b></h5>
-            <p class="class-teacher">{{$conference->date}}</p>
-            <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$conference->time}}</p>
-            <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$conference->timeZone}}</p>
+            <p class="class-teacher">{{$conference->conferenceDate}}</p>
+            <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$conference->conferenceTime}}</p>
 
             <hr class="show-classes-hr">
             <span><i class="fas fa-file"></i>&nbsp;&nbsp;Status:</span><span class="style-spam">&nbsp;&nbsp;Live</span>
-            <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;Attempts:</span>&nbsp;&nbsp;GMT Standard Time</span>
+            <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;</span>&nbsp;&nbsp;{{$conference->timeZone}}</span>
         </div>
         <div class="col-md-2 md-2-col">
             <button class="btn btn-lg btn-success pull-right" style="background-color: #38ADA9; margin:44px -57px 0px 0px"><a href="{{url('/start-session/'.$conference->id)}}" style=" color:#fff; text-decoration:none">&nbsp;Join</a></button>

@@ -4,8 +4,12 @@
 
     <div class="row">
         <div class="col-lg-4 col-lg-offset-1">
-            <h1 style="color:#000; font-weight:bold;">Create Test</h1>
-
+            <div class="row">
+                <div class="col text-center modal-title-margin">
+                    {{-- <h4 class="create-teacher-title">Create Class</h4> --}}
+                    <h1 class="add-test-btn">Create Test</h1>
+                </div>
+            </div>
             <form action="{{url('create-test')}}" method="post">
             {{ csrf_field() }}
                 <div class="form-group">
@@ -42,7 +46,7 @@
                     <label for="exampleFormControlSelect1">Select Course:</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="course_Id">
                         @foreach ($courses as $course)
-                            <option value="{{$course->id}}" name="course_name">{{$course->course_name}}</option>
+                            <option value="{{$course->id}}" name="course_name">{{$course->courseName}}</option>
                         @endforeach
                     </select>
                 </div>

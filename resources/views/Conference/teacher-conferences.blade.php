@@ -20,8 +20,8 @@
         </div>
         <div class="col-md-8">
             <h5><b>{{$conference->conferenceName}}</b></h5>
-            <p class="teacher-classes-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$conference->date}}</p>
-            <p class="teacher-classes-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$conference->time}}</p>
+            <p class="teacher-classes-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$conference->conferenceDate}}</p>
+            <p class="teacher-classes-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$conference->conferenceTime}}</p>
             <hr style="border-top: 1px solid #DEDEDE; width:136.5%">
             <span><i class="fas fa-file"></i>&nbsp;&nbsp;Status:</span> <span style="color:#0DC500">Live</span>
             <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;{{$conference->timeZone}}</span>

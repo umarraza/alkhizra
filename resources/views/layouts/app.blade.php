@@ -10,10 +10,11 @@
 
     {{-- Stylesheet Links --}}
     <link rel="stylesheet" href="{{ asset('/public/css/style.css')}}">
-    <link href="{{ asset('/public/css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/public/css/home.css')}}">
+    <link rel="stylesheet" href="{{ asset('/public/css/app.css') }}">
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     {{-- Javascript Links --}}
-
 
     <script src="{{ asset('/public/js/app.js') }}"></script>
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
@@ -25,7 +26,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="{{ asset('/public/js/alkhizra.js')}}"></script>
     <script src="https://kit.fontawesome.com/7917da7459.js"></script>
-
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 </head>
@@ -48,7 +48,7 @@
                         </button>
 
                         <!-- Branding Image -->
-                        <a class="navbar-brand" href="{{ url('/') }}">
+                        <a class="navbar-brand" href="{{ url('/') }}" style="color:#38ADA9; font-weight:900;font-size:30px">
                             {{ config('app.name', 'Laravel') }}
                         </a>
                     </div>
@@ -65,7 +65,7 @@
                                 <li><a href="{{ route('register') }}">Register</a></li>
                             @else
                                 <li class="dropdown" style="position:absolute; right:0; margin-right:30px">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                    <a href="{{ url('') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
 
@@ -89,19 +89,23 @@
                                         <a class="nav-link" href="{{ url('list-teachers') }}">Teacher</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('show-courses') }}">Course</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" href="{{ url('show-students') }}">Student</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('show-classes') }}">Class</a>
                                     </li>
+
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('show-conferenece') }}">Conference</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('show-admin-tests') }}">Test</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('show-courses') }}">Course</a>
+                                    <li class="nav-item pull-right">
+                                        <a class="nav-link" href="{{ url('admin') }}">Profile</a>
                                     </li>
                                 @endif
                                 @if (Auth::User()->roleId == 2)
@@ -109,13 +113,16 @@
                                         <a class="nav-link" href="{{ url('teacher-classes') }}">Class</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('teacher-conferences') }}">Conference</a>
+                                        <a class="nav-link" href="{{ url('teacher-courses') }}">Course</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('show-tests') }}">Test</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('teacher-courses') }}">Course</a>
+                                        <a class="nav-link" href="{{ url('teacher-conferences') }}">Conference</a>
+                                    </li>
+                                    <li class="nav-item pull-right">
+                                        <a class="nav-link" href="{{ url('admin') }}">Profile</a>
                                     </li>
                                 @endif
                                 @if (Auth::User()->roleId == 3)
@@ -130,6 +137,9 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('student-tests') }}">Tests</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('admin') }}">Profile</a>
                                     </li>
                                 @endif
                             @endguest

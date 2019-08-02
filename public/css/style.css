@@ -100,7 +100,8 @@
     width:100%;
 }
 .add-user-btn{
-    background: #38ADA9;
+    color: #fff;
+    background-color: #38ADA9;
 }
 .fa-user-color{
     color: #DEDEDE;
@@ -141,4 +142,63 @@ div.container.show-class-container{
 }
 div.col-md-1{
     margin: 0;
+}
+
+/* ADD NEW TEACHER MODAL */
+.modal-title-margin{
+    padding-bottom: 35px;
+    font-size: 30px;
+    color: #38ADA9;
+}
+.modal-submit-btn{
+    background: #38ADA9;
+    width: 162px;
+    font-weight: 900;
+    font-size: 18px;
+    color: #fff;
+
+}
+.create-teacher-title{
+    font-weight: 900;
+    font-size: 30px;
+}
+.add-teacher-btn{
+    color: #fff;
+    background-color: #38ADA9;
+    width: 170px;
+}
+.add-conference-btn{
+    color: #fff;
+    background-color: #38ADA9;
+    width: 195px;
+}
+.add-test-btn{
+    font-weight: 900;
+    font-size: 50px;
+}
+.update-btn{
+    color: #fff;
+    background-color: #38ADA9;
+    width: 160px;
+    border-radius: 2px;
+}
+.image-input{
+    width: 216px;
+}
+.login-pannel-text{
+    color: #38ADA9;
+}
+.login-btn{
+    color: #fff;
+    background-color: #38ADA9;
+    width: 344px;
+    border-radius: 2px;
+}
+
+/* Update Vies Css */
+
+.update-teacher-btn{
+    color: #fff;
+    background-color: #38ADA9;
+    width: 195px;
 }

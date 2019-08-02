@@ -37,7 +37,7 @@ class ClassController extends Controller
                 'timeZone'     =>  $request->timeZone,
                 'room_token'   =>  uniqid(),
                 'courseId'     =>  $request->courseId,
-                'teacherId'    =>  $teacher->id
+                'teacher_id'    =>  $teacher->id
             ]);
     
             DB::commit();
@@ -69,9 +69,12 @@ class ClassController extends Controller
         ]);
 
         $class->update($data);
-        Classes::whereId($class->id)->update([
-            "teacherId" => Course::find($class->course_Id)->teacherId,
-        ]);
+        
+        // latter update teacher_id as well 
+
+        // Classes::whereId($class->id)->update([
+        //     "teacherId" => Course::find($class->course_Id)->teacher_id,
+        // ]); 
 
         return redirect()->action('ClassController@showClasse');
     }

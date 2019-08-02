@@ -16,6 +16,17 @@ Auth::routes();
 Route::get('/admin', function () {
     return view('admin.admin');
 });
+Route::get('/teacher', function () {
+    return view('teacher.teacher');
+});
+Route::get('/student', function () {
+    return view('Students.student');
+});
+
+
+Route::get('/admin', function () {
+    return view('admin.admin');
+});
 
 Route::get('/screenshare', function() {
     return view('whiteboard.screenshare');
@@ -98,12 +109,10 @@ Route::get('/class-update-form/{class}', 'ClassController@updateClassForm')->mid
 Route::post('/class-update/{class}', 'ClassController@updateClass')->middleware('lmsRole');
 
 
-/* ========= Classes Routes ========= */
+/* ========= Conferences Routes ========= */
 Route::get('/add-conference-form', 'ConferenceController@confereneceForm')->middleware('lmsRole');
 Route::post('/create-conferenece', 'ConferenceController@createConferenec')->middleware('lmsRole');
 Route::get('/show-conferenece', 'ConferenceController@showConfreneces')->middleware('lmsRole');
-
-/* ========= Conferences Routes ========= */
 Route::get('/teacher-conferences', 'ConferenceController@teacherConferences');
 
 /* ========= Conferences Routes ========= */

@@ -22,7 +22,7 @@ class Classes extends Model
         'timeZone',
         'room_token',
         'courseId',
-        'teacherId'
+        'teacher_id'
     ];
 
     public static function alertMail(Request $request) {

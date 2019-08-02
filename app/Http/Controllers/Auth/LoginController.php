@@ -8,6 +8,21 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
+
+
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     return $request;
+    //     if ( $user->isTeacher() ) {
+    //         return redirect()->route('teacher');
+
+    //     }elseif ($user->isStudent()) {
+    //         return redirect()->route('student');
+    //     }else{
+    //         return redirect()->route('admin');
+    //     }
+    // }
+
     /*
     |--------------------------------------------------------------------------
     | Login Controller

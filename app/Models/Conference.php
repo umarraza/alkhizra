@@ -18,8 +18,8 @@ class Conference extends Model
     protected $fillable = [
 
         'conferenceName',
-        'date',
-        'time',
+        'conferenceDate',
+        'conferenceTime',
         'timeZone',
         'teacherId'
     ];
