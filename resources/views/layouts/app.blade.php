@@ -104,8 +104,11 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('show-admin-tests') }}">Test</a>
                                     </li>
-                                    <li class="nav-item pull-right">
+                                    <li class="nav-item">
                                         <a class="nav-link" href="{{ url('admin') }}">Profile</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('get-autorization-code') }}">Zoom API</a>
                                     </li>
                                 @endif
                                 @if (Auth::User()->roleId == 2)

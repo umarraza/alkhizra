@@ -42,7 +42,7 @@ Route::get('/whiteboard', function() {
 
 Route::get('/create-account-form','AccountController@createAccountForm');
 
-Route::post('/create-account','AccountController@createAccount');
+Route::get('/get-autorization-code','AccountController@createAccount');
 
 
 Route::get('/home', 'HomeController@index');
