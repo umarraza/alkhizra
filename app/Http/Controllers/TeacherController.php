@@ -28,11 +28,6 @@ class TeacherController extends Controller
 
         ]);
 
-        $first_name = $request->first_name;
-        $last_name = $request->last_name;
-
-        $teacherName = $first_name . ' ' . $last_name;
-
         $accessCode = mt_rand();
 
         DB::beginTransaction();
@@ -40,7 +35,8 @@ class TeacherController extends Controller
 
             $user = User::create([
 
-                'name'        =>  $teacherName,
+                'first_name'  =>  $request->first_name,
+                'last_name'   =>  $request->last_name,
                 'email'       =>  $request->email,
                 'accessCode'  =>  $accessCode,
                 'roleId'  =>  2
@@ -58,7 +54,7 @@ class TeacherController extends Controller
     
             ]);
     
-            $personName  = $first_name . ' ' . $last_name;
+            $personName  = $request->first_name . ' ' . $request->last_name;
 
             $message = "A random message";
             $tousername = $request->email;
@@ -105,7 +101,8 @@ class TeacherController extends Controller
         try {
             $teacher->update($data);
             User::whereId($teacher->user->id)->update([
-                "name" => $teacher->first_name . ' ' . $teacher->last_name,
+                "first_name" => $teacher->first_name,
+                "last_name" => $teacher->last_name,
             ]);
             DB::commit();
         } catch (Exception $th) {

@@ -23,7 +23,6 @@ Route::get('/student', function () {
     return view('Students.student');
 });
 
-
 Route::get('/admin', function () {
     return view('admin.admin');
 });

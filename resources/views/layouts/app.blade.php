@@ -66,7 +66,7 @@
                             @else
                                 <li class="dropdown" style="position:absolute; right:0; margin-right:30px">
                                     <a href="{{ url('') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                        {{ Auth::user()->first_name . ' '. Auth::user()->last_name }} <span class="caret"></span>
                                     </a>
 
                                     <ul class="dropdown-menu">

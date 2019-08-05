@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 05, 2019 at 08:07 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.1.27
+-- Host: localhost:3306
+-- Generation Time: Aug 04, 2019 at 06:09 PM
+-- Server version: 5.7.27
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `alkhizra_lms`
+-- Database: `stackcru_alkhizra`
 --
 
 -- --------------------------------------------------------
@@ -30,13 +30,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `classes` (
   `id` int(10) NOT NULL,
-  `classTitle` varchar(100) NOT NULL,
-  `classDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `classTime` varchar(100) NOT NULL,
-  `timeZone` varchar(30) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  `time_from` varchar(100) NOT NULL,
+  `time_to` varchar(100) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `teacher_description` varchar(500) NOT NULL,
+  `teacher_email` varchar(50) DEFAULT NULL,
   `room_token` varchar(50) NOT NULL,
-  `courseId` int(10) NOT NULL,
-  `teacher_id` int(10) NOT NULL,
+  `course_Id` int(10) NOT NULL,
+  `teacherId` int(10) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updatedAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -45,32 +48,9 @@ CREATE TABLE `classes` (
 -- Dumping data for table `classes`
 --
 
-INSERT INTO `classes` (`id`, `classTitle`, `classDate`, `classTime`, `timeZone`, `room_token`, `courseId`, `teacher_id`, `createdAt`, `updatedAt`) VALUES
-(7, 'History of Java 2', '2019-03-08 00:18:29', 'Tuesday, August 27, 2019 07:00 PM - 09:00 PM (60 Min)', 'GMT Standard Time', '5d47b2bdddc22', 6, 5, '2019-08-05 11:38:21', '2019-08-05 11:38:21');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `conferences`
---
-
-CREATE TABLE `conferences` (
-  `id` int(10) NOT NULL,
-  `conferenceName` varchar(50) NOT NULL,
-  `conferenceDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `conferenceTime` varchar(100) NOT NULL,
-  `timeZone` varchar(50) NOT NULL,
-  `teacher_id` int(10) NOT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `conferences`
---
-
-INSERT INTO `conferences` (`id`, `conferenceName`, `conferenceDate`, `conferenceTime`, `timeZone`, `teacher_id`, `createdAt`, `updatedAt`) VALUES
-(3, 'Ubiquitous Technology', '2019-08-02 12:43:45', 'Tuesday, August 27, 2019 07:00 PM - 09:00 PM (60 Min)', 'GMT Standard Time', 5, '2019-08-05 11:27:32', '2019-08-05 11:27:32');
+INSERT INTO `classes` (`id`, `title`, `date`, `time_from`, `time_to`, `description`, `teacher_description`, `teacher_email`, `room_token`, `course_Id`, `teacherId`, `createdAt`, `updatedAt`) VALUES
+(1, 'History of C++', '2019-06-17', '06:00:00 pm', '08:00:00 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Umar Raza will be the instructor of this class.', 'umarraza2200@gmail.com', '5d25b525862d1', 1, 1, '2019-07-10 12:07:08', '2019-07-10 07:07:08'),
+(3, 'History of Java', '2019-03-07 16:18:29', '06:00:00 pm', '08:00:00 pm', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Umar Raza will be the instructor of this class.', 'umarraza2200@gmail.com', '5d317831e09ff', 3, 3, '2019-07-19 09:55:32', '2019-07-19 02:58:41');
 
 -- --------------------------------------------------------
 
@@ -80,10 +60,12 @@ INSERT INTO `conferences` (`id`, `conferenceName`, `conferenceDate`, `conference
 
 CREATE TABLE `courses` (
   `id` int(10) NOT NULL,
-  `courseName` varchar(50) NOT NULL,
-  `courseType` varchar(20) NOT NULL,
+  `course_name` varchar(50) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `teacher_id` int(10) DEFAULT NULL,
+  `about_instructor` varchar(200) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `teacherId` int(10) DEFAULT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -92,8 +74,11 @@ CREATE TABLE `courses` (
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `courseName`, `courseType`, `description`, `teacher_id`, `createdAt`, `updatedAt`) VALUES
-(6, 'Introduction to Python', 'Free', 'dsds', 5, '2019-08-05 11:36:29', '2019-08-05 11:36:29');
+INSERT INTO `courses` (`id`, `course_name`, `description`, `about_instructor`, `category`, `type`, `teacherId`, `createdAt`, `updatedAt`) VALUES
+(1, 'Introduction to C++', 'C++ is a statically-typed, free-form, (usually) compiled, multi-paradigm, intermediate-level general-purpose middle-level programming language.', 'Umar Raza is the instructor of this course.', 'Programming', 'Free', 1, '2019-07-10 04:46:04', '2019-07-10 04:47:01'),
+(3, 'Introduction to Java', 'History of Java', 'Malik Aftab is the instructor of this course.', 'Programming', 'Free', 1, '2019-07-19 02:58:29', '2019-07-19 02:58:29'),
+(4, 'History of Islam', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Umar Raza is the instructor of this course.', 'Programming', 'Free', 1, '2019-07-31 11:06:33', '2019-07-31 11:06:33'),
+(5, 'Introduction to C+', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'Umar Raza is the instructor of this course.', 'Programming', 'Free', 1, '2019-07-31 11:06:44', '2019-07-31 11:06:44');
 
 -- --------------------------------------------------------
 
@@ -128,8 +113,8 @@ CREATE TABLE `students` (
   `id` int(10) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
-  `dateOfBirth` varchar(50) NOT NULL,
-  `phoneNumber` varchar(20) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `grade` varchar(10) NOT NULL,
   `email` varchar(50) NOT NULL,
   `course_id` int(10) NOT NULL,
   `teacher_id` int(10) NOT NULL,
@@ -142,8 +127,10 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `first_name`, `last_name`, `dateOfBirth`, `phoneNumber`, `email`, `course_id`, `teacher_id`, `userId`, `createdAt`, `updatedAt`) VALUES
-(8, 'Mian', 'Amir', '15-0-1995', '03034969407', 'alexa@gmail.com', 6, 5, 46, '2019-08-05 11:36:57', '2019-08-05 11:36:57');
+INSERT INTO `students` (`id`, `first_name`, `last_name`, `gender`, `grade`, `email`, `course_id`, `teacher_id`, `userId`, `createdAt`, `updatedAt`) VALUES
+(3, 'Nosheen', 'Fatima', 'Female', 'A+', 'nosheenfatima@gmail.com', 1, 1, 10, '2019-07-10 04:50:53', '2019-07-10 04:50:53'),
+(4, 'Malik', 'Aftab', 'Male', 'A+', 'alexa@gmail.com', 1, 1, 11, '2019-07-18 23:24:36', '2019-07-18 23:24:36'),
+(5, 'Numan', 'Hashmi', 'Male', 'A+', 'numan@gmail.com', 3, 1, 13, '2019-07-19 04:53:31', '2019-07-19 04:53:31');
 
 -- --------------------------------------------------------
 
@@ -155,8 +142,8 @@ CREATE TABLE `teachers` (
   `id` int(10) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(20) NOT NULL,
-  `specialization` varchar(50) NOT NULL,
-  `phoneNumber` bigint(50) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `description` varchar(500) NOT NULL,
   `email` varchar(50) NOT NULL,
   `userId` int(11) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -167,28 +154,9 @@ CREATE TABLE `teachers` (
 -- Dumping data for table `teachers`
 --
 
-INSERT INTO `teachers` (`id`, `first_name`, `last_name`, `specialization`, `phoneNumber`, `email`, `userId`, `createdAt`, `updatedAt`) VALUES
-(5, 'Umar', 'Raza', 'BSSC', 3034969407, 'umarraza2200@gmail.com', 44, '2019-08-05 11:26:35', '2019-08-05 11:26:35'),
-(7, 'Hassan', 'Amir', 'BSSC', 3034969407, 'haseeb@gmail.com', 48, '2019-08-05 12:38:58', '2019-08-05 12:38:58');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tests`
---
-
-CREATE TABLE `tests` (
-  `id` int(10) NOT NULL,
-  `testName` varchar(50) NOT NULL,
-  `description` varchar(500) NOT NULL,
-  `totalMarks` varchar(50) NOT NULL,
-  `passingMarks` varchar(50) NOT NULL,
-  `totalTime` varchar(20) NOT NULL,
-  `instructions` varchar(500) NOT NULL,
-  `course_id` int(10) NOT NULL,
-  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `teachers` (`id`, `first_name`, `last_name`, `address`, `description`, `email`, `userId`, `createdAt`, `updatedAt`) VALUES
+(1, 'Umar', 'Raza', 'Lahore, Pakistan', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'umarraza2200@gmail.com', 6, '2019-07-10 04:36:47', '2019-07-10 04:43:49'),
+(3, 'Malik', 'Aftab', 'Lahore, Pakistan', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'malikaftab@gmail.com', 12, '2019-07-19 02:57:34', '2019-07-19 02:57:34');
 
 -- --------------------------------------------------------
 
@@ -198,8 +166,7 @@ CREATE TABLE `tests` (
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `first_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(190) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `accessCode` int(10) DEFAULT NULL,
@@ -214,11 +181,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `accessCode`, `roleId`, `remember_token`, `verified`, `createdAt`, `updatedAt`) VALUES
-(1, 'Super', 'Admin', 'admin@admin.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', NULL, 1, 'LBrPa4qJtQpkRYt4g0XxqzBFDRNP6s55SlevGxhbpWi73klOvi028KdCwBiO', 1, '2019-07-08 19:00:00', '2019-07-08 19:00:00'),
-(44, 'Umar ', 'Raza', 'umarraza2200@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 1121952115, 2, 'dITE3QCvuUyXEDg5A6PKzSllqFrDwMhhYMR3FTOk2l8l1YbiYNH3W6DRyWXi', NULL, '2019-08-05 11:26:35', '2019-08-05 11:26:35'),
-(46, 'Mian ', 'Amir', 'alexa@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 317669759, 3, 'BhuG3dZH5FM0A0QRePu4sbw76dzuOZ87rjj7QoSzebTE3FUenpg09l02odNS', NULL, '2019-08-05 11:36:57', '2019-08-05 11:36:57'),
-(48, 'Hassan', 'Amir', 'haseeb@gmail.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', 813499318, 2, NULL, NULL, '2019-08-05 12:38:58', '2019-08-05 12:38:58');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `accessCode`, `roleId`, `remember_token`, `verified`, `createdAt`, `updatedAt`) VALUES
+(1, 'Admin', 'admin@admin.com', '$2y$10$VwROsyn0bDr5gTh/rnCCG.5JN3kZTAWEEUZPJLHfiZf.84ZLdPtwq', NULL, 1, '6gbcNqzgdFatDOPgZHuphi0eE5lmBVIDi0f8uWd1e2KAXfT7SErvIbt0Q1Cm', 1, '2019-07-08 19:00:00', '2019-07-08 19:00:00'),
+(6, 'Umar Raza', 'umarraza2200@gmail.com', '$2y$10$wl.u3qGx12y7irqtzOPE2eA07FaAyF6knsscAvS243qDTFWkRl2mu', 280489293, 2, 'PC1sP4gAJX5ki1ZaOO7XPMggSqHP7h1932K5wWoNoZxR5shyavdkUqx38SRo', NULL, '2019-07-10 04:36:47', '2019-07-10 04:43:49'),
+(10, 'Nosheen Fatima', 'nosheenfatima@gmail.com', '$2y$10$wl.u3qGx12y7irqtzOPE2eA07FaAyF6knsscAvS243qDTFWkRl2mu', 1490225865, 3, 'Ocy3G9b52bAkkMCnKxvhDyoyoxOnt1XQL7E1mkOf2FEyK0PEaDV9DS6Q6X0O', NULL, '2019-07-10 04:50:53', '2019-07-10 04:50:53'),
+(11, 'Malik Aftab', 'alexa@gmail.com', '$2y$10$wl.u3qGx12y7irqtzOPE2eA07FaAyF6knsscAvS243qDTFWkRl2mu', 1286839424, 3, '6jgNkPzd5AwRCnUisEzfRpiNGELDBZD7ihqHRaKH2ZHNEnky5pV5e3w7bHRY', NULL, '2019-07-18 23:24:36', '2019-07-18 23:24:36'),
+(12, 'Malik Aftab', 'malikaftab@gmail.com', '$2y$10$wl.u3qGx12y7irqtzOPE2eA07FaAyF6knsscAvS243qDTFWkRl2mu', 1067106809, 2, 'QALhvAyY9PUPWTAIdHzCxykuKS5uKyt71qO1zpSSakmstrDwWmXhSIIOwven', NULL, '2019-07-19 02:57:34', '2019-07-19 02:57:34'),
+(13, 'Numan Hashmi', 'numan@gmail.com', '$2y$10$wl.u3qGx12y7irqtzOPE2eA07FaAyF6knsscAvS243qDTFWkRl2mu', 1450625600, 3, NULL, NULL, '2019-07-19 04:53:31', '2019-07-19 04:53:31');
 
 -- --------------------------------------------------------
 
@@ -242,12 +211,6 @@ CREATE TABLE `verify_users` (
 -- Indexes for table `classes`
 --
 ALTER TABLE `classes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `conferences`
---
-ALTER TABLE `conferences`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -275,12 +238,6 @@ ALTER TABLE `teachers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tests`
---
-ALTER TABLE `tests`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -301,19 +258,13 @@ ALTER TABLE `verify_users`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `conferences`
---
-ALTER TABLE `conferences`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -325,25 +276,19 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `tests`
---
-ALTER TABLE `tests`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `verify_users`

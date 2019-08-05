@@ -30,10 +30,6 @@ class StudentController extends Controller
 
         $course = Course::find($request->course_id);
         $teacher = Teacher::find($course->teacher_id);
-        $first_name = $request->first_name;
-        $last_name = $request->last_name;
-
-        $studentName = $first_name . ' ' . $last_name;
         
         $accessCode = mt_rand();
 
@@ -42,10 +38,11 @@ class StudentController extends Controller
             
             $user = User::create([
 
-                'name'    =>  $studentName,
-                'email'   =>  $request->email,
-                'accessCode'  =>  $accessCode,
-                'roleId'  =>  3
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'accessCode' => $accessCode,
+                'roleId' => 3
     
             ]);
     
@@ -65,7 +62,8 @@ class StudentController extends Controller
     
             $student->save();
     
-            $personName = $first_name . ' ' . $last_name;
+            $personName  = $request->first_name . ' ' . $request->last_name;
+
             $message = "A random message";
             $tousername = $request->email;
     
@@ -104,7 +102,7 @@ class StudentController extends Controller
             'email' => 'required',
         ]);
 
-        // $student->user->email = $student->email; latter update user email as well for all users
+        // $student->user->email = $student->email; latter update user email and user first_name last_name as well for all users
 
         $student->update($data);
 
