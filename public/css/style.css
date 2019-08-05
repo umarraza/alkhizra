@@ -185,9 +185,11 @@ div.col-md-1{
 .image-input{
     width: 216px;
 }
+
 .login-pannel-text{
     color: #38ADA9;
 }
+
 .login-btn{
     color: #fff;
     background-color: #38ADA9;
@@ -201,4 +203,15 @@ div.col-md-1{
     color: #fff;
     background-color: #38ADA9;
     width: 195px;
+}
+
+/* Style image input */
+
+.image-upload{
+    width: 216px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.image-upload-btn{
+    width: 140px;
 }

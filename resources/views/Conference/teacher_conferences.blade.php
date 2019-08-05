@@ -14,10 +14,13 @@
     @php $count=1; @endphp
     @foreach($confrences as $conference)
         <div class="container" style="width:80%;border:1px solid #D4D4D5; padding:3px; border-radius:3px">
-
             <div class="row">
                 <div class="col-md-2" style="max-width:10%;">
-                    <img src="{{url('/public/images/pic1.jpg')}}" alt="Image"/ width="120px" height="150px" style="border-radius:2px; padding:4px">
+                @if (isset($conference->teacher->image))
+                    <img src="{{url('/public/images/'.$conference->teacher->image->imageName)}}" alt="Image"/ width="120px" height="150px" style="border-radius:2px; padding:4px">
+                @else 
+                    <img src="{{url('/public/images/male.png')}}" alt="Image"/ width="120px" height="150px" style="border-radius:2px; padding:4px">
+                @endif
                 </div>
                 <div class="col-md-8">
                     <h5><b>{{$conference->conferenceName}}</b></h5>

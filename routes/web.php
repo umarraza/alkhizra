@@ -13,6 +13,11 @@
 
 Auth::routes();
 
+Route::get('image-upload', 'ImageUploadController@imageUpload')->name('image.upload');
+
+Route::post('image-upload', 'ImageUploadController@imageUploadPost')->name('image.upload.post');
+
+
 Route::get('/admin', function () {
     return view('admin.admin');
 });
@@ -22,10 +27,7 @@ Route::get('/teacher', function () {
 Route::get('/student', function () {
     return view('Students.student');
 });
-
-Route::get('/admin', function () {
-    return view('admin.admin');
-});
+Route::get('/admin', 'ImageUploadController@router');
 
 Route::get('/screenshare', function() {
     return view('whiteboard.screenshare');
@@ -112,7 +114,7 @@ Route::post('/class-update/{class}', 'ClassController@updateClass')->middleware(
 Route::get('/add-conference-form', 'ConferenceController@confereneceForm')->middleware('lmsRole');
 Route::post('/create-conferenece', 'ConferenceController@createConferenec')->middleware('lmsRole');
 Route::get('/show-conferenece', 'ConferenceController@showConfreneces')->middleware('lmsRole');
-Route::get('/teacher-conferences', 'ConferenceController@teacherConferences');
+Route::get('/teacher-conferences', 'TeacherController@teacherConferences');
 Route::get('/conference-update-form/{conference}', 'ConferenceController@updateConfereneceForm')->middleware('lmsRole');
 Route::post('/conference-update/{conference}', 'ConferenceController@updateConferenece')->middleware('lmsRole');
 Route::get('/conference-delete/{conference}', 'ConferenceController@deleteConferenece')->middleware('lmsRole');
@@ -125,11 +127,6 @@ Route::get('/test-update-form/{test}', 'TestController@updateTestForm');
 Route::post('/test-update/{test}', 'TestController@updateTest');
 Route::get('/test-delete/{test}', 'TestController@deleteTest');
 Route::get('/show-tests', 'TestController@listsTests');
-
-
-
-
-
 
 Route::get('firebase','FirebaseController@index');
 

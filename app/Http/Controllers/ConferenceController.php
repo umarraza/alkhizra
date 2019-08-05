@@ -108,20 +108,11 @@ class ConferenceController extends Controller
     public function showConfreneces() {
 
         $conferences = Conference::all();
-
         foreach($conferences as $conference) {
-
             $conference['teacher'] = $conference->teacher;
-
         }
-
         return view('Conference.show_conference', compact('conferences'));
-
     }
 
-    public function teacherConferences(Request $request) {
-        $teacher = Teacher::whereUserid(Auth::User()->id)->first();
-        $confrences = $teacher->confrences;
-        return view('Conference.teacher_conferences', compact('confrences', 'teacher'));
-    }
+    
 }

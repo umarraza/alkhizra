@@ -24,7 +24,7 @@ body, html {
   
   .bg {
     /* The image used */
-    background-image: url("resources/views/laptop.jpg");
+    background-image: url("public/images/welcome/laptop.jpg");
   
     /* Full height */
     width: 100%; 
@@ -37,7 +37,7 @@ body, html {
    
   .bg1 {
     /* The image used */
-    background-image: url("resources/views/boy.jpg");
+    background-image: url("public/images/welcome/boy.jpg");
   
     /* Full height */
     width: 100%; 
@@ -143,23 +143,23 @@ body, html {
  <div class="row" style="margin:10px">
  <div class="col-3" style="text-align: -webkit-center;">
      <h3>Virtual Classrooms</h3>
-     <img src="{{ URL::to('resources/views/4.jpg') }}" height="190px" width="270px">
+     <img src="{{url('/public/images/welcome/4.jpg')}}" height="190px" width="270px">
     <h5 style="color:#7C7C7C;line-height: 25px;font-weight: 300;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h5>
 
  </div>
  <div class="col-3" style="text-align: -webkit-center;">
       <h3>Virtual Conference Room</h3>
-      <img src="{{ URL::to('resources/views/3.jpg') }}" height="190px" width="270px">
+      <img src="{{url('/public/images/welcome/3.jpg')}}" height="190px" width="270px">
     <h5 style="color:#7C7C7C;line-height: 25px;font-weight: 300;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h5>
  </div>
  <div class="col-3" style="text-align: -webkit-center;">
     <h3>Online Tests</h3>
-    <img src="{{ URL::to('resources/views/1.jpg') }}" height="190px" width="270px">
+    <img src="{{url('/public/images/welcome/1.jpg')}}" height="190px" width="270px">
     <h5 style="color:#7C7C7C;line-height: 25px;font-weight: 300;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h5>
  </div>
  <div class="col-3" style="text-align: -webkit-center;">
     <h3>Online Courses</h3>
-    <img src="{{ URL::to('resources/views/2.jpg') }}" height="190px" width="270px">
+    <img src="{{url('/public/images/welcome/2.jpg')}}" height="190px" width="270px">
     <h5 style="color:#7C7C7C;line-height: 25px;font-weight: 300;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h5>
  </div>
  
@@ -173,7 +173,7 @@ body, html {
  <div class="container" style="min-width:100%; padding-bottom: 70px; padding-left:140px; padding-right:140px">
  <div class="row" style="margin:10px">
  <div class="col-6" style="text-align: -webkit-right;">
-     <img src="{{ URL::to('resources/views/5.jpg') }}" height="760px" width="550px">
+     <img src="{{url('/public/images/welcome/5.jpg')}}" height="760px" width="550px">
     
  </div>
  <div class="col-6">
@@ -185,7 +185,7 @@ body, html {
     <br>
     <div class="row">
     <div class="col-2" style="text-align: -webkit-center;">
-    <img src="{{ URL::to('resources/views/6.jpg') }}" height="65px" width="auto">
+    <img src="{{url('/public/images/welcome/6.jpg')}}" height="65px" width="auto">
     </div>
     <div class="col-10">
     <h3>We Know the Area</h3>
@@ -197,7 +197,7 @@ body, html {
     <br>
     <div class="row">
     <div class="col-2" style="text-align: -webkit-center;">
-    <img src="{{ URL::to('resources/views/7.jpg') }}" height="65px" width="auto">
+    <img src="{{url('/public/images/welcome/7.jpg')}}" height="65px" width="auto">
     </div>
     <div class="col-10">
     <h3>Quality never compromised</h3>
@@ -209,7 +209,7 @@ body, html {
     <br>
     <div class="row">
     <div class="col-2" style="text-align: -webkit-center;">
-    <img src="{{ URL::to('resources/views/8.jpg') }}" height="65px" width="auto" style="">
+    <img src="{{url('/public/images/welcome/8.jpg')}}" height="65px" width="auto" style="">
     </div>
     <div class="col-10">
     <h3>Highly-Trained Instructors</h3>
@@ -218,16 +218,9 @@ body, html {
     </div>
     </div>
 
-
-
     <button type="button"  style="width: 190px; height:50px; border-radius: 30px;color: white; background-color:#38ADA9;text-align: -webkit-center;margin-top:80px; margin-bottom:20px">More Info</button>
-
- 
  </div>
-
- 
  </div> 
- 
  </div>
 
  <div class="container" style="min-height:260px; margin-top: 110px;   min-width:100%;background-color:#38ADA9; padding-bottom: 70px; padding-left:140px; padding-right:140px">
@@ -241,7 +234,7 @@ body, html {
  <h1 style="text-align: -webkit-center; margin-bottom:100px" >Meet Our Team</h1>
  <div class="row" style="margin:10px">
  <div class="col-4" style="text-align: -webkit-center;">
- <img  src="{{ URL::to('resources/views/image.jpg') }}" style="border-radius:50%" alt="Avatar">  <h3 style="margin-top:30px">Name</h3>
+ <img  src="{{url('/public/images/welcome/image.jpg')}}" style="border-radius:50%" alt="Avatar">  <h3 style="margin-top:30px">Name</h3>
     <h5 style="color:#7C7C7C;line-height: 25px;font-weight: 300;">Designation</h5>
     <i style="font-size: 16px; color:#7C7C7C" class="fa fa-facebook"></i>
     <i style="font-size: 16px; color:#7C7C7C" class="fa fa-instagram"></i>
@@ -249,7 +242,7 @@ body, html {
     <i style="font-size: 16px; color:#7C7C7C" class="fa fa-twitter"></i>
  </div>
  <div class="col-4" style="text-align: -webkit-center;">
- <img  src="{{ URL::to('resources/views/image.jpg') }}" style="border-radius:50%" alt="Avatar">    <h3 style="margin-top:30px">Name</h3>
+ <img  src="{{url('/public/images/welcome/image.jpg')}}" style="border-radius:50%" alt="Avatar">    <h3 style="margin-top:30px">Name</h3>
     <h5 style="color:#7C7C7C;line-height: 25px;font-weight: 300;">Designation</h5>
     <i style="font-size: 16px; color:#7C7C7C" class="fa fa-facebook"></i>
     <i style="font-size: 16px; color:#7C7C7C" class="fa fa-instagram"></i>
@@ -257,7 +250,7 @@ body, html {
     <i style="font-size: 16px; color:#7C7C7C" class="fa fa-twitter"></i>
  </div>
  <div class="col-4" style="text-align: -webkit-center;">
- <img  src="{{ URL::to('resources/views/image.jpg') }}" style="border-radius:50%" alt="Avatar">    <h3 style="margin-top:30px">Name</h3>
+ <img  src="{{url('/public/images/welcome/image.jpg')}}" style="border-radius:50%" alt="Avatar">    <h3 style="margin-top:30px">Name</h3>
     <h5 style="color:#7C7C7C;line-height: 25px;font-weight: 300;">Designation</h5>
     <i style="font-size: 16px; color:#7C7C7C" class="fa fa-facebook"></i>
     <i style="font-size: 16px; color:#7C7C7C" class="fa fa-instagram"></i>
@@ -272,7 +265,7 @@ body, html {
  <div class="container" style="background-color:#FAFAFA; min-width:100%; text-align: -webkit-center; padding-bottom:100px;margin-top:105px; padding-left:140px; padding-right:140px">
  <h1 style="text-align: -webkit-center; margin-top:105px; margin-bottom:100px">Testimonials</h1> 
  <div class="container1">
-  <img src="{{ URL::to('resources/views/image.jpg') }}" style="border-radius:50%" alt="Avatar" class="image">
+  <img src="{{url('/public/images/welcome/image.jpg')}}" style="border-radius:50%" alt="Avatar" class="image">
   <div class="overlay">
     <a href="#" class="icon" title="User Profile">
       <i class="fa fa-quote-left" style="color:white"></i> 

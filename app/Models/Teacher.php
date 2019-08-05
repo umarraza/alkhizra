@@ -24,7 +24,7 @@ class Teacher extends Model
         'specialization',
         'phoneNumber',
         'email',
-        'userId'
+        'user_id'
     ];
 
     public function courses()
@@ -44,7 +44,13 @@ class Teacher extends Model
         return $this->hasMany(Conference::class);
     }
 
-    public function user() {
-        return $this->belongsTo(User::class, 'userId');
+    public function image() {
+        return $this->hasOne(Image::class);
     }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+
 }

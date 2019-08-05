@@ -8,12 +8,17 @@ use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Test;
 use App\Models\User;
+use App\Models\TestImages;
 use Auth;
 use DB;
 
 class TestController extends Controller
 {
     public function createTest(Request $request) {
+
+        request()->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
         $validatedData = $request->validate([
         
@@ -24,6 +29,7 @@ class TestController extends Controller
             'totalTime' => 'required',
             'instructions' => 'required',
             'course_id' => 'required',
+            'teacher_id' => 'required'
 
         ]);
 
@@ -41,7 +47,17 @@ class TestController extends Controller
                 'course_id'     =>  $request->course_id,
 
             ]);
+
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();
     
+            TestImages::create([
+                'imageName' => $imageName,
+                'test_id' => $test->id,
+                'teacher_id' => $request->teacher_id,
+            ]);
+            
+            request()->image->move(public_path('images'), $imageName);
+  
             DB::commit();
 
         } catch (Exception $e) {
@@ -54,7 +70,7 @@ class TestController extends Controller
 
     public function testForm() {
 
-        $teacher = Teacher::whereUserid(Auth::User()->id)->first();
+        $teacher = Teacher::where('user_id',Auth::User()->id)->first();
         $courses =  $teacher->courses;
         return view('Tests.create_test', compact('courses'));
     
@@ -62,7 +78,7 @@ class TestController extends Controller
 
     public function teacherTests() {
 
-        $teacher = Teacher::whereUserid(Auth::User()->id)->first();
+        $teacher = Teacher::where('user_id',Auth::User()->id)->first();
         $course = Course::where('teacher_id', $teacher->id)->first();
         $tests = Test::where('course_id', $course->id)->get();
         return view('Tests.show_teacher_tests', compact('tests'));

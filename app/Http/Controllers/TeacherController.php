@@ -9,6 +9,7 @@ use App\Models\Teacher;
 use App\Models\Student;
 use App\Models\Course;
 use App\Models\Classes;
+use App\Models\Image;
 use App\Models\User;
 use Auth;
 use DB;
@@ -50,7 +51,7 @@ class TeacherController extends Controller
                 'specialization' =>  $request->specialization,
                 'phoneNumber'    =>  $request->phoneNumber,
                 'email'          =>  $request->email,
-                'userId'         =>  $user->id,
+                'user_id'        =>  $user->id,
     
             ]);
     
@@ -61,7 +62,7 @@ class TeacherController extends Controller
     
             $userId = $user->id;
     
-            \Mail::send('mail',["personName "=>$personName ,"accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
+            \Mail::send('Mails.accessCodeMail',["personName "=>$personName ,"accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
     
                 $message->from('info@fantasycricleague.online');
                 $message->to($tousername)->subject('Verify Yourself');
@@ -81,7 +82,7 @@ class TeacherController extends Controller
 
     public function listTeachers() {
 
-        $teachers = Teacher::all();
+        $teachers = Teacher::with('image')->get();
         return view('teacher.show_all_teachers', compact('teachers'));
 
     }
@@ -155,7 +156,7 @@ class TeacherController extends Controller
 
     public function teacherCourses(Request $request) {
 
-        $teacher = Teacher::whereUserid(Auth::User()->id)->first();
+        $teacher = Teacher::where('user_id',Auth::User()->id)->first();
         $courses = $teacher->courses;
         return view('Courses.teacher_courses', compact('courses'));
 
@@ -163,16 +164,22 @@ class TeacherController extends Controller
 
     public function teacherStudents(Request $request) {
 
-        $teacher = Teacher::whereUserid(Auth::User()->id)->first();
+        $teacher = Teacher::where('user_id',Auth::User()->id)->first();
         $students = $teacher->students;
         return view('students.teacher_students', compact('students'));
 
     }
 
     public function teacherClasses(Request $request) {
-        $teacher = Teacher::whereUserid(Auth::User()->id)->first();
+        $teacher = Teacher::where('user_id', Auth::User()->id)->first();
         $classes = $teacher->classes;
         return view('teacher.teacher_classes', compact('classes'));
+    }
+
+    public function teacherConferences(Request $request) {
+        $teacher = Teacher::where('user_id',Auth::User()->id)->first();
+        $confrences = $teacher->confrences;
+        return view('Conference.teacher_conferences', compact('confrences', 'teacher'));
     }
 
     public function createTeacherForm() {

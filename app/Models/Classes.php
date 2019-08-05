@@ -60,7 +60,7 @@ class Classes extends Model
 
                 $tousername = $email;
 
-                \Mail::send('teacherMail',["teacherName"=>$teacherName,"time"=>$time], function ($data) use ($tousername) {
+                \Mail::send('Mails.teacherMail',["teacherName"=>$teacherName,"time"=>$time], function ($data) use ($tousername) {
         
                     $data->from('info@fantasycricleague.online');
                     $data->to($tousername)->subject('Class Time Alert');
@@ -78,7 +78,7 @@ class Classes extends Model
 
                 $tousername = $email;
 
-                \Mail::send('teacherMail',["teacherName"=>$teacherName,"time"=>$time], function ($data) use ($tousername) {
+                \Mail::send('Mails.teacherMail',["teacherName"=>$teacherName,"time"=>$time], function ($data) use ($tousername) {
         
                     $data->from('info@fantasycricleague.online');
                     $data->to($tousername)->subject('Class Time Alert');

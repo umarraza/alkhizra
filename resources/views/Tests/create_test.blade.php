@@ -9,7 +9,7 @@
                     <h1 class="add-test-btn">Create Test</h1>
                 </div>
             </div>
-            <form action="{{url('create-test')}}" method="post">
+            <form action="{{url('create-test')}}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Test Name</label>
@@ -49,10 +49,32 @@
                         @endforeach
                     </select>
                 </div>
-            <button type="submit" class="btn btn-lg btn-success pull-right" style="background-color: #38ADA9;">Create Test</button>
+
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                    <img src="images/{{ Session::get('image') }}">
+                    @endif
+                    @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <input type="file" name="image" class="form-control image-upload"><br>
+                <input type="hidden" name="teacher_id" value="{{$course->teacher_id}}" class="image-upload">
+                <button type="submit" class="btn btn-lg btn-success pull-right" style="background-color: #38ADA9;">Create Test</button>
             </form>
         </div>
     </div>
+
+
 
 
     <br>

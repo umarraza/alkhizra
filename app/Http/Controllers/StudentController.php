@@ -57,7 +57,7 @@ class StudentController extends Controller
                 'email'       =>  $request->email,
                 'course_id'   =>  $request->course_id,
                 'teacher_id'  =>  $teacher->id,
-                'userId'      =>  $user->id,
+                'user_id'     =>  $user->id,
             ]);
     
             $student->save();
@@ -69,7 +69,7 @@ class StudentController extends Controller
     
             $userId = $user->id;
     
-            \Mail::send('mail',["personName "=>$personName ,"accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
+            \Mail::send('Mails.accessCodeMail',["personName" => $personName, "accessCode"=>$accessCode,"userId"=>$userId], function ($message) use ($tousername) {
         
                 $message->from('info@fantasycricleague.online');
                 $message->to($tousername)->subject('Verify Yourself');
@@ -143,7 +143,7 @@ class StudentController extends Controller
 
     public function studentClasses(Request $request) {
 
-        $student = Student::whereUserid(Auth::User()->id)->first();
+        $student = Student::where('user_id',Auth::User()->id)->first();
         $course = $student->course;
         $course_name  =  $course->course_name;
 
@@ -157,12 +157,9 @@ class StudentController extends Controller
 
     public function studentCourses(Request $request) {
 
-        $student = Student::whereUserid(Auth::User()->id)->first();
-        // $courses = $student->course;
-        // return $courses;
-        $courses = Course::whereId($student->course_id)->get();
+        $student = Student::where('user_id',Auth::User()->id)->first();
+        $courses = Course::whereId(Auth::User()->student->course_id)->get();
         return view('students.student_courses', compact('courses'));
-
     }
 
     public function startClass(Classes $class) {
@@ -179,12 +176,13 @@ class StudentController extends Controller
     } 
 
     public function showStudents(Request $request) {
-        $students = Student::all();
+        $students = Student::with('image')->get();
         return view('students.show_students', compact('students'));
     }
 
     public function studentConfrences(Request $request) {
-        $confrences = Conference::all();    // latter change to student confrences
+        $student = Auth::User()->student;
+        $confrences = $student->teacher->confrences;
         return view('Conference.student_confrences', compact('confrences'));
     }
 

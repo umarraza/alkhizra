@@ -14,7 +14,11 @@
 
     <div class="row">
         <div class="col-md-2" style="max-width:10%;">
-            <img src="{{url('/public/images/pic1.jpg')}}" alt="Image"/ width="120px" height="150px" style="border-radius:2px; padding:4px">
+        @if (isset($class->teacher->image))
+            <img src="{{url('/public/images/'.$class->teacher->image->imageName)}}" alt="Image"/ width="120px" height="150px" style="border-radius:2px; padding:4px">
+        @else
+            <img src="{{url('/public/images/male.png')}}" alt="Image"/ width="120px" height="150px" style="border-radius:2px; padding:4px">
+        @endif
         </div>
         <div class="col-md-8">
             <h5><b>{{$class->classTitle}}</b></h5>

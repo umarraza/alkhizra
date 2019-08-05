@@ -1,8 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-
-
 <div class="container" style="width:80%;padding: 0 0 20px">
         <h1 class="user-heading"><b>Conferences</b></h1>
     <form class="form-inline my-2 my-lg-0">
@@ -20,7 +17,11 @@
 
     <div class="row show-class-main-row">
         <div class="col-md-2" style="max-width:10%;">
-            <img src="{{url('/public/images/pic1.jpg')}}" alt="Image"/ width="120px" height="170px" style="border-radius:2px; padding:4px">
+        @if(isset($conference->teacher->image))
+            <img src="{{url('/public/images/'.$conference->teacher->image->imageName)}}" alt="Image"/ width="120px" height="170px" style="border-radius:2px; padding:4px">
+        @else
+            <img src="{{url('/public/images/male.png')}}" alt="Image"/ width="120px" height="170px" style="border-radius:2px; padding:4px">
+        @endif
         </div>
         <div class="col-md-8">
             <h5 class="class-title"><b>{{$conference->conferenceName}}</b></h5>
@@ -32,7 +33,6 @@
             @endif
             <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$conference->conferenceDate}}</p>
             <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$conference->conferenceTime}}</p>
-
             <hr class="show-classes-hr">
             <span><i class="fas fa-file"></i>&nbsp;&nbsp;Status:</span><span class="style-spam">&nbsp;&nbsp;Live</span>
             <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i></span>&nbsp;&nbsp;{{$conference->timeZone}}</span>

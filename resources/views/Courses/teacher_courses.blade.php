@@ -4,7 +4,7 @@
 
 
 <div class="container" style="width:80%;padding: 0 0 20px">
-        <h1 style="color:#000"><b>Course</b></h1>
+        <h1 style="color:gray"><b>Course</b></h1>
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -16,7 +16,11 @@
 
     <div class="row">
         <div class="col-md-2" style="max-width:10%;">
-            <img src="{{url('/public/images/pic1.jpg')}}" alt="Image"/ width="120px" height="150px" style="border-radius:2px; padding:4px">
+        @if (isset($course->teacher->image))
+            <img src="{{url('/public/images/'.$course->teacher->image->imageName)}}" alt="Image"/ width="120px" height="150px" style="border-radius:2px; padding:4px">
+        @else
+            <img src="{{url('/public/images/male.png')}}" alt="Image"/ width="120px" height="150px" style="border-radius:2px; padding:4px">
+        @endif
         </div>
         <div class="col-md-8">
             <h5><b>{{$course->courseName}}</b></h5>

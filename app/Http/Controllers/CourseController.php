@@ -107,6 +107,7 @@ class CourseController extends Controller
 
         foreach ($courses as $course) {
             $course['teacher'] = $course->teacher;
+            $course['image'] = $course->teacher->image;
         }
         return view('Courses.show_courses', compact('courses'));
     }

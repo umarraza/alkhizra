@@ -20,7 +20,11 @@
                 <div class="col-md-3 col-sm-6 style-md-3-col">
                     <div class="row" id="sub-row">
                         <div class="col-md-2">
-                            <img src="{{url('/public/images/pic1.jpg')}}" class="rounded img-style" alt="Image"/ width="60px" height="60px">
+                        @if (isset($teacher->image))
+                            <img src="{{url('/public/images/'.$teacher->image->imageName)}}" class="rounded img-style" alt="Image"/ width="60px" height="60px">
+                        @else 
+                            <img src="{{url('/public/images/male.png')}}" class="rounded img-style" alt="Image"/ width="60px" height="60px">
+                        @endif
                         </div>
                         <div class="col-md-10 sub-col-md-10">
                             <div class="card style-card">
