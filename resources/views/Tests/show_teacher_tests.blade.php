@@ -10,7 +10,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         <button type="button" class="btn btn-lg pull-right add-user-btn">
             <i class="fas fa-plus-circle fa-user-color"></i>
-            <a class="create-user-link" href="{{ url('/create-test-form') }}" class="small-box-footer">&nbsp;&nbsp;Add Test</a>
+            <a class="small-box-footer create-user-link" href="{{ url('/create-test-form') }}" style="text-decoration:none">&nbsp;&nbsp;Add Test</a>
         </button>
     </form>
 </div> 
@@ -35,8 +35,8 @@
             <span><i class="fas fa-file"></i>&nbsp;&nbsp;Status:</span><span class="style-spam">&nbsp;&nbsp;Live</span>
             <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;Attempts:</span>&nbsp;&nbsp;GMT Standard Time</span>
             <div class="pull-right pull-right-div">
-                <a href="{{url('/class-update-form/'.$test->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="far fa-edit"aria-hidden="true"></i></button></a>
-                <a href="{{url('/class-update-form/'.$test->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>
+                <a href="{{url('/test-update-form/'.$test->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="far fa-edit"aria-hidden="true"></i></button></a>
+                <a href="{{url('/test-delete/'.$test->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>
            
             </div>
         </div>

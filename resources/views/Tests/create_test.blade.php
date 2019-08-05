@@ -6,7 +6,6 @@
         <div class="col-lg-4 col-lg-offset-1">
             <div class="row">
                 <div class="col text-center modal-title-margin">
-                    {{-- <h4 class="create-teacher-title">Create Class</h4> --}}
                     <h1 class="add-test-btn">Create Test</h1>
                 </div>
             </div>

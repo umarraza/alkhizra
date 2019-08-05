@@ -68,18 +68,15 @@ class TestController extends Controller
         return view('Tests.show_teacher_tests', compact('tests'));
     }
 
-    public function listsAdminTests() {
+    public function listsTests() {
 
         $tests = Test::with('course')->get();
-
-        foreach($tests as $test) {
-
-            if (empty($test->course->teacher))
-            {
-                return view('Tests.no_tests');
-            } else {
+        if ($tests !== NULL) {
+            foreach($tests as $test) {
                 $test['teacher'] = $test->course->teacher;
             }
+        } else {
+            return view('Tests.no_tests');
         }
         return view('Tests.show_tests', compact('tests'));
     }
@@ -103,7 +100,6 @@ class TestController extends Controller
             throw $e;
             DB::rollBack();
         }
+        return redirect()->action('TestController@teacherTests');
     }
-
-
 }

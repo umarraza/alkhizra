@@ -113,7 +113,7 @@ Route::post('/class-update/{class}', 'ClassController@updateClass')->middleware(
 Route::get('/add-conference-form', 'ConferenceController@confereneceForm')->middleware('lmsRole');
 Route::post('/create-conferenece', 'ConferenceController@createConferenec')->middleware('lmsRole');
 Route::get('/show-conferenece', 'ConferenceController@showConfreneces')->middleware('lmsRole');
-Route::get('/teacher-conferences', 'ConferenceController@teacherConferences')->middleware('lmsRole');
+Route::get('/teacher-conferences', 'ConferenceController@teacherConferences');
 Route::get('/conference-update-form/{conference}', 'ConferenceController@updateConfereneceForm')->middleware('lmsRole');
 Route::post('/conference-update/{conference}', 'ConferenceController@updateConferenece')->middleware('lmsRole');
 Route::get('/conference-delete/{conference}', 'ConferenceController@deleteConferenece')->middleware('lmsRole');
@@ -125,7 +125,7 @@ Route::get('/teachers-tests', 'TestController@teacherTests');
 Route::get('/test-update-form/{test}', 'TestController@updateTestForm');
 Route::post('/test-update/{test}', 'TestController@updateTest');
 Route::get('/test-delete/{test}', 'TestController@deleteTest');
-Route::get('/show-tests', 'TestController@listsAdminTests');
+Route::get('/show-tests', 'TestController@listsTests');
 
 
 

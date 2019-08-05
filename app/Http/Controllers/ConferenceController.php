@@ -120,10 +120,8 @@ class ConferenceController extends Controller
     }
 
     public function teacherConferences(Request $request) {
-
         $teacher = Teacher::whereUserid(Auth::User()->id)->first();
-        $conferences = $teacher->conferences;
-        return view('Conference.teacher-conferences', compact('conferences', 'teacher'));
-
+        $confrences = $teacher->confrences;
+        return view('Conference.teacher_conferences', compact('confrences', 'teacher'));
     }
 }
