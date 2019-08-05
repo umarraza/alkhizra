@@ -15,7 +15,7 @@
 
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Select Teacher:</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="teacherId">
+                        <select class="form-control" id="exampleFormControlSelect1" name="teacher_id">
                             @foreach ($teachers as $teacher)
                                 <option value="{{$teacher->id}}" name="course_name">{{$teacher->first_name. ' '. $teacher->last_name}}</option>
                             @endforeach

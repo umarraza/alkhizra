@@ -21,12 +21,12 @@ class Conference extends Model
         'conferenceDate',
         'conferenceTime',
         'timeZone',
-        'teacherId'
+        'teacher_id'
     ];
 
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class, 'id', 'teacherId');
+        return $this->belongsTo(Teacher::class);
     }
 
     public function students() {

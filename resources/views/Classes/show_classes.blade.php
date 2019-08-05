@@ -4,7 +4,7 @@
 
 
 <div class="container" style="width:80%;padding: 0 0 20px">
-        <h1 style="color:#000"><b>Classs</b></h1>
+        <h1 class="user-heading"><b>Classs</b></h1>
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -32,8 +32,7 @@
             <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;Attempts:</span>&nbsp;&nbsp;{{$class->timeZone}}</span>
             <div class="pull-right pull-right-div">
                 <a href="{{url('/class-update-form/'.$class->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="far fa-edit"aria-hidden="true"></i></button></a>
-                <a href="{{url('/class-update-form/'.$class->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>
-           
+                <a href="{{url('/class-delete/'.$class->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>
             </div>
         </div>
         <div class="col-md-2 md-2-col">

@@ -4,13 +4,13 @@
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="heading-pannel" id="heading-pannel">
-                <h1 id="user-heading"><b>Teachers</b></h1>
+            <h1 id="user-heading"><b>Teachers</b></h1>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     <button type="button" class="btn btn-lg pull-right add-user-btn">
                         <i class="fas fa-user-plus fa-user-color"></i>
-                        <a href="{{ url('/create-teacher-form') }}" class="small-box-footer create-user-link" style="color:#fff; font-size:15px;font-weight:900;text-decoration:none">&nbsp;&nbsp;Add Student</a>
+                        <a href="{{ url('/create-teacher-form') }}" class="small-box-footer create-user-link" style="color:#fff; font-size:15px;font-weight:900;text-decoration:none">&nbsp;&nbsp;Add Teacher</a>
                     </button>
                 </form>
             </div> <br>

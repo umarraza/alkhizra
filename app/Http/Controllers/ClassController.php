@@ -108,7 +108,7 @@ class ClassController extends Controller
         $classes = Classes::all();
 
         foreach($classes as $class) {
-            $teacher = Teacher::whereId($class->teacherId)->first();
+            $teacher = Teacher::whereId($class->teacher_id)->first();
             $class['teacher'] = $teacher;
         }
         return view('Classes.show_classes', compact('classes'));
@@ -125,7 +125,7 @@ class ClassController extends Controller
        
         $id = $request->id;
 
-        $classes = Classes::where('teacherId', '=', $request->id)->get();
+        $classes = Classes::where('teacher_id', '=', $request->id)->get();
         return view('classes.show_classes', compact('classes', 'id'));
 
     }

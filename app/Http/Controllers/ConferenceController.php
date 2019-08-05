@@ -22,7 +22,7 @@ class ConferenceController extends Controller
             'conferenceDate' => 'required',
             'conferenceTime' => 'required',
             'timeZone' => 'required',
-            'teacherId' => 'required',
+            'teacher_id' => 'required',
         ]);
 
         DB::beginTransaction();
@@ -34,7 +34,7 @@ class ConferenceController extends Controller
                 'conferenceDate' =>  $request->conferenceDate,
                 'conferenceTime' =>  $request->conferenceTime,
                 'timeZone'       =>  $request->timeZone,
-                'teacherId'      =>  $request->teacherId,
+                'teacher_id'      =>  $request->teacher_id,
 
             ]);
     
@@ -48,14 +48,73 @@ class ConferenceController extends Controller
         return redirect()->action('ConferenceController@showConfreneces');
     }
 
+
+    public function updateConferenece(Conference $conference) {
+
+        $data = request()->validate([
+        
+            'conferenceName' => 'required',
+            'conferenceDate' => 'required',
+            'conferenceDate' => 'required',
+            'timeZone' => 'required',
+            'teacher_id' => 'required'
+        ]);
+
+        $conference->update($data);
+        
+        // latter update teacher_id as well 
+
+        // Classes::whereId($class->id)->update([
+        //     "teacher_id" => Course::find($class->course_Id)->teacher_id,
+        // ]); 
+
+        return redirect()->action('ConferenceController@showConfreneces');
+
+    }
+
+    public function deleteConferenece(Conference $conference){
+        
+        DB::beginTransaction();
+        try {
+
+            $conference->delete();
+            DB::commit();
+
+        } catch (Exception $e) {
+            
+            throw $e;
+            DB::rolleBack();
+
+        }
+        return redirect()->action('ConferenceController@showConfreneces');
+    }
+
+
+    public function updateConfereneceForm(Conference $conference) {
+        
+        $teachers = Teacher::all();
+        return view('Conference.update-conference', compact('conference','teachers'));
+    }
+
+
+
     public function confereneceForm() {
+
         $teachers = Teacher::all();
         return view('Conference.create-conferenece', compact('teachers'));
+    
     }
 
     public function showConfreneces() {
 
         $conferences = Conference::all();
+
+        foreach($conferences as $conference) {
+
+            $conference['teacher'] = $conference->teacher;
+
+        }
+
         return view('Conference.show_conference', compact('conferences'));
 
     }

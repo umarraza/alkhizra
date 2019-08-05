@@ -15,7 +15,6 @@ class TestController extends Controller
 {
     public function createTest(Request $request) {
 
-
         $validatedData = $request->validate([
         
             'testName' => 'required',
@@ -24,7 +23,7 @@ class TestController extends Controller
             'passingMarks' => 'required',
             'totalTime' => 'required',
             'instructions' => 'required',
-            'course_Id' => 'required',
+            'course_id' => 'required',
 
         ]);
 
@@ -39,7 +38,7 @@ class TestController extends Controller
                 'passingMarks'  =>  $request->passingMarks,
                 'totalTime'     =>  $request->totalTime,
                 'instructions'  =>  $request->instructions,
-                'courseId'      =>  $request->course_Id,
+                'course_id'     =>  $request->course_id,
 
             ]);
     
@@ -50,27 +49,61 @@ class TestController extends Controller
             throw $e;
             DB::rollback();
         }
-        return redirect()->action('TestController@showTests');
+        return redirect()->action('TestController@teacherTests');
     }
 
     public function testForm() {
+
         $teacher = Teacher::whereUserid(Auth::User()->id)->first();
         $courses =  $teacher->courses;
         return view('Tests.create_test', compact('courses'));
+    
     }
 
-
-    public function showTests() {
+    public function teacherTests() {
 
         $teacher = Teacher::whereUserid(Auth::User()->id)->first();
-        $course = Course::where('teacherId', $teacher->id)->first();
-
-        $tests = Test::where('courseId', $course->id)->get();
+        $course = Course::where('teacher_id', $teacher->id)->first();
+        $tests = Test::where('course_id', $course->id)->get();
         return view('Tests.show_teacher_tests', compact('tests'));
     }
 
     public function listsAdminTests() {
-        $tests = Test::all();
+
+        $tests = Test::with('course')->get();
+
+        foreach($tests as $test) {
+
+            if (empty($test->course->teacher))
+            {
+                return view('Tests.no_tests');
+            } else {
+                $test['teacher'] = $test->course->teacher;
+            }
+        }
         return view('Tests.show_tests', compact('tests'));
     }
+
+    public function updateTestForm(Test $test) {
+
+        //  
+
+    }
+
+    public function deleteTest(Test $test) {
+
+        DB::beginTransaction();
+        try {
+        
+            $test->delete();
+            DB::commit();
+
+        } catch (Exception $e) {
+
+            throw $e;
+            DB::rollBack();
+        }
+    }
+
+
 }

@@ -4,7 +4,7 @@
 
 
 <div class="container" style="width:80%;padding: 0 0 20px">
-        <h1 style="color:#000"><b>Tests</b></h1>
+        <h1 class="user-heading"><b>Tests</b></h1>
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -20,25 +20,22 @@
         </div>
         <div class="col-md-8">
             <h5 class="class-title"><b>{{$test->testName}}</b></h5>
+            <p class="class-teacher">{{$test->course->teacher->first_name. ' ' .$test->course->teacher->last_name }}</p>
             <p class="class-title">{{$test->description}}</p>
-            {{-- <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$test->totalMarks}}</p>
-            <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$test->passingMarks}}</p> --}}
-
+            <p class="teacher-class-para"><i class="fas fa-clock">&nbsp;&nbsp;Questions</i>&nbsp;&nbsp;10</p>
             <hr class="show-classes-hr">
             <span><i class="fas fa-file"></i>&nbsp;&nbsp;Questions:</span><span class="style-spam">&nbsp;&nbsp;10</span>
             <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i>&nbsp;&nbsp;Attempts:</span>&nbsp;&nbsp;11</span>
             <div class="pull-right pull-right-div">
-                <a href="{{url('/class-update-form/'.$test->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="far fa-edit"aria-hidden="true"></i></button></a>
-                <a href="{{url('/class-update-form/'.$test->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>
-           
+                <a href="{{url('/test-delete/'.$test->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>
             </div>
         </div>
         <div class="col-md-2 md-2-col">
             <button class="btn btn-lg btn-success pull-right" style="background-color: #38ADA9; margin:44px -57px 0px 0px"><a href="{{url('/start-session/'.$test->id)}}" style=" color:#fff; text-decoration:none">&nbsp;View Results</a></button>
         </div>
     </div>
-
 </div> 
+
 <br>
 @php $count++; @endphp
 @endforeach

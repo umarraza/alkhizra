@@ -121,6 +121,7 @@ class TeacherController extends Controller
         $courses  = $teacher->courses;        
         $students = $teacher->students;
         $classes  = $teacher->classes;
+        $confernces = $teacher->confrences;
         $user     = $teacher->user;
         $userIds = $students->map(function($user) {
             return $user['userId'];
@@ -133,6 +134,7 @@ class TeacherController extends Controller
 
             $courses->each->delete();
             $classes->each->delete();
+            $confernces->each->delete();
             $students->each->delete();
             $teacher->delete();
             User::whereIn('id', $userIds)->delete();

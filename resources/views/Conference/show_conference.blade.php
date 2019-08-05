@@ -4,7 +4,7 @@
 
 
 <div class="container" style="width:80%;padding: 0 0 20px">
-        <h1 style="color:#000"><b>Conferences</b></h1>
+        <h1 class="user-heading"><b>Conferences</b></h1>
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -25,6 +25,11 @@
         <div class="col-md-8">
             <h5 class="class-title"><b>{{$conference->conferenceName}}</b></h5>
             <p class="class-teacher">{{$conference->date}}</p>
+            @if (empty($conference->teacher))
+                <p class="class-teacher">No Tecahers</p>
+            @else
+                <p class="class-teacher">{{$conference->teacher->first_name . ' ' .$conference->teacher->last_name}}</p>
+            @endif
             <p class="teacher-class-para"><i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{$conference->conferenceDate}}</p>
             <p class="teacher-class-para"><i class="fas fa-clock"></i>&nbsp;&nbsp;{{$conference->conferenceTime}}</p>
 
@@ -32,9 +37,8 @@
             <span><i class="fas fa-file"></i>&nbsp;&nbsp;Status:</span><span class="style-spam">&nbsp;&nbsp;Live</span>
             <span style="margin:0 0 0 75px"><i class="fas fa-globe-americas"></i></span>&nbsp;&nbsp;{{$conference->timeZone}}</span>
             <div class="pull-right pull-right-div">
-                <a href="{{url('/class-update-form/'.$conference->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="far fa-edit"aria-hidden="true"></i></button></a>
-                <a href="{{url('/class-update-form/'.$conference->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>
-           
+                <a href="{{url('/conference-update-form/'.$conference->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="far fa-edit"aria-hidden="true"></i></button></a>
+                <a href="{{url('/conference-delete/'.$conference->id)}}"><button type="submit" class="btn btn-lg btn-default  dlt-teacher-btn"><i class="fas fa-trash-alt"aria-hidden="true"></i></button></a>
             </div>
         </div>
         <div class="col-md-2 md-2-col">

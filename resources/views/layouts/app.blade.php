@@ -26,7 +26,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="{{ asset('/public/js/alkhizra.js')}}"></script>
     <script src="https://kit.fontawesome.com/7917da7459.js"></script>
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Alkhizra') }}</title>
 
 </head>
 <body>
@@ -49,7 +49,7 @@
 
                         <!-- Branding Image -->
                         <a class="navbar-brand" href="{{ url('/') }}" style="color:#38ADA9; font-weight:900;font-size:30px">
-                            {{ config('app.name', 'Laravel') }}
+                            {{ config('app.name', 'Alkhizra') }}
                         </a>
                     </div>
 
@@ -102,7 +102,7 @@
                                         <a class="nav-link" href="{{ url('show-conferenece') }}">Conference</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('show-admin-tests') }}">Test</a>
+                                        <a class="nav-link" href="{{ url('show-tests') }}">Test</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('admin') }}">Profile</a>
@@ -119,7 +119,7 @@
                                         <a class="nav-link" href="{{ url('teacher-courses') }}">Course</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('show-tests') }}">Test</a>
+                                        <a class="nav-link" href="{{ url('teachers-tests') }}">Test</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('teacher-conferences') }}">Conference</a>

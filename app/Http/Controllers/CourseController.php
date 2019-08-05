@@ -20,7 +20,7 @@ class CourseController extends Controller
             'courseName' => 'required|unique:courses',
             'courseType' => 'required',
             'description' => 'required',
-            'teacherId' => 'required',
+            'teacher_id' => 'required',
         ]);
 
         DB::beginTransaction();
@@ -31,7 +31,7 @@ class CourseController extends Controller
                 'courseName'    =>  $request->courseName,
                 'courseType'    =>  $request->courseType,
                 'description'   =>  $request->description,
-                'teacherId'     =>  $request->teacherId
+                'teacher_id'     =>  $request->teacher_id
             ]);
     
             DB::commit();
@@ -57,7 +57,7 @@ class CourseController extends Controller
             'courseName' => 'required',
             'courseType' => 'required',
             'description' => 'required',
-            'teacherId' => 'required',
+            'teacher_id' => 'required',
 
         ]);
 

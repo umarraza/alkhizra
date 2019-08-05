@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="/alkhizra/course-update/{{ $course->id }}" method="post">
+    <form action="/alkhizra/conference-update/{{ $conference->id }}" method="post">
     {{ csrf_field() }}
         <div class="form-group">
             <div class="row">
@@ -9,10 +9,10 @@
                 <div class="col-md-4">
                     <div class="row">
                         <div class="col text-center modal-title-margin">
-                            <h4 class="create-teacher-title">Update course</h4>
+                            <h4 class="create-teacher-title">Update Conference</h4>
                         </div>
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Select Teacher:</label>
                         <select class="form-control" id="exampleFormControlSelect1" name="teacher_id">
@@ -22,21 +22,25 @@
                         </select>
                     </div>
 
-                    <label class="form-check-label" for="exampleCheck1">First Name</label>
-                    <input type="text" class="form-control" id="courseName" name="courseName" placeholder="" required="true" value="{{$course->courseName}}">
+                    <label class="form-check-label" for="exampleCheck1">Conference Name</label>
+                    <input type="text" class="form-control" id="conferenceName" name="conferenceName" required="true" value="{{$conference->conferenceName}}">
 
 
-                    <label class="form-check-label" for="exampleCheck1">Last Name</label>
-                    <input type="text" class="form-control" id="courseType" name="courseType" placeholder="" required="true" value="{{$course->courseType}}">
+                    <label class="form-check-label" for="exampleCheck1">Conference Date</label>
+                    <input type="text" class="form-control" id="conferenceDate" name="conferenceDate" required="true" value="{{$conference->conferenceDate}}">
 
 
-                    <label class="form-check-label" for="exampleCheck1">Specialization</label>
-                    <input type="text" class="form-control" id="description" name="description" placeholder="" required="true" value="{{$course->description}}">
+                    <label class="form-check-label" for="exampleCheck1">Conference Time</label>
+                    <input type="text" class="form-control" id="conferenceTime" name="conferenceTime" required="true" value="{{$conference->conferenceTime}}">
+
+
+                    <label class="form-check-label" for="exampleCheck1">Time Zone</label>
+                    <input type="text" class="form-control" id="timeZone" name="timeZone" required="true" value="{{$conference->timeZone}}">
 
                     <br>
                      <div class="row">
                         <div class="col text-center modal-title-margin">
-                            <button type="submit" class="btn btn btn-lg update-teacher-btn" style="color:#fff; font-size:15px;"><i class="fas fa-user-plus fa-user-color"></i>&nbsp;&nbsp;Update course</button>
+                            <button type="submit" class="btn btn btn-lg update-teacher-btn" style="color:#fff; font-size:15px;text-decoration:none">Update Conference</button>
                         </div>
                     </div>
                 </div>

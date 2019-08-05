@@ -24,15 +24,23 @@
                     <label class="form-check-label" for="exampleCheck1">Time Zone</label>
                     <input class="form-control form-control-sm" name="timeZone" type="text" placeholder="" required>
 
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Who is conducting? (Teacher Name)</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="teacherId">
-                            @foreach ($teachers as $teacher)
-                                <option value="{{$teacher->id}}" name="course_name">{{$teacher->first_name. ' '. $teacher->last_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
+                    @if (!empty($teachers))
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Who is conducting? (Teacher Name)</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="teacher_id">
+                                @foreach ($teachers as $teacher)
+                                    <option value="{{$teacher->id}}" name="course_name">{{$teacher->first_name. ' '. $teacher->last_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @else
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">No Teachers Available</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="teacher_id">
+                                <option value="{{$teacher->id}}" name="course_name"></option>
+                            </select>
+                        </div>
+                    @endif
                     <br>
                      <div class="row">
                         <div class="col text-center modal-title-margin">

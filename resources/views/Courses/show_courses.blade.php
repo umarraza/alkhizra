@@ -4,7 +4,7 @@
 
 
 <div class="container" style="width:80%;padding: 0 0 20px">
-        <h1 style="color:#000"><b>Courses</b></h1>
+    <h1 class="user-heading"><b>Courses</b></h1>
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

@@ -24,11 +24,11 @@ class Test extends Model
         'passingMarks',
         'totalTime',
         'instructions',
-        'courseId',
+        'course_id',
     ];
 
-    public function courses() {
-        return $this->hasMany(Courses::class,'id');
+    public function course() {
+        return $this->belongsTo(Course::class);
     }
 
 }

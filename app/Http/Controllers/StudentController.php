@@ -29,7 +29,7 @@ class StudentController extends Controller
         ]);
 
         $course = Course::find($request->course_id);
-        $teacher = Teacher::find($course->teacherId);
+        $teacher = Teacher::find($course->teacher_id);
         $first_name = $request->first_name;
         $last_name = $request->last_name;
 
