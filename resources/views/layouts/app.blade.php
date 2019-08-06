@@ -155,8 +155,5 @@
 
         </div>
     </div>
-    <!-- Scripts -->
-    
-    
 </body>
 </html>

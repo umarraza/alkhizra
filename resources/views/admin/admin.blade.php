@@ -47,7 +47,6 @@
             </div>
             <div class="col-lg-4"></div>
          </div>
-      
       <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="row">
@@ -58,7 +57,6 @@
                </div>
             </div>
       </form>
-
    </div> {{-- END COL 12 --}}
 </div> {{-- END ROW --}}
    <br>

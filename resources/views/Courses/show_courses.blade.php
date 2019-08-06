@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="col-md-2 md-2-col">
-                <button class="btn btn-lg btn-success pull-right" style="background-color: #38ADA9; margin:44px -57px 0px 0px"><a href="{{url('/start-session/'.$course->id)}}" style=" color:#fff; text-decoration:none">&nbsp;Content</a></button>
+                <button class="btn btn-md btn-success pull-right" style="background-color: #38ADA9; margin:44px -57px 0px 0px"><a href="{{url('/start-session/'.$course->id)}}" style=" color:#fff; text-decoration:none">&nbsp;Content</a></button>
             </div>
         </div>
     </div> 
